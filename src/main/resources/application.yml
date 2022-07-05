@@ -1,0 +1,16 @@
+Server:
+  port: 8080
+
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
+      username: root
+      password: pl010425
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+
