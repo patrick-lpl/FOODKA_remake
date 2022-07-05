@@ -1,6 +1,7 @@
 package com.swu.foodka.controller;
 
 
+import com.swu.foodka.dao.DishDao;
 import com.swu.foodka.entity.Dish;
 import com.swu.foodka.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class DishController {
     }
 
     /**
-     * 根据id获取货物
+     * 根据id获取菜品信息
      * @param id
      * @return
      */
@@ -35,5 +36,46 @@ public class DishController {
         return dishService.getById(id);
     }
 
+    /**
+     * 删除菜品
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/{id}")
+    public boolean delete(@PathVariable int id){
+        System.out.println("deleting dish......");
+        return dishService.removeById(id);
+    }
+
+    /**
+     * 保存菜品
+     * @param dish
+     * @return
+     */
+    @PostMapping("/save")
+    public boolean save(@RequestBody Dish dish){
+        System.out.println("saveing dish......");
+        return dishService.save(dish);
+    }
+
+    /**
+     *更新菜品信息
+     * @param dish 商品对象
+     * @return if success
+     */
+    @PutMapping
+    public boolean update(@RequestBody Dish dish){
+        System.out.println("updating dish"+dish.getName());
+        return dishService.updateById(dish);
+    }
+
+    /**
+     * 模糊查询
+     */
+    @GetMapping("/like")
+    public List<Dish> getAllList(@RequestParam String name){
+        System.out.println(name);
+        return DishDao.selectPagesLike("%"+name+"%");
+    }
 
 }
