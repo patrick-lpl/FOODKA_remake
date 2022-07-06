@@ -65,7 +65,7 @@ public class DishController {
      */
     @PutMapping
     public boolean update(@RequestBody Dish dish){
-        System.out.println("updating dish"+dish.getName());
+        System.out.println("updating dish"+dish.getDishName());
         return dishService.updateById(dish);
     }
 
