@@ -15,10 +15,6 @@ public class User {
      */
     private String usName;
     /**
-     * 性别
-     */
-    private String usSex;
-    /**
      * 年龄
      */
     private Integer usAge;
@@ -29,7 +25,7 @@ public class User {
     /**
      * 注册时间
      */
-    private String CreateTime;
+    private String createTime;
 
     private String usPassword;
 

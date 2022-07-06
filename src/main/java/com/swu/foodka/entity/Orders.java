@@ -6,15 +6,14 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @Data
-@TableName("order")
-public class Order {
+@TableName("orders")
+public class Orders {
     @TableId("order_id")
-    private String orderId;
+    private Integer orderId;
 
     private Integer usId;
 
-    private Double total;
+    private Double orderCost;
 
-    private String creatTime;
-
+    private String createTime;
 }
