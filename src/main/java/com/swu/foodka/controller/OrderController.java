@@ -50,9 +50,9 @@ public class OrderController {
      * @param order
      * @return
      */
-    @PostMapping("/save")
+    @PostMapping
     public boolean save(@RequestBody Order order){
-        System.out.println("saveing order......");
+        System.out.println("saving order......");
         return orderService.save(order);
     }
 

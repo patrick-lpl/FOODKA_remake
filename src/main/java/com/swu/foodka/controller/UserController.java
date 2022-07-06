@@ -1,7 +1,7 @@
 package com.swu.foodka.controller;
 
 
-import com.swu.foodka.entity.Admin;
+
 import com.swu.foodka.entity.User;
 import com.swu.foodka.service.UserService;
 import com.swu.foodka.utils.EncryptUtil;
