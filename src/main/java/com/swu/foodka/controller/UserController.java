@@ -2,6 +2,7 @@ package com.swu.foodka.controller;
 
 
 
+import com.swu.foodka.dao.UserDao;
 import com.swu.foodka.entity.User;
 import com.swu.foodka.service.UserService;
 import com.swu.foodka.utils.EncryptUtil;
@@ -24,27 +25,32 @@ public class UserController {
         return userService.list();
     }
 
-    @PostMapping
+    @PutMapping
     public boolean update(@RequestBody User user){
         System.out.println("更新用户："+user.getUsName());
         return userService.updateById(user);
     }
 
-    @PutMapping("/save")
+    @PostMapping("/save")
     public boolean save(@RequestBody User user) throws Exception{
         //user.setUsPassword(EncryptUtil.shaEncode(user.getUsPassword()));
         return userService.save(user);
     }
 
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable int id){
+    public boolean delete(@PathVariable String id){
+        try{
+            int int_id = Integer.parseInt(id);
+        }catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
         System.out.println("删除用户："+id+"，"+userService.getById(id).getUsName());
         return userService.removeById(id);
     }
 
     // check
     @GetMapping("/get/{id}")
-    public User getByid(@PathVariable int id){
+    public User getById(@PathVariable int id){
         return userService.getById(id);
     }
 
@@ -80,5 +86,12 @@ public class UserController {
     public boolean register(@RequestBody User user) throws Exception{
         //user.setUsPassword(EncryptUtil.shaEncode(user.getUsPassword()));
         return userService.save(user);
+    }
+
+    //模糊查询
+    @GetMapping("/like")
+    public List<User> getAllList(@RequestParam String usName){
+        System.out.println(usName);
+        return UserDao.selectPagesLike("%"+usName+"%");
     }
 }
