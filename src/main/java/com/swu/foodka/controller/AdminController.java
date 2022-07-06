@@ -27,7 +27,7 @@ public class AdminController {
      * @param admin
      * @return adminService.updateById(admin)
      */
-    @PostMapping
+    @PostMapping("/update")
     public boolean update(@RequestBody Admin admin){
         System.out.println("更新admin用户："+admin.getAdminName());
         return adminService.updateById(admin);
