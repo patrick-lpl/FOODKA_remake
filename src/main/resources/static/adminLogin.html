@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>FOODKA会员管理系统</title>
+
+    <link href="../assets/bootstrap-3.4.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/signin.css" rel="stylesheet">
+  </head>
+
+
+  <style>
+    html {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      width: 100%;
+      background: #fff url("../assets/img/login_bg.png") no-repeat;
+      background-size: 100% 100%;
+    }
+    .box {
+      width: 370px;
+      height: 130px;
+      margin: 10px auto;
+
+    }
+    .btn {
+      margin: 10px auto;
+    }
+    .container{
+      background-color: #FFFFFF;
+      width: 450px;
+      border-radius: 25px;
+
+    }
+  </style>
+  <body>
+
+  <h1 class="form-signin-heading text-center"style="font-weight: bolder; font-family:YouYuan"><font color="#0b0b0b" size="7">FOODKA管理系统</font><span style="font-size: 16px;" style="font-weight: bolder; font-family:YouYuan">| 管理员登录</span></h1>
+  <div class="container" id="app">
+    <div class="login">
+
+      <div class="loginBody" align="center">
+        <h4>登录</h4>
+
+        <el-form :model="loginForm" :rules="loginRules" ref="loginForm" label-width="0px">
+          <el-form-item label="" prop="username" style="margin-top:10px;">
+            <el-row>
+              <el-col :span='2'>
+                <span class="el-icon-s-custom"></span>
+              </el-col>
+              <el-col :span='20'>
+                <el-input class="inps" placeholder='账号' v-model="loginForm.username">
+                </el-input>
+              </el-col>
+            </el-row>
+          </el-form-item>
+
+
+          <el-form-item label="" prop="password">
+            <el-row>
+              <el-col :span='2'>
+                <span class="el-icon-lock"></span>
+              </el-col>
+              <el-col :span='20'>
+                <el-input class="inps" type="password" placeholder='密码'
+                          v-model="loginForm.password"></el-input>
+              </el-col>
+            </el-row>
+          </el-form-item>
+
+
+          <el-form-item style="margin-top:5px;">
+            <el-button type="primary" round class="submitBtn" v-on:click="login">登录
+            </el-button>
+          </el-form-item>
+
+        </el-form>
+      </div>
+    </div>
+  </div>
+  </body>
+
+  <script src="../assets/js/vue.js"></script>
+  <script src="../assets/css/element-ui/index.js"></script>
+  <script src="../assets/js/vue-resource.js"></script>
+  <script src="../assets/js/axios.min.js"></script>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        info: [],
+        loginForm: {
+          username:'',
+          password:'',
+        },
+      },
+      data(){
+        return {
+          loginForm: {},
+        };
+      },
+
+      created() {
+        this.getAll();
+      },
+      methods: {
+        getAll() {
+          axios.get("http://localhost:8080/admin").then(res => {
+            this.info = res.data;
+          });
+        },
+        login() {
+          if(this.loginForm.username!==''){
+            if(this.loginForm.password!==''){
+                  axios.post("http://localhost:8080/admin/login", this.loginForm).then(rel => {
+                    console.log(rel.data);
+                    if (rel.data === 0) {
+                      alert("欢迎你！管理员")
+                      //window.location.href = ("login-hj.html")
+                    } else if(rel.data === 1){
+                      alert("用户不存在")
+                      //window.location.href = ("index/market.html")
+                    }else if(rel.data === 2){
+                      //window.location.href = ("index/operator.html")
+                      alert("密码错误")
+                    }
+                  })
+                }
+            }
+          }
+        },
+    })
+  </script>
+</html>

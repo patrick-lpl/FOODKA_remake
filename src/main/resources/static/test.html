@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/axios.min.js"></script>
+    <title>Users-test</title>
+    <script src="../assets/js/vue-resource.js"></script>
+    <link rel="stylesheet" href="../assets/css/element-ui/index.css"/>
+</head>
+<body>
+<div id="app">
+    the test
+    <ul>
+        {{info.goodsName}}
+    </ul>
+    <tr>
+        <td>
+            <table>username：</table>
+            <input type="text" v-model="formData.username" >
+        </td>
+
+        <td>
+            <table>pwd：</table>
+            <input type="password" v-model="formData.password">
+        </td>
+
+        <td>
+            <table>phone:</table>
+            <input type="text" v-model="formData.adminPhone">
+        </td>
+
+        <td>
+            <input type="button" value="提交" v-on:click="submitForm">
+        </td>
+    </tr>
+
+</div>
+<script>
+    new Vue({
+        el: "#app",
+        data:{
+            info:{},
+            formData:{}
+        },
+        created(){
+            this.getAll();
+        },
+
+        methods:{
+            //查询所有
+            getAll(){
+                axios.get("http://localhost:8080/admin/toList").then(res=>{
+                    this.info=res.data;
+                    console.log(this.info)
+                });
+            },
+            submitForm(){
+                axios.post("http://localhost:8080/admin", this.formData).then(rel=>{
+                    if(rel.data){
+                        alert(rel.data);
+                        // window.location.href=("admin.html")
+                    }else{alert(rel.data)}
+
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>
