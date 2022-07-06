@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>FOODKA会员管理系统</title>
+
+    <link rel="stylesheet" href="../assets/css/login.css"/>
+    <link rel="stylesheet" href="../assets/css/element-ui/index.css"/>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/css/element-ui/index.js"></script>
+    <script src="../assets/js/vue-resource.js"></script>
+    <script src="../assets/js/axios.min.js"></script>
+  </head>
+  
+  <style>
+
+      .el-menu-vertical-demo:not(.el-menu--collapse) {
+          width: 200px;
+          min-height: 400px;
+      }
+      .mainweb{
+          background:url("../assets/img/login_bg.png");
+          height: 800px;
+      }
+
+
+  </style>
+  <body>
+  <div id="app" class="mainweb">
+      <el-container>
+          <el-header>
+              <div class="logo"><p style="text-align: center; margin-top: 25px; font-size: larger; font-family: 'Adobe 楷体 Std R';background-color: #d9ecff; ">FOODKA会员管理系统</p></div>
+
+          </el-header>
+          <el-container>
+              <!-- 主体 -->
+
+              <el-menu style="background-color: #d0e9c6;" default-active="1-4-1" default-active="1-1-1" default-active="1-2-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+                  <el-submenu index="1">
+                      <template slot="title">
+                          <i class="el-icon-location"></i>
+                          <span slot="title">管理员功能</span>
+                      </template>
+                      <el-menu-item-group>
+                          <el-submenu index="1-1">
+                          <span slot="title">
+                               <i class="el-icon-document"></i>管理员操作</span>
+                          <el-menu-item index="1-1-1">
+                              <i class="el-icon-menu" ></i>
+                              <span @click="openUrl('')">基本信息</span>
+                          </el-menu-item>
+                          <el-menu-item index="1-2-1">
+                              <i class="el-icon-menu"></i>
+                              <span @click="openUrl('')">密码修改</span>
+                          </el-menu-item>
+                          </el-submenu>
+                      </el-menu-item-group>
+                      <el-submenu index="1-3">
+
+                          <span slot="title">
+                               <i class="el-icon-document"></i>会员管理</span>
+                          <el-menu-item index="1-3-1">
+                              <i class="el-icon-menu"></i>
+                              <span @click="openUrl('')">会员信息管理</span>
+                          </el-menu-item>
+                          <el-menu-item index="1-3-2">
+                              <i class="el-icon-menu"></i>
+                              <span @click="openUrl('')">会员密码修改</span>
+                          </el-menu-item>
+                      </el-submenu>
+                  </el-submenu>
+
+                  <el-submenu index="2-1">
+                      <template slot="title">
+                          <i class="el-icon-location"></i>
+                          <span slot="title">会员功能</span>
+                      </template>
+                  <el-menu-item index="2">
+                      <i class="el-icon-menu"></i>
+                      <span slot="title" @click="openUrl('')">会员个人信息管理</span>
+                  </el-menu-item>
+                  </el-submenu>
+                  <el-submenu index="3-1">
+                      <template slot="title">
+                      <i class="el-icon-s-order"></i>
+                      <span slot="title">餐厅信息管理</span>
+                      </template>
+                      <el-menu-item index="3-1-1">
+                          <i class="el-icon-menu"></i>
+                          <span slot="title" @click="openUrl('')">菜品信息管理</span>
+                      </el-menu-item>
+                      <el-menu-item index="3-1-2">
+                          <i class="el-icon-menu"></i>
+                          <span slot="title" @click="openUrl('')">订单管理</span>
+                      </el-menu-item>
+                      <el-menu-item index="3-1-3">
+                          <i class="el-icon-menu"></i>
+                          <span slot="title" @click="openUrl('')">订单管理</span>
+                      </el-menu-item>
+                  </el-submenu >
+                  <el-submenu index="4-1-1">
+                      <template slot="title">
+                      <i class="el-icon-setting"></i>
+                      <span slot="title">系统设置</span>
+                      </template>
+                      <el-menu-item index="4-1-2">
+                          <i class="el-icon-menu"></i>
+                          <span slot="title" @click="openUrl('')">待实现。。。</span>
+                  </el-menu-item>
+                  </el-submenu>
+              </el-menu>
+
+              <el-main>
+                  <iframe id="mainIframe" class="mainFrame" :src="iframeUrl" width="100%" height="100%"
+                          frameborder="0" scrolling="no"></iframe>
+              </el-main>
+
+
+          </el-container>
+      </el-container>
+
+  </div>
+  </body>
+  <script>
+      export default {
+          data() {
+              return {
+                  isCollapse: true
+              };
+          },
+          methods: {
+              handleOpen(key, keyPath) {
+                  console.log(key, keyPath);
+              },
+              handleClose(key, keyPath) {
+                  console.log(key, keyPath);
+              }
+          }
+      }
+  </script>
+  <script>
+      new Vue({
+          el: '#app',
+          data: function () {
+              return {
+                  tableData: [],
+                  dialogFormVisible: false,
+                  dialogFormTitle: "",
+                  form: {
+                      id: '',
+                      name: '',
+                      userTele: '',
+                      userLocation: '',
+                      userRetailer: ''
+
+                  },
+                  formLabelWidth: '120px',
+                  isAdd: false,
+                  userId: '',
+                  altTime: ''
+
+              }
+          },
+      }
+      )
+
+
+  </script>
+
+</html>
