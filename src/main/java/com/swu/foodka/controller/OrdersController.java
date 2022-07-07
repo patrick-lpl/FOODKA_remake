@@ -1,27 +1,27 @@
 package com.swu.foodka.controller;
 
-import com.swu.foodka.entity.Order;
-import com.swu.foodka.service.OrderService;
+
+import com.swu.foodka.entity.Orders;
+import com.swu.foodka.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController // 添加到ioc容器
-@RequestMapping("/order") // 设置访问路径
+@RequestMapping("/orders") // 设置访问路径
 @CrossOrigin // 解决跨域问题
-public class OrderController {
-
+public class OrdersController {
     @Autowired
-    private OrderService orderService;
+    private OrdersService ordersService;
 
     /**
      * 获取全部订单
      * @return
      */
     @GetMapping("toList")
-    public List<Order> getAll(){
-        return orderService.list();
+    public List<Orders> getAll(){
+        return ordersService.list();
     }
 
     /**
@@ -30,8 +30,8 @@ public class OrderController {
      * @return
      */
     @GetMapping("/get/{id}")
-    public Order getById(@PathVariable int id) {
-        return orderService.getById(id);
+    public Orders getById(@PathVariable int id) {
+        return ordersService.getById(id);
     }
 
     /**
@@ -42,29 +42,28 @@ public class OrderController {
     @DeleteMapping("/{id}")
     public boolean delete(@PathVariable int id){
         System.out.println("deleting order......");
-        return orderService.removeById(id);
+        return ordersService.removeById(id);
     }
 
     /**
      * 保存订单
-     * @param order
+     * @param orders
      * @return
      */
-    @PostMapping
-    public boolean save(@RequestBody Order order){
+    @PostMapping("/save")
+    public boolean saveOrder(@RequestBody Orders orders){
         System.out.println("saving order......");
-        return orderService.save(order);
+        return ordersService.save(orders);
     }
 
     /**
      *更新菜品信息
-     * @param order 商品对象
+     * @param orders 商品对象
      * @return if success
      */
-    @PutMapping
-    public boolean update(@RequestBody Order order){
-        System.out.println("updating order(ID):"+order.getOrderId());
-        return orderService.updateById(order);
+    @PutMapping("/update")
+    public boolean updateOrder(@RequestBody Orders orders){
+        System.out.println("updating order(ID):"+orders.getOrderId());
+        return ordersService.updateById(orders);
     }
-
 }

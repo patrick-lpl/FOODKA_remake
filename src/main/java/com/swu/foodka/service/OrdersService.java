@@ -1,9 +1,10 @@
 package com.swu.foodka.service;
 
+
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.swu.foodka.entity.Order;
+import com.swu.foodka.entity.Orders;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface OrderService extends IService<Order> {
+public interface OrdersService extends IService<Orders> {
 }

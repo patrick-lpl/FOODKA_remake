@@ -2,12 +2,15 @@ package com.swu.foodka.controller;
 
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.swu.foodka.dao.UserDao;
 import com.swu.foodka.entity.User;
 import com.swu.foodka.service.UserService;
 import com.swu.foodka.utils.EncryptUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController // 添加到ioc容器
@@ -17,6 +20,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserDao userDao;
 
     // check
     @GetMapping("toList")
@@ -24,27 +29,32 @@ public class UserController {
         return userService.list();
     }
 
-    @PostMapping
+    @PutMapping
     public boolean update(@RequestBody User user){
         System.out.println("更新用户："+user.getUsName());
         return userService.updateById(user);
     }
 
-    @PutMapping("/save")
+    @PostMapping("/save")
     public boolean save(@RequestBody User user) throws Exception{
         //user.setUsPassword(EncryptUtil.shaEncode(user.getUsPassword()));
         return userService.save(user);
     }
 
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable int id){
+    public boolean delete(@PathVariable String id){
+        try{
+            int int_id = Integer.parseInt(id);
+        }catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
         System.out.println("删除用户："+id+"，"+userService.getById(id).getUsName());
         return userService.removeById(id);
     }
 
     // check
     @GetMapping("/get/{id}")
-    public User getByid(@PathVariable int id){
+    public User getById(@PathVariable int id){
         return userService.getById(id);
     }
 
@@ -55,13 +65,14 @@ public class UserController {
      * 前段vue用rel.data接收返回值判断
      */
     @PostMapping("/login")
-    public Integer login(@RequestBody User user) throws Exception{
+    public Integer login(@RequestBody User user, @RequestBody HttpServletRequest request) throws Exception{
         List<User> userList = userService.list();
+        request.getSession().setAttribute("user",user); // 把登陆用户放入Session中
         for(User value: userList) {
             if (value.getUsName().equals(user.getUsName())) {
                 if (value.getUsPassword().equals(user.getUsPassword())) {
                     //if (value.getUsPassword().equals(EncryptUtil.shaEncode(user.getUsPassword()))) {
-                    System.out.println("登陆成功！");
+                    System.out.println("登陆成功！"+user.getUsName());
                     return 0;
                 }else
                     return 2;
@@ -81,4 +92,24 @@ public class UserController {
         //user.setUsPassword(EncryptUtil.shaEncode(user.getUsPassword()));
         return userService.save(user);
     }
+
+    //模糊查询
+    @GetMapping("/like")
+    public List<User> getAllList(@RequestParam String usName){
+        System.out.println(usName);
+        return userDao.selectPagesLike("%"+usName+"%");
+    }
+
+    //分页查询
+    @GetMapping("/pages")
+    public Page<User> getAll(@RequestParam Integer num, @RequestParam Integer size){
+        Page<User> userPage = new Page<>();
+        List<User> userList = userDao.selectPages(num, size);
+        int max = userDao.selectCount();
+        System.out.println(max/size);
+        userPage.setTotal(max/size);
+        userPage.setRecords(userList);
+        return userPage;
+    }
+
 }

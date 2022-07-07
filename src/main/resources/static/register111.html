@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../assets/css/login.css"/>
+    <link rel="stylesheet" href="../assets/css/element-ui/index.css"/>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script type="text/javascript" language="javascript" src="http://www.lanrenzhijia.com/ajaxjs/jquery.min.js" ></script>
+</head>
+<div id="app" class="outerDiv">
+    <div class="login">
+        <div class="header">
+            <span class="headfont">开启奇妙之旅</span>
+        </div>
+            <img  class="xhr " src="../assets/img/xhr.png" alt="img">
+            <img  class="nb animate__animated animate__backInDown" src="../assets/img/nb.png" alt="img">
+            <img  class="pz animate__animated animate__tada" src="../assets/img/pz.png" alt="img">
+        <div class="loginBody" align="center" style="width: 20vw; border-radius:20px;">
+            <h2 class="denglu">注册</h2>
+            <el-form :model="registerForm" ref="registerForm" label-width="1px" label-position="left" >
+                <el-form-item label=""  prop="usName" style="margin-top:10px;">
+                    <el-row>
+                        <el-col :span='2'>
+                            <span class="el-icon-s-custom"></span>
+                        </el-col>
+                        <el-col :span='20'>
+                            <el-input class="inps" placeholder='姓名' v-model="registerForm.usName" >
+                            </el-input>
+                        </el-col>
+                    </el-row>
+                </el-form-item>
+                <el-form-item label="" prop="usAge" style="margin-top:10px;">
+                    <el-row>
+                        <el-col :span='2'>
+                            <span class="el-icon-question"></span>
+                        </el-col>
+                        <el-col :span='20'>
+                            <el-input class="inps" placeholder='年龄' v-model="registerForm.usAge">
+                            </el-input>
+                        </el-col>
+                    </el-row>
+                </el-form-item>
+
+                <el-form-item label="" prop="usPhone" style="margin-top:10px;">
+                    <el-row>
+                        <el-col :span='2'>
+                            <span class="el-icon-phone"></span>
+                        </el-col>
+                        <el-col :span='20'>
+                            <el-input class="inps" placeholder='手机号' v-model="registerForm.usPhone">
+                            </el-input>
+                        </el-col>
+                    </el-row>
+                </el-form-item>
+                <el-form-item label="" prop="usPassword">
+                    <el-row>
+                        <el-col :span='2'>
+                            <span class="el-icon-lock"></span>
+                        </el-col>
+                        <el-col :span='20'>
+                            <el-input class="inps" type="usPassword" placeholder='密码'
+                                      v-model="registerForm.usPassword"></el-input>
+                        </el-col>
+                    </el-row>
+                </el-form-item>
+                <el-form-item style="margin-top:30px;">
+                    <el-button round  class="submitBtn" v-on:click="register">注册
+                    </el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+
+    </div>
+</div>
+<script src="../assets/js/vue.js"></script>
+<script src="../assets/css/element-ui/index.js"></script>
+<script src="../assets/js/vue-resource.js"></script>
+<script src="../assets/js/axios.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            info: [],
+            registerForm: {
+                usName: '',
+                usage:'',
+                usPhone: '',
+                usPassword: ''
+            },
+        },
+        data(){
+            return {
+                registerForm: {},
+            }
+        },
+
+        methods: {
+            register() {
+                if (this.registerForm.usPhone !== '') {
+                    if (this.registerForm.usPassword !== '')
+                        if(this.registerForm.usName != '')
+                            if(this.registerForm.usage != '')
+                                axios.post("http://localhost:8080/user/register", this.registerForm).then(rel => {
+                                    if (rel.data) {
+                                        alert("注册成功！")
+                                        this.$message({
+                                            type: 'success',
+                                            message: '新增成功!'
+                                        });
+                                        window.location.href=("login-hj.html")
+                                    } else {
+                                        this.$message({
+                                            type: 'info',
+                                            message: '新增失败'
+                                        });
+                                    }
+                                })
+                }
+            }
+        }
+    })
+    //
+    // $(function(){
+    //     $w = $('.pz').width();
+    //     $h = $('.pz').height();
+    //     $w2 = $w + 50;
+    //     $h2 = $h + 50;
+    //
+    //     $('.pz').hover(function(){
+    //         $(this).stop().animate({height:$h2,width:$w2,left:"-10px",top:"-10px"},);
+    //     },function(){
+    //         $(this).stop().animate({height:$h,width:$w,left:"0px",top:"0px"},);
+    //     });
+    // });
+
+</script>
+</html>
