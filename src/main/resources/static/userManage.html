@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>FOODKA会员管理系统</title>
+
+    <link rel="stylesheet" href="../assets/css/login.css"/>
+    <link rel="stylesheet" href="../assets/css/element-ui/index.css"/>
+    <link rel="stylesheet" href="../assets/css/goods.css" >
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/css/element-ui/index.js"></script>
+    <script src="../assets/js/vue-resource.js"></script>
+    <script src="../assets/js/axios.min.js"></script>
+    <title>用户信息管理</title>
+</head>
+<style>
+
+</style>
+
+<body>
+
+
+<div id="app">
+    <span>用户名</span>
+    <div style="width: 30%;">
+
+        <el-input v-model="add.name"  placeholder="请输入内容"></el-input>
+
+    </div>
+    <span>年龄</span>
+    <div style="width: 30%;">
+        <el-input  placeholder="请输入内容" v-on="sssy"></el-input>
+    </div>
+    <span>联系方式</span>
+    <div style="width: 30%;">
+
+        <el-input  placeholder="请输入内容"></el-input>
+    </div>
+    <span>密码</span>
+    <div style="width: 30%;">
+        <el-input  placeholder="请输入内容"></el-input>
+        <el-button
+                size="mini"
+                @click=" ">ADD</el-button>
+    </div>
+
+
+    <template>
+        <div class="search" style="width: 30%;" >
+            <p>ID</p>
+            <el-input v-model="input" placeholder="请输入ID"></el-input>
+            <el-button
+                    size="mini"
+                    @click=" ">search</el-button>
+        </div>
+        <el-card>
+            <el-table :data="listData" stripe style="width: 100%; " >
+                <el-table-column prop="usId" label="用户Id" width="180">
+                </el-table-column>
+                <el-table-column prop="usName" label="用户名称" width="180">
+                </el-table-column>
+                <el-table-column prop="usAge" label="年龄">
+                </el-table-column>
+                <el-table-column prop="usPhone" label="联系电话">
+                </el-table-column>
+                <el-table-column label="操作" width="250" style="display: flex;">
+                <template slot-scope="scope">
+                    <el-button
+                            size="mini"
+                            @click=" dialogFormVisible = true,handleEdit(scope.$index, scope.row)">Edit</el-button>
+                    <el-button
+                            size="mini"
+                            type="danger"
+                            @click.native.prevent="deleteRow(scope.$index, tableData)">Delete</el-button>
+                </template>
+                </el-table-column>
+            </el-table>
+        </el-card>
+        <el-dialog title="会员信息编辑" :visible.sync="dialogFormVisible">
+            <el-form :model="form">
+                <el-form-item label="密码" :label-width="formLabelWidth">
+                    <el-input v-model="form.usPassword" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="姓名" :label-width="formLabelWidth">
+                    <el-input v-model="form.usName" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="联系方式" :label-width="formLabelWidth">
+                    <el-input v-model="form.usPhone" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="年龄" :label-width="formLabelWidth">
+                    <el-input v-model="form.usAge" autocomplete="off"></el-input>
+                </el-form-item>
+
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogFormVisible = false">提交</el-button>
+            </div>
+        </el-dialog>
+            <div style="width: 100%;text-align:center" >
+                <el-button
+                        size="mini"
+                        @click="upt()">上一页</el-button>
+
+                <el-button
+                        size="mini"
+                        @click="next()">下一页</el-button>
+            </div>
+        <div style="width: 100%;text-align:center">
+            <el-input  v-model="input" placeholder="请输入用户名"></el-input>
+            <el-button
+                    size="mini"
+                    @click="mohuSearch">模糊查询</el-button>
+<!--            <div>-->
+<!--                <li>查询结果：</li>-->
+<!--                <li v-for="list in searchdata.listData"><strong>-->
+<!--                    {{searchdata.listData}}    &lt;!&ndash;虽然不知道为什么，但是这四个usName是同一个东西&ndash;&gt;-->
+<!--                </strong></li>-->
+<!--            </div>-->
+
+
+        </div>
+    </template>
+</div>
+
+</body>
+<script>
+
+    new Vue({
+            el: '#app',
+            data() {
+                return {
+                    input:'',
+                    add:{},
+                    listData:[],
+                    searchdata:{
+                        info:{},
+                        formData:{},
+                        // listData:[]
+                    },
+                    tableDatas: {
+                        // listdata:[],
+                        formdata:{},
+                        num:0,
+                        usName:'',
+                        total:'',
+                        size:2,
+                        page:0
+                },
+                    FormVisible:true,
+                    dialogFormVisible: false,
+                    form: {
+                        usPassword: '',
+                        usName:'',
+                        usPhone:'',
+                        usAge:'',
+                        delivery: false,
+                        type: [],
+                        resource: '',
+                        desc: ''
+                    },
+                    formLabelWidth: '120px'
+                }
+            },
+        created(){
+            this.getAll();
+        },
+            methods: {
+
+                getAll(){
+                    this.tableDatas.page =(this.tableDatas.num)*(this.tableDatas.size),
+                        console.log(this.tableDatas.num);
+                    axios.get("http://localhost:8080/user/pages?num="+this.tableDatas.page+"&size="+this.tableDatas.size).then(res=>{
+                        console.log(res.data.records);
+                        // this.tableDatas.listdata=res.data.records;
+                        this.listData=res.data.records;
+                        this.tableDatas.total=res.data.total;
+                    });
+                },
+                mohuSearch(){
+                    axios.get("http://localhost:8080/user/like?usName="+this.input).then(res=>{
+                        // this.searchdata.listData=res.data;
+                        this.listData=res.data;
+                        console.log(this.searchdata.listData)
+                    });
+                },
+                next(){
+                    if(this.tableDatas.page<this.tableDatas.total){
+                        this.tableDatas.num++;
+                    }else
+                        alert("已经是最后一页了")
+                    this.getAll();
+                },
+                upt(){
+                    if(this.tableDatas.page>0){
+                        this.tableDatas.num--;
+                    }else{
+                        alert("已经是第一页了")
+                    }
+                    this.getAll();
+                },
+                handleEdit(index, row) {
+                    console.log(index, row);
+                },
+                deleteRow(index, rows) {
+                    rows.splice(index, 1);
+                }
+            }
+        }
+    )
+</script>
+</html>

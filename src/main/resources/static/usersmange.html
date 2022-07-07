@@ -7,107 +7,145 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>FOODKA会员管理系统</title>
+
     <link rel="stylesheet" href="../assets/css/login.css"/>
     <link rel="stylesheet" href="../assets/css/element-ui/index.css"/>
-    <link rel="stylesheet" href="../assets/css/goods.css" >
+    <link rel="stylesheet" href="../../assets/css/goods.css" >
     <script src="../assets/js/vue.js"></script>
     <script src="../assets/css/element-ui/index.js"></script>
     <script src="../assets/js/vue-resource.js"></script>
     <script src="../assets/js/axios.min.js"></script>
     <title>用户信息管理</title>
 </head>
+<style>
+
+</style>
+
 <body>
 <div id="app">
-<!-----------------------用户信息输入框------------------------------------------------->
-    <tr this.getall()></tr>
-    <span>姓名</span>
-    <div style="width: 30%;">
-    <el-input v-model="add.usName" placeholder="请输入内容"></el-input>
-    </div>
-
-    <span>年龄</span>
-    <div style="width: 30%;">
-    <el-input v-model="add.usAge" placeholder="请输入内容"></el-input>
-    </div>
-
-    <span>电话</span>
-    <div style="width: 30%;">
-    <el-input v-model="add.usPhone" placeholder="请输入内容"></el-input>
-    </div>
-
-    <span>密码</span>
-    <div style="width: 30%;">
-    <el-input v-model="add.usPassword" placeholder="请输入内容"></el-input>
-        <el-button size="mini" v-on:click="submitf()">ADD</el-button>
-    </div>
-
     <template>
-<!-----------------------搜索栏输入框------------------------------------------------------>
-        <div class="search" style="width: 30%;" >
-            <p>会员ID</p>
-    <el-input v-model="add.usId" placeholder="请输入ID"></el-input>
-            <el-button size="mini" v-on:click="search()">search</el-button>
-        </div>
+        <el-table
+                :data="tableData"
+                style="width:100%"
+                max-height="80%">
+            <el-table-column
+                    fixed
+                    prop="admin_id"
+                    label="ID"
+                    width="150">
+            </el-table-column>
+            <el-table-column
+                    prop="username"
+                    label="用户名"
+                    width="120">
+            </el-table-column>
+            <el-table-column
+                    prop="password"
+                    label="密码"
+                    width="120">
+            </el-table-column>
+            <el-table-column
+                    prop="admin_name"
+                    label="姓名"
+                    width="120">
+            </el-table-column>
+            <el-table-column
+                    prop="admin_phone"
+                    label="联系方式"
+                    width="200">
+            </el-table-column>
+            <el-table-column
+                    prop="admin_email"
+                    label="邮箱"
+                    width="300">
+            </el-table-column>
+            <el-table-column
+                    fixed="right"
+                    label="操作"
+                    width="180">
+                <template slot-scope="scope">
+                    <el-button
+                            size="mini"
+                            @click=" dialogFormVisible = true,handleEdit(scope.$index, scope.row)">Edit</el-button>
+                    <el-button
+                            size="mini"
+                            type="danger"
+                            @click.native.prevent="deleteRow(scope.$index, tableData)">Delete</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        <el-dialog title="会员信息编辑" :visible.sync="dialogFormVisible">
+            <el-form :model="form">
+                <el-form-item label="用户名" :label-width="formLabelWidth">
+                    <el-input v-model="form.username" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" :label-width="formLabelWidth">
+                    <el-input v-model="form.password" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="姓名" :label-width="formLabelWidth">
+                    <el-input v-model="form.admin_name" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="联系方式" :label-width="formLabelWidth">
+                    <el-input v-model="form.admin_phone" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="邮箱" :label-width="formLabelWidth">
+                    <el-input v-model="form.admin_email" autocomplete="off"></el-input>
+                </el-form-item>
+
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogFormVisible = false">提交</el-button>
+            </div>
+        </el-dialog>
     </template>
-    <div class="down">
-        <table class="nowtable">
-            <tr>
-                <th>ID</th><th>姓名</th><th>年龄</th><th>电话</th><th>密码</th>
-            </tr>
-            <tr v-for="(item, index) in info"  v-bind:key="index">
-                <td>{{item.usId}}</td>
-                <td>{{item.usName}}</td>
-                <td>{{item.usAge}}</td>
-                <td>{{item.usPhone}}</td>
-                <td>{{item.usPassword}}</td>
-            </tr>
-        </table>
-    </div>
 </div>
+
 </body>
 <script>
     new Vue({
             el: '#app',
             data() {
                 return {
-                    info: {},
-                    add:{
-                        usName:"",
-                        usAge:"",
-                        usPhone:"",
-                        usPassword:""
-                    }
+                    tableData: [{
+                        admin_id: '01',
+                        username: 'LDD',
+                        password: '54321',
+                        admin_name: '李禹达',
+                        admin_phone: '123123',
+                        admin_email:'gst@qq.com',
+
+                    }, {
+                        admin_id: '02',
+                        username: 'LDD1',
+                        password: '54321',
+                        admin_name: '李禹达ab',
+                        admin_phone: '123123123',
+                        admin_email:'ldd@qq.com',
+
+                    },
+                    ],
+                    dialogFormVisible: false,
+                    form: {
+                        username: '',
+                        password: '',
+                        admin_name:'',
+                        admin_phone:'',
+                        admin_email:'',
+                        delivery: false,
+                        type: [],
+                        resource: '',
+                        desc: ''
+                    },
+                    formLabelWidth: '120px'
                 }
             },
             methods: {
-                getAll(){
-                    axios.get("http://localhost:8080/user/toList").then(res=>{
-                        console.log("here is userdetail");
-                         this.info = res.data ;
-                    })
+                handleEdit(index, row) {
+                    console.log(index, row);
                 },
-                submitf() {
-                    axios.put("http://localhost:8080/user/save", this.add).then(rel => {
-                        alert(rel.data);
-                        this.getAll();
-                    })
-                },
-                update() {
-                    axios.post("http://localhost:8080/user/update",this.add).then(rel=>{
-                        alert(rel.data);
-                        this.getAll();
-                    })
-                },
-                deletes(){
-                    axios.delete("http://localhost:8080/user/del/"+this.add.usId).then(rel=>{
-                        alert(rel.data);
-                        this.getAll();
-                    })
-                },
-                search(){
-                    axios.get("http://localhost:8080/user/get/"+this.add.usId).then(rel=>{
-                        this.info=rel.data;
-                    })
+                deleteRow(index, rows) {
+                    rows.splice(index, 1);
                 }
             }
         }
