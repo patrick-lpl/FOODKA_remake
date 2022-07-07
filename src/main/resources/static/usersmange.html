@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>FOODKA会员管理系统</title>
+    <link rel="stylesheet" href="../assets/css/login.css"/>
+    <link rel="stylesheet" href="../assets/css/element-ui/index.css"/>
+    <link rel="stylesheet" href="../assets/css/goods.css" >
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/css/element-ui/index.js"></script>
+    <script src="../assets/js/vue-resource.js"></script>
+    <script src="../assets/js/axios.min.js"></script>
+    <title>用户信息管理</title>
+</head>
+<body>
+<div id="app">
+<!-----------------------用户信息输入框------------------------------------------------->
+    <tr this.getall()></tr>
+    <span>姓名</span>
+    <div style="width: 30%;">
+    <el-input v-model="add.usName" placeholder="请输入内容"></el-input>
+    </div>
+
+    <span>年龄</span>
+    <div style="width: 30%;">
+    <el-input v-model="add.usAge" placeholder="请输入内容"></el-input>
+    </div>
+
+    <span>电话</span>
+    <div style="width: 30%;">
+    <el-input v-model="add.usPhone" placeholder="请输入内容"></el-input>
+    </div>
+
+    <span>密码</span>
+    <div style="width: 30%;">
+    <el-input v-model="add.usPassword" placeholder="请输入内容"></el-input>
+        <el-button size="mini" v-on:click="submitf()">ADD</el-button>
+    </div>
+
+    <template>
+<!-----------------------搜索栏输入框------------------------------------------------------>
+        <div class="search" style="width: 30%;" >
+            <p>会员ID</p>
+    <el-input v-model="add.usId" placeholder="请输入ID"></el-input>
+            <el-button size="mini" v-on:click="search()">search</el-button>
+        </div>
+    </template>
+    <div class="down">
+        <table class="nowtable">
+            <tr>
+                <th>ID</th><th>姓名</th><th>年龄</th><th>电话</th><th>密码</th>
+            </tr>
+            <tr v-for="(item, index) in info"  v-bind:key="index">
+                <td>{{item.usId}}</td>
+                <td>{{item.usName}}</td>
+                <td>{{item.usAge}}</td>
+                <td>{{item.usPhone}}</td>
+                <td>{{item.usPassword}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+<script>
+    new Vue({
+            el: '#app',
+            data() {
+                return {
+                    info: {},
+                    add:{
+                        usName:"",
+                        usAge:"",
+                        usPhone:"",
+                        usPassword:""
+                    }
+                }
+            },
+            methods: {
+                getAll(){
+                    axios.get("http://localhost:8080/user/toList").then(res=>{
+                        console.log("here is userdetail");
+                         this.info = res.data ;
+                    })
+                },
+                submitf() {
+                    axios.put("http://localhost:8080/user/save", this.add).then(rel => {
+                        alert(rel.data);
+                        this.getAll();
+                    })
+                },
+                update() {
+                    axios.post("http://localhost:8080/user/update",this.add).then(rel=>{
+                        alert(rel.data);
+                        this.getAll();
+                    })
+                },
+                deletes(){
+                    axios.delete("http://localhost:8080/user/del/"+this.add.usId).then(rel=>{
+                        alert(rel.data);
+                        this.getAll();
+                    })
+                },
+                search(){
+                    axios.get("http://localhost:8080/user/get/"+this.add.usId).then(rel=>{
+                        this.info=rel.data;
+                    })
+                }
+            }
+        }
+    )
+</script>
+</html>
