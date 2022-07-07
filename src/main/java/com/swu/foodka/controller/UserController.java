@@ -3,6 +3,7 @@ package com.swu.foodka.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.swu.foodka.controller.juit.AjaxResult;
 import com.swu.foodka.dao.UserDao;
 import com.swu.foodka.entity.User;
 import com.swu.foodka.service.UserService;
@@ -35,10 +36,20 @@ public class UserController {
         return userService.updateById(user);
     }
 
+    // 规范化接口
     @PostMapping("/save")
-    public boolean save(@RequestBody User user) throws Exception{
+    public AjaxResult save(@RequestBody User user) throws Exception{
         //user.setUsPassword(EncryptUtil.shaEncode(user.getUsPassword()));
-        return userService.save(user);
+        AjaxResult result = new AjaxResult();
+        if(userService.save(user)){
+            System.out.println(user.getUsName()+"Save success!");
+            result.setFlag(true);
+            result.setDatas(user);
+        }else {
+            result.setFlag(false);
+            result.setMsg("用户保存失败！");
+        }
+        return result;
     }
 
     @DeleteMapping("/{id}")
@@ -102,14 +113,14 @@ public class UserController {
 
     //分页查询
     @GetMapping("/pages")
-    public Page<User> getAll(@RequestParam Integer num, @RequestParam Integer size){
-        Page<User> userPage = new Page<>();
+    public Page getAll(@RequestParam Integer num, @RequestParam Integer size){
+        Page<User> userPage=new Page<User>(num,size);
         List<User> userList = userDao.selectPages(num, size);
         int max = userDao.selectCount();
         System.out.println(max/size);
         userPage.setTotal(max/size);
+        System.out.println("total"+userPage.getTotal());
         userPage.setRecords(userList);
         return userPage;
     }
-
 }
