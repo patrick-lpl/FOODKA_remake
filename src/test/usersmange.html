@@ -8,13 +8,13 @@
     <meta name="author" content="">
     <title>FOODKA会员管理系统</title>
 
-    <link rel="stylesheet" href="../assets/css/login.css"/>
-    <link rel="stylesheet" href="../assets/css/element-ui/index.css"/>
-    <link rel="stylesheet" href="../../assets/css/goods.css" >
-    <script src="../assets/js/vue.js"></script>
-    <script src="../assets/css/element-ui/index.js"></script>
-    <script src="../assets/js/vue-resource.js"></script>
-    <script src="../assets/js/axios.min.js"></script>
+    <link rel="stylesheet" href="../main/resources/assets/css/login.css"/>
+    <link rel="stylesheet" href="../main/resources/assets/css/element-ui/index.css"/>
+    <link rel="stylesheet" href="../main/resources/assets/css/goods.css" >
+    <script src="../main/resources/assets/js/vue.js"></script>
+    <script src="../main/resources/assets/css/element-ui/index.js"></script>
+    <script src="../main/resources/assets/js/vue-resource.js"></script>
+    <script src="../main/resources/assets/js/axios.min.js"></script>
     <title>用户信息管理</title>
 </head>
 <style>
@@ -23,11 +23,43 @@
 
 <body>
 <div id="app">
+    <span>用户名</span>
+    <div style="width: 30%;">
+
+    <el-input v-model="input" placeholder="请输入内容"></el-input>
+
+    </div>
+    <span>姓名</span>
+    <div style="width: 30%;">
+            <el-input v-model="input" placeholder="请输入内容"></el-input>
+    </div>
+    <span>联系方式</span>
+    <div style="width: 30%;">
+
+            <el-input v-model="input" placeholder="请输入内容"></el-input>
+    </div>
+    <span>邮箱</span>
+    <div style="width: 30%;">
+            <el-input v-model="input" placeholder="请输入内容"></el-input>
+        <el-button
+                size="mini"
+                @click=" ">ADD</el-button>
+    </div>
+
+
     <template>
+        <div class="search" style="width: 30%;">
+            <p>ID</p>
+            <el-input v-model="input" placeholder="请输入ID"></el-input>
+            <el-button
+                    size="mini"
+                    @click=" ">search</el-button>
+        </div>
         <el-table
                 :data="tableData"
-                style="width:100%"
-                max-height="80%">
+                style="width:100%; margin-top: 20px;"
+                max-height="80%"
+        >
             <el-table-column
                     fixed
                     prop="admin_id"
@@ -107,6 +139,7 @@
             el: '#app',
             data() {
                 return {
+                    input: '',
                     tableData: [{
                         admin_id: '01',
                         username: 'LDD',
@@ -125,6 +158,7 @@
 
                     },
                     ],
+                    FormVisible:true,
                     dialogFormVisible: false,
                     form: {
                         username: '',
