@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>管理员登陆</title>
     <link rel="stylesheet" href="../../assets/css/login.css"/>
     <link rel="stylesheet" href="../../assets/css/element-ui/index.css"/>
 
@@ -73,6 +73,29 @@
             this.getAll();
 
         },
+        data(){
+            return {
+                loginForm: {},
+                loginRules: {
+                    username: [{
+                        required: true,
+                        message: '请输入账号',
+                        trigger: 'blur'
+                    },
+                        {
+                            min: 3,
+                            max: 15,
+                            message: '请输入3-15位账号'
+                        }
+                    ],
+                    password: [{
+                        required: true,
+                        message: '请输入密码',
+                        trigger: 'blur'
+                    }],
+                }
+            };
+        },
 
         methods: {
             getAll() {
@@ -83,18 +106,9 @@
             login() {
                  if(this.loginForm.username!==''){
                      if(this.loginForm.password!==''){
-                                 axios.post("http://localhost:8080/admin/login", this.loginForm).then(rel => {
-                                     console.log(rel.data);
-                                     if (rel.data === 0) {
-                                         alert("欢迎你！管理员" + this.loginForm.username)
-                                         //window.location.href = ("index/admin.html")
-                                     } else if (rel.data === 1) {
-                                         alert("用户不存在")
-                                         //window.location.href = ("index/market.html")
-                                     } else if (rel.data === 2) {
-                                         //window.location.href = ("index/operator.html")
-                                         alert("密码错误")
-                                     }
+                                 axios.post("http://localhost:8080/admin/login1", this.loginForm).then(rel => {
+                                     //console.log(rel.data);
+                                     alert(rel.data.msg);
                                  })
                      }
                  }

@@ -121,19 +121,7 @@
                             if(this.registerForm.usName != '')
                                 if(this.registerForm.usage != '')
                                     axios.post("http://localhost:8080/user/register", this.registerForm).then(rel => {
-                                        if (rel.data) {
-                                            alert("注册成功！")
-                                            this.$message({
-                                                type: 'success',
-                                                message: '新增成功!'
-                                            });
-                                            window.location.href=("login-hj.html")
-                                        } else {
-                                            this.$message({
-                                                type: 'info',
-                                                message: '新增失败'
-                                            });
-                                        }
+                                        alert(rel.data.msg)
                                     })
                     }
                 }

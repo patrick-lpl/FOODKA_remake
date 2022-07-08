@@ -1,11 +1,14 @@
 package com.swu.foodka.controller;
 
+import com.swu.foodka.controller.juit.AjaxResult;
 import com.swu.foodka.entity.Admin;
+import com.swu.foodka.entity.User;
 import com.swu.foodka.service.AdminService;
 import com.swu.foodka.utils.EncryptUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -50,27 +53,29 @@ public class AdminController {
     }
 
     /**
-     * 登录
+     * 登录（已接口规范化）
      * @param admin
-     * @return 0=登录成功 1=用户名不存在 2=密码错误 -1=登陆失败（一般不会返回该值）
+     * @return
      * 前段vue用rel.data接收返回值判断
      */
-    // check
     @PostMapping("/login")
-    public Integer login(@RequestBody Admin admin) throws Exception{
+    public AjaxResult login(@RequestBody Admin admin){
+        AjaxResult result = new AjaxResult();
         List<Admin> adminList = adminService.list();
+        //request.getSession().setAttribute("user",admin); // 把登陆用户放入Session中
         for(Admin value: adminList) {
             if (value.getUsername().equals(admin.getUsername())) {
                 if (value.getPassword().equals(admin.getPassword())) {
-                //if (value.getPassword().equals(EncryptUtil.shaEncode(admin.getPassword()))) {
-                    System.out.println("登陆成功！");
-                    return 0;
-                }else
-                    return 2;
-            }else
-                return 1;
+                    result.setFlag(true);
+                    result.setMsg("登陆成功！欢迎：" + admin.getAdminName());
+                    result.setDatas(admin);
+                    return result;
+                }
+            }
         }
-        return -1;
+        result.setFlag(false);
+        result.setMsg("用户名或密码不正确");
+        return result;
     }
 
     /**

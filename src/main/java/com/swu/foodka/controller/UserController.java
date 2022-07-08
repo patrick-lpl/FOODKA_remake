@@ -73,27 +73,29 @@ public class UserController {
     }
 
     /**
-     * 登录
+     * 登录（已接口规范化）
      * @param user
-     * @return 0=登录成功 1=用户名不存在 2=密码错误 -1=登陆失败（一般不会返回该值）
+     * @return result
      * 前段vue用rel.data接收返回值判断
      */
     @PostMapping("/login")
-    public Integer login(@RequestBody User user, @RequestBody HttpServletRequest request) throws Exception{
+    public AjaxResult login(@RequestBody User user){
+        AjaxResult result = new AjaxResult();
         List<User> userList = userService.list();
-        request.getSession().setAttribute("user",user); // 把登陆用户放入Session中
+        //request.getSession().setAttribute("user",user); // 把登陆用户放入Session中
         for(User value: userList) {
             if (value.getUsName().equals(user.getUsName())) {
                 if (value.getUsPassword().equals(user.getUsPassword())) {
-                    //if (value.getUsPassword().equals(EncryptUtil.shaEncode(user.getUsPassword()))) {
-                    System.out.println("登陆成功！"+user.getUsName());
-                    return 0;
-                }else
-                    return 2;
-            }else
-                return 1;
+                    result.setFlag(true);
+                    result.setMsg("登陆成功！欢迎：" + user.getUsName());
+                    result.setDatas(user);
+                    return result;
+                }
+            }
         }
-        return -1;
+        result.setFlag(false);
+        result.setMsg("用户名或密码不正确");
+        return result;
     }
 
     /**
@@ -101,10 +103,27 @@ public class UserController {
      * @param user
      * @return if success
      */
-    @PostMapping("/register")
-    public boolean register(@RequestBody User user) throws Exception{
+    @PostMapping("/register1")
+    public boolean register1(@RequestBody User user) throws Exception{
         //user.setUsPassword(EncryptUtil.shaEncode(user.getUsPassword()));
         return userService.save(user);
+    }
+    @PostMapping("/register")
+    public AjaxResult register(@RequestBody User user){
+        AjaxResult result = new AjaxResult();
+        List<User> userList = userService.list();
+        for(User value: userList){
+            if(value.getUsName() == user.getUsName()){
+                result.setFlag(false);
+                result.setMsg("用户名已存在！");
+                return result;
+            }
+        }
+        userService.save(user);
+        result.setFlag(true);
+        result.setMsg("注册成功！欢迎："+user.getUsName());
+        result.setDatas(user);
+        return result;
     }
 
     //模糊查询
@@ -119,7 +138,7 @@ public class UserController {
     public Page getAll(@RequestParam Integer num, @RequestParam Integer size){
         Page<User> userPage=new Page<User>(num,size);
         List<User> userList = userDao.selectPages(num, size);
-        int max = userDao.selectCounts();
+        int max = userDao.selectCount();
         System.out.println(max*1.0/size);
         if(max/size==max*1.0/size){
             userPage.setTotal(max/size);
