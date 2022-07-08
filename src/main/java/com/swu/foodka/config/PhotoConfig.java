@@ -1,7 +1,6 @@
 package com.swu.foodka.config;
 
 
-import com.alibaba.druid.support.http.ResourceServlet;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
