@@ -116,9 +116,13 @@ public class UserController {
     public Page getAll(@RequestParam Integer num, @RequestParam Integer size){
         Page<User> userPage=new Page<User>(num,size);
         List<User> userList = userDao.selectPages(num, size);
-        int max = userDao.selectCount();
-        System.out.println(max/size);
-        userPage.setTotal(max/size);
+        int max = userDao.selectCounts();
+        System.out.println(max*1.0/size);
+        if(max/size==max*1.0/size){
+            userPage.setTotal(max/size);
+        }else{            //分页出现不能整除情况
+            userPage.setTotal((max/size)+1);
+        }
         System.out.println("total"+userPage.getTotal());
         userPage.setRecords(userList);
         return userPage;

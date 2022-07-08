@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,31 +29,31 @@
     <span>用户名</span>
     <div style="width: 30%;">
 
-        <el-input v-model="add.name"  placeholder="请输入内容"></el-input>
+        <el-input v-model="add.usName"  placeholder="请输入内容"></el-input>
 
     </div>
     <span>年龄</span>
     <div style="width: 30%;">
-        <el-input  placeholder="请输入内容" v-on="sssy"></el-input>
+        <el-input  v-model="add.usAge" placeholder="请输入内容"></el-input>
     </div>
     <span>联系方式</span>
     <div style="width: 30%;">
 
-        <el-input  placeholder="请输入内容"></el-input>
+        <el-input v-model="add.usPhone" placeholder="请输入内容"></el-input>
     </div>
     <span>密码</span>
     <div style="width: 30%;">
-        <el-input  placeholder="请输入内容"></el-input>
+        <el-input  v-model="add.usPassword" placeholder="请输入内容"></el-input>
         <el-button
                 size="mini"
-                @click=" ">ADD</el-button>
+                @click="submitf">ADD</el-button>
     </div>
 
 
     <template>
         <div class="search" style="width: 30%;" >
             <p>ID</p>
-            <el-input v-model="input" placeholder="请输入ID"></el-input>
+            <el-input v-model="add.usId" placeholder="请输入ID"></el-input>
             <el-button
                     size="mini"
                     @click=" ">search</el-button>
@@ -71,7 +72,7 @@
                 <template slot-scope="scope">
                     <el-button
                             size="mini"
-                            @click=" dialogFormVisible = true,handleEdit(scope.$index, scope.row)">Edit</el-button>
+                            @click="dialogFormVisible = true,handleEdit(scope.$index, scope.row)">Edit</el-button>
                     <el-button
                             size="mini"
                             type="danger"
@@ -81,24 +82,26 @@
             </el-table>
         </el-card>
         <el-dialog title="会员信息编辑" :visible.sync="dialogFormVisible">
-            <el-form :model="form">
-                <el-form-item label="密码" :label-width="formLabelWidth">
-                    <el-input v-model="form.usPassword" autocomplete="off"></el-input>
+            <el-form :model="add">
+                <el-form-item label="ID" :label-width="formLabelWidth">
+                    <el-input v-model="add.usId" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="姓名" :label-width="formLabelWidth">
-                    <el-input v-model="form.usName" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="联系方式" :label-width="formLabelWidth">
-                    <el-input v-model="form.usPhone" autocomplete="off"></el-input>
+                    <el-input v-model="add.usName" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="年龄" :label-width="formLabelWidth">
-                    <el-input v-model="form.usAge" autocomplete="off"></el-input>
+                    <el-input v-model="add.usAge" autocomplete="off"></el-input>
                 </el-form-item>
-
+                <el-form-item label="电话" :label-width="formLabelWidth">
+                    <el-input v-model="add.usPhone" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" :label-width="formLabelWidth">
+                    <el-input v-model="add.usPassword" autocomplete="off"></el-input>
+                </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogFormVisible = false">提交</el-button>
+                <el-button type="primary"  v-on:click="update()">提交</el-button>
             </div>
         </el-dialog>
             <div style="width: 100%;text-align:center" >
@@ -115,12 +118,6 @@
             <el-button
                     size="mini"
                     @click="mohuSearch">模糊查询</el-button>
-<!--            <div>-->
-<!--                <li>查询结果：</li>-->
-<!--                <li v-for="list in searchdata.listData"><strong>-->
-<!--                    {{searchdata.listData}}    &lt;!&ndash;虽然不知道为什么，但是这四个usName是同一个东西&ndash;&gt;-->
-<!--                </strong></li>-->
-<!--            </div>-->
 
 
         </div>
@@ -136,6 +133,7 @@
                 return {
                     input:'',
                     add:{},
+                    info: [],
                     listData:[],
                     searchdata:{
                         info:{},
@@ -153,16 +151,6 @@
                 },
                     FormVisible:true,
                     dialogFormVisible: false,
-                    form: {
-                        usPassword: '',
-                        usName:'',
-                        usPhone:'',
-                        usAge:'',
-                        delivery: false,
-                        type: [],
-                        resource: '',
-                        desc: ''
-                    },
                     formLabelWidth: '120px'
                 }
             },
@@ -208,6 +196,30 @@
                 },
                 deleteRow(index, rows) {
                     rows.splice(index, 1);
+                },
+                submitf() {
+                    axios.post("http://localhost:8080/user/register", this.add).then(rel => {
+                        alert(rel.data);
+                        this.getAll();
+                    })
+                },
+                update() {
+                    axios.put("http://localhost:8080/user",this.add).then(rel=>{
+                        console.log(rel.data)
+                        alert(rel.data);
+                        this.getAll();
+                    })
+                },
+                deletes(){
+                    axios.delete("http://localhost:8080/user/"+this.add.usId).then(rel=>{
+                        alert(rel.data);
+                        this.getAll();
+                    })
+                },
+                search(){
+                    axios.get("http://localhost:8080/user/get/"+this.add.usId).then(rel=>{
+                        this.info=rel.data;
+                    })
                 }
             }
         }
