@@ -159,6 +159,7 @@
                          if(this.loginForm.code!==''){
                              if(code === this.$refs.getValue.value.toLowerCase()) {
                                  axios.post("http://localhost:8080/user/login1", this.loginForm).then(rel => {
+                                     //rel.data.{msg:返回的文本信息, flag:true=登陆成功/false=失败, datas:登陆的user}
                                      alert(rel.data.msg)
                                  })
                              }else{

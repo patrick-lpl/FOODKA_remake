@@ -103,17 +103,12 @@ public class UserController {
      * @param user
      * @return if success
      */
-    @PostMapping("/register1")
-    public boolean register1(@RequestBody User user) throws Exception{
-        //user.setUsPassword(EncryptUtil.shaEncode(user.getUsPassword()));
-        return userService.save(user);
-    }
     @PostMapping("/register")
     public AjaxResult register(@RequestBody User user){
         AjaxResult result = new AjaxResult();
         List<User> userList = userService.list();
         for(User value: userList){
-            if(value.getUsName() == user.getUsName()){
+            if(value.getUsName().equals(user.getUsName())){
                 result.setFlag(false);
                 result.setMsg("用户名已存在！");
                 return result;

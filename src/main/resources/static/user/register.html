@@ -103,7 +103,7 @@
                 info: [],
                 registerForm: {
                     usName: '',
-                    usage:'',
+                    usAge:'',
                     usPhone: '',
                     usPassword: ''
                 },
@@ -116,11 +116,12 @@
 
             methods: {
                 register() {
-                    if (this.registerForm.usPhone !== '') {
-                        if (this.registerForm.usPassword !== '')
-                            if(this.registerForm.usName != '')
-                                if(this.registerForm.usage != '')
+                    if (this.registerForm.usName != '') {
+                        if (this.registerForm.usAge != '')
+                            if(this.registerForm.usPhone !== '')
+                                if(this.registerForm.usPassword !== '')
                                     axios.post("http://localhost:8080/user/register", this.registerForm).then(rel => {
+                                        //rel.data.{msg:返回的文本信息, flag:true=注册成功/false=失败, datas:注册的user}
                                         alert(rel.data.msg)
                                     })
                     }

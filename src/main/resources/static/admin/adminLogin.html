@@ -107,7 +107,7 @@
                  if(this.loginForm.username!==''){
                      if(this.loginForm.password!==''){
                                  axios.post("http://localhost:8080/admin/login1", this.loginForm).then(rel => {
-                                     //console.log(rel.data);
+                                     //rel.data.{msg:返回的文本信息, flag:true=登陆成功/false=失败, datas:登陆的admin}
                                      alert(rel.data.msg);
                                  })
                      }
