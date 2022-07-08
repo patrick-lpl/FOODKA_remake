@@ -81,7 +81,7 @@
 .nb{
 
 	float:right;
-	margin: 0 -10% 4% 20%;
+	margin: -8% -10% 0 20%;
 	position: relative;
 }
 
@@ -119,8 +119,10 @@
 }
 
 .pz{
+	width: 600px;
+	height: 300px;
 	position: relative;
 	color: white;
-	margin:0 0 0 -17%;
+	margin:0 0 0 -8%;
 }
 

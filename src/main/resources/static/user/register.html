@@ -13,81 +13,92 @@
 
     <body>
 
-        <div id="app" class="outerDiv">
-            <div class="grid-container register">
+    <div id="app" class="outerDiv">
+        <div class="grid-container register">
 
-                <div class="grid-item header">
-                    <span class="headfont">开启奇妙之旅</span>
-                </div>
-
-                <div class="grid-item ">
-                    <img class="nb animate__animated animate__backInDown" src="../../assets/img/nb.png" alt="img">
-                </div>
-
-                <div class="grid-item ">
-                    <img class="animate__animated animate__heartBeat" src="../../assets/img/xhr.png" alt="img">
-                </div>
-
-                <div class="grid-item loginBody">
-                     <h2 class="zhuce">注册</h2>
-                    <el-form :model="registerForm" ref="registerForm" label-width="1px" label-position="left" >
-                        <el-form-item label=""  prop="usName" style="margin-top:10px;">
-                            <el-row>
-                                <el-col :span='2'>
-                                    <span class="el-icon-s-custom"></span>
-                                </el-col>
-                                <el-col :span='20'>
-                                    <el-input class="inps" placeholder='姓名' v-model="registerForm.usName" >
-                                    </el-input>
-                                </el-col>
-                            </el-row>
-                        </el-form-item>
-                        <el-form-item label="" prop="usAge" style="margin-top:10px;">
-                            <el-row>
-                                <el-col :span='2'>
-                                    <span class="el-icon-question"></span>
-                                </el-col>
-                                <el-col :span='20'>
-                                    <el-input class="inps" placeholder='年龄' v-model="registerForm.usAge">
-                                    </el-input>
-                                </el-col>
-                            </el-row>
-                        </el-form-item>
-
-                        <el-form-item label="" prop="usPhone" style="margin-top:10px;">
-                            <el-row>
-                                <el-col :span='2'>
-                                    <span class="el-icon-phone"></span>
-                                </el-col>
-                                <el-col :span='20'>
-                                    <el-input class="inps" placeholder='手机号' v-model="registerForm.usPhone">
-                                    </el-input>
-                                </el-col>
-                            </el-row>
-                        </el-form-item>
-                        <el-form-item label="" prop="usPassword">
-                            <el-row>
-                                <el-col :span='2'>
-                                    <span class="el-icon-lock"></span>
-                                </el-col>
-                                <el-col :span='20'>
-                                    <el-input class="inps" type="usPassword" placeholder='密码'
-                                              v-model="registerForm.usPassword"></el-input>
-                                </el-col>
-                            </el-row>
-                        </el-form-item>
-                        <el-form-item style="margin-top:30px;margin-left: 70px;">
-                            <el-button round  class="submitBtn" v-on:click="register">注册
-                            </el-button>
-                        </el-form-item>
-                    </el-form>
-                </div>
-
-                <div class="grid-item "></div>
-
-                <div class="grid-item "><img class="pz animate__animated animate__tada" src="../../assets/img/pz.png" alt="img"></div>
+            <div class="grid-item header">
+                <span class="headfont">开启奇妙之旅</span>
             </div>
+
+            <div class="grid-item ">
+                <img class="nb animate__animated animate__backInDown" src="../../assets/img/nb.png" alt="img">
+            </div>
+
+            <div class="grid-item ">
+                <img class="xhr animate__animated animate__heartBeat" src="../../assets/img/xhr.png" alt="img">
+            </div>
+
+            <div class="grid-item loginBody">
+                <h2 class="zhuce">注册</h2>
+                <el-form :model="registerForm" ref="registerForm" label-width="1px" label-position="left" rules="rules">
+                    <el-form-item label=""  prop="usName" style="margin-top:10px;">
+                        <el-row>
+                            <el-col :span='2'>
+                                <span class="el-icon-s-custom"></span>
+                            </el-col>
+                            <el-col :span='20'>
+                                <el-input class="inps" maxlength="20" placeholder='用户名' v-model="registerForm.usName" clearable >
+                                </el-input>
+                            </el-col>
+                        </el-row>
+                    </el-form-item>
+                    <el-form-item label="" prop="usAge" style="margin-top:10px;">
+                        <el-row>
+                            <el-col :span='2'>
+                                <span class="el-icon-question"></span>
+                            </el-col>
+                            <el-col :span='20'>
+                                <el-input class="inps" maxlength="3" onkeyup="value=value.replace(/[^\d]/g,'')"  placeholder='年龄(最多输入三位数字)' v-model="registerForm.usAge" clearable>
+                                </el-input>
+                            </el-col>
+                        </el-row>
+                    </el-form-item>
+
+                    <el-form-item label="" prop="usPhone" style="margin-top:10px;">
+                        <el-row>
+                            <el-col :span='2'>
+                                <span class="el-icon-phone"></span>
+                            </el-col>
+                            <el-col :span='20'>
+                                <el-input class="inps" maxlength="11" onkeyup="value=value.replace(/[^\d]/g,'')" placeholder='手机号（11位）' v-model="registerForm.usPhone" clearable>
+                                    <template slot="prepend">+86</template>
+                                </el-input>
+                            </el-col>
+                        </el-row>
+                    </el-form-item>
+                    <el-form-item label="" prop="usPassword">
+                        <el-row>
+                            <el-col :span='2'>
+                                <span class="el-icon-lock"></span>
+                            </el-col>
+                            <el-col :span='20'>
+                                <el-input clearable class="inps" placeholder='密码'
+                                          v-model="registerForm.usPassword"  show-password ></el-input>
+                            </el-col>
+                        </el-row>
+                        <el-row style="margin-top: 25px;">
+                            <el-col :span="2">
+                                <span class="el-icon-lock"></span>
+                            </el-col>
+
+                            <el-col :span='20'>
+                                <el-input clearable class="inps"  placeholder='确认密码'
+                                          v-model="registerForm.checkusPassword"  show-password ></el-input>
+                            </el-col>
+                        </el-row>
+                    </el-form-item>
+                    <el-form-item style="margin-top:30px;margin-left: 70px;">
+                        <el-button round  class="submitBtn" v-on:click="register">注册
+                        </el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+
+            <div class="grid-item "></div>
+
+            <div class="grid-item "><img class="pz animate__animated animate__tada" src="../../assets/img/pz.png" alt="img"></div>
         </div>
+    </div>
     </body>
 
 

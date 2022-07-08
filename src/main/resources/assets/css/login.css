@@ -81,7 +81,7 @@
 .nb{
 
 	float:right;
-	margin: 0 -10% 4% 20%;
+	margin: -8% -10% 0 20%;
 	position: relative;
 }
 
@@ -110,7 +110,7 @@
 .genglu{
 	text-shadow: 0 0 10px rgb(149, 32, 32);
 	align: center;
-	margin: 0 0 0 2%;s
+	margin: 0 0 0 2%;
 
 }
 .submitBtn {
@@ -120,7 +120,9 @@
 }
 
 .pz{
+	width: 600px;
+	height: 300px;
 	position: relative;
 	color: white;
-	margin:0 0 0 -17%;
+	margin:0 0 0 -8%;
 }
