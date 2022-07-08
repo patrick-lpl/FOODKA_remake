@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>FOODKA会员管理系统</title>
+    <link rel="stylesheet" href="../assets/css/login.css"/>
+    <link rel="stylesheet" href="../assets/css/element-ui/index.css"/>
+    <link rel="stylesheet" href="../assets/css/goods.css" >
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/css/element-ui/index.js"></script>
+    <script src="../assets/js/vue-resource.js"></script>
+    <script src="../assets/js/axios.min.js"></script>
+    <title>用户信息管理</title>
+</head>
+<body>
+<div id="app">
+
+<!-----------------------搜索栏输入框------------------------------------------------------>
+<template>
+    <div style="width: 30%;" >
+            <p>会员ID</p>
+    <el-input v-model="add.usId" placeholder="请输入ID" style="margin-bottom:20px"></el-input>
+            <el-button size="mini" v-on:click="searchs()">search</el-button>
+        </div>
+<!----------------------展示栏的导航栏------------------------------------------------------->
+        <el-table :data="info" style="width:660px; margin-top: 20px;margin-left:5px;" max-height="80%">
+            <el-table-column
+                    fixed
+                    label="订单ID"
+                    width="120"
+                    prop="orderId"
+                    >
+
+            </el-table-column>
+            <el-table-column
+                    label="客户名"
+                    width="120"
+                    prop="usId">
+
+            </el-table-column>
+            <el-table-column
+
+                    label="总价"
+                    width="120"
+                    prop="orderCost">
+
+            </el-table-column>
+            <el-table-column
+                    fixed="right"
+                    label="操作"
+                    width="200">
+<!--------------------------------------编辑删除按钮------------------------------------------------>
+                <template slot-scope="scope">
+                    <el-button
+                        size="mini"
+                        type="danger"
+                        plain @click="deletes(scope.row)" icon="el-icon-delete">删除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+    </template>
+</div>
+</body>
+<script>
+    new Vue({
+            el: '#app',
+            data() {
+                return {
+                    info: [],
+                    add:{},
+                    dialogFormVisible: false,
+                    formLabelWidth: '120px'
+                }
+            },
+        created(){
+                this.getAll();
+        },
+            methods: {
+                getAll(){
+                    axios.get("http://localhost:8080/orders/toList").then(res=>{
+                        console.log("here is userdetail");
+                         this.info = res.data ;
+                    })
+                },
+                submitf() {
+                    axios.post("http://localhost:8080/orders/save", this.add).then(rel => {
+                        alert(rel.data);
+                        this.getAll();
+                    })
+                },
+                update() {
+                    axios.put("http://localhost:8080/orders/update",this.add).then(rel=>{
+                        alert(rel.data);
+                        this.getAll();
+                    })
+                },
+                deletes(row){
+                    axios.delete("http://localhost:8080/orders/"+row.usId).then(res=>{
+                        alert(res.data);
+                        this.getAll();
+                    })
+                },
+                searchs(){
+                    console.log(1);
+                   axios.get("http://localhost:8080/orders/get/"+this.add.usId).then(rel=>{
+                            console.log(rel);
+                        this.info=rel.data;
+                    });
+                }
+            }
+        }
+    )
+</script>
+</html>

@@ -1,11 +1,17 @@
 package com.swu.foodka.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.swu.foodka.dao.OrdersDao;
+import com.swu.foodka.dao.UserDao;
 import com.swu.foodka.entity.Orders;
+import com.swu.foodka.entity.User;
 import com.swu.foodka.service.OrdersService;
+import com.swu.foodka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController // 添加到ioc容器
@@ -14,6 +20,8 @@ import java.util.List;
 public class OrdersController {
     @Autowired
     private OrdersService ordersService;
+    @Autowired
+    private OrdersDao ordersDao;
 
     /**
      * 获取全部订单
@@ -30,8 +38,10 @@ public class OrdersController {
      * @return
      */
     @GetMapping("/get/{id}")
-    public Orders getById(@PathVariable int id) {
-        return ordersService.getById(id);
+    public List<Orders> getById(@PathVariable int id) {
+        List<Orders> ordersList=new ArrayList<>();
+        ordersList.add(ordersService.getById(id));
+        return ordersList;
     }
 
     /**
@@ -65,5 +75,22 @@ public class OrdersController {
     public boolean updateOrder(@RequestBody Orders orders){
         System.out.println("updating order(ID):"+orders.getOrderId());
         return ordersService.updateById(orders);
+    }
+
+    //分页查询
+    @GetMapping("/pages")
+    public Page getAll(@RequestParam Integer num, @RequestParam Integer size){
+        Page<Orders> ordersPage=new Page<Orders>(num,size);
+        List<Orders> ordersList = ordersDao.selectPages(num, size);
+        int max = ordersDao.selectCount();
+        System.out.println(max*1.0/size);
+        if(max/size==max*1.0/size){
+            ordersPage.setTotal(max/size);
+        }else{            //分页出现不能整除情况
+            ordersPage.setTotal((max/size)+1);
+        }
+        System.out.println("total"+ordersPage.getTotal());
+        ordersPage.setRecords(ordersList);
+        return ordersPage;
     }
 }
