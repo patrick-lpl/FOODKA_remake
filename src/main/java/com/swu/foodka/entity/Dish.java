@@ -15,5 +15,4 @@ public class Dish {
     private String dishName;
     // 菜品单价
     private Double dishPrice;
-
 }

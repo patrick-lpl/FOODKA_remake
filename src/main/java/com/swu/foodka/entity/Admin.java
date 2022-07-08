@@ -10,7 +10,7 @@ import lombok.Data;
 public class Admin {
     @TableId("admin_id")
     //ID
-    private String adminId;
+    private Integer adminId;
     // 用户名
     private String username;
     // 密码
