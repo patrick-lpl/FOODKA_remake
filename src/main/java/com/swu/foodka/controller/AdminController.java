@@ -2,13 +2,11 @@ package com.swu.foodka.controller;
 
 import com.swu.foodka.controller.juit.AjaxResult;
 import com.swu.foodka.entity.Admin;
-import com.swu.foodka.entity.User;
 import com.swu.foodka.service.AdminService;
 import com.swu.foodka.utils.EncryptUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 

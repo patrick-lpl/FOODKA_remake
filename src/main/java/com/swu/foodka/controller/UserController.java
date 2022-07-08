@@ -11,7 +11,7 @@ import com.swu.foodka.utils.EncryptUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,12 +54,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable String id){
-        try{
-            int int_id = Integer.parseInt(id);
-        }catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
+    public boolean delete(@PathVariable Integer id){
         System.out.println("删除用户："+id+"，"+userService.getById(id).getUsName());
         return userService.removeById(id);
     }
