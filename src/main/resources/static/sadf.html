@@ -42,10 +42,11 @@
 
     <template>
 <!-----------------------搜索栏输入框------------------------------------------------------>
-        <div class="search" style="width: 30%;" >
+        <div style="width: 30%;" >
             <p>会员ID</p>
     <el-input v-model="add.usId" placeholder="请输入ID"></el-input>
-            <el-button size="mini" v-on:click="search()">search</el-button>
+            <el-button size="mini" v-on:click="searchs()">search</el-button>
+            <el-button size="mini" v-on:click="deletes()">delete</el-button>
         </div>
 <!----------------------展示栏的导航栏------------------------------------------------------->
         <el-table :data="info" style="width:100%; margin-top: 20px;" max-height="80%">
@@ -92,11 +93,6 @@
                     <el-button
                             size="mini"
                             @click=" dialogFormVisible = true,handleEdit(scope.$index, scope.row)">Edit</el-button>
-                    <el-button
-                            size="mini"
-                            type="danger"
-                            v-on:click="deletes()"
-                            >Delete</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -152,29 +148,29 @@
                     })
                 },
                 submitf() {
-                    axios.put("http://localhost:8080/user/save", this.add).then(rel => {
+                    axios.post("http://localhost:8080/user/register", this.add).then(rel => {
                         alert(rel.data);
                         this.getAll();
                     })
                 },
                 update() {
-                    console.log(this.add)
-                    axios.post("http://localhost:8080/user/update",this.add).then(rel=>{
-                        console.log(this.add.data)
+                    axios.put("http://localhost:8080/user/update",this.add).then(rel=>{
                         alert(rel.data);
                         this.getAll();
                     })
                 },
                 deletes(){
-                    axios.delete("http://localhost:8080/user/del/"+this.add.usId).then(rel=>{
-                        alert(rel.data);
+                    axios.delete("http://localhost:8080/user/"+this.add.usId).then(res=>{
+                        alert(res.data);
                         this.getAll();
                     })
                 },
-                search(){
-                    axios.get("http://localhost:8080/user/get/"+this.add.usId).then(rel=>{
+                searchs(){
+                    console.log(1);
+                   axios.get("http://localhost:8080/user/get/"+this.add.usId).then(rel=>{
+                            console.log(rel);
                         this.info=rel.data;
-                    })
+                    });
                 }
             }
         }

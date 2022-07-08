@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController // 添加到ioc容器
@@ -30,7 +31,7 @@ public class UserController {
         return userService.list();
     }
 
-    @PutMapping
+    @PutMapping("/update")
     public boolean update(@RequestBody User user){
         System.out.println("更新用户："+user.getUsName());
         return userService.updateById(user);
@@ -65,8 +66,10 @@ public class UserController {
 
     // check
     @GetMapping("/get/{id}")
-    public User getById(@PathVariable int id){
-        return userService.getById(id);
+    public List<User>  getById(@PathVariable int id){
+        List<User> userList=new ArrayList<>();
+        userList.add(userService.getById(id));
+        return userList;
     }
 
     /**
