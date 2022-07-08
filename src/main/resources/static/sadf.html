@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>FOODKA会员管理系统</title>
+    <link rel="stylesheet" href="../assets/css/login.css"/>
+    <link rel="stylesheet" href="../assets/css/element-ui/index.css"/>
+    <link rel="stylesheet" href="../assets/css/goods.css" >
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/css/element-ui/index.js"></script>
+    <script src="../assets/js/vue-resource.js"></script>
+    <script src="../assets/js/axios.min.js"></script>
+    <title>用户信息管理</title>
+</head>
+<body>
+<div id="app">
+<!-----------------------用户信息输入框------------------------------------------------->
+    <span>姓名</span>
+    <div style="width: 30%;">
+    <el-input v-model="add.usName" placeholder="请输入内容"></el-input>
+    </div>
+
+    <span>年龄</span>
+    <div style="width: 30%;">
+    <el-input v-model="add.usAge" placeholder="请输入内容"></el-input>
+    </div>
+
+    <span>电话</span>
+    <div style="width: 30%;">
+    <el-input v-model="add.usPhone" placeholder="请输入内容"></el-input>
+    </div>
+
+    <span>密码</span>
+    <div style="width: 30%;">
+    <el-input v-model="add.usPassword" placeholder="请输入内容"></el-input>
+        <el-button size="mini" v-on:click="submitf()">ADD</el-button>
+    </div>
+
+    <template>
+<!-----------------------搜索栏输入框------------------------------------------------------>
+        <div style="width: 30%;" >
+            <p>会员ID</p>
+    <el-input v-model="add.usId" placeholder="请输入ID"></el-input>
+            <el-button size="mini" v-on:click="searchs()">search</el-button>
+            <el-button size="mini" v-on:click="deletes()">delete</el-button>
+        </div>
+<!----------------------展示栏的导航栏------------------------------------------------------->
+        <el-table :data="info" style="width:100%; margin-top: 20px;" max-height="80%">
+            <el-table-column
+                    fixed
+                    label="ID"
+                    width="150"
+                    prop="usId">
+
+            </el-table-column>
+            <el-table-column
+                    label="姓名"
+                    width="120"
+                    prop="usName">
+
+            </el-table-column>
+            <el-table-column
+
+                    label="年龄"
+                    width="120"
+                    prop="usAge">
+
+            </el-table-column>
+            <el-table-column
+
+                    label="电话"
+                    width="120"
+                    prop="usPhone">
+
+            </el-table-column>
+            <el-table-column
+
+                    label="密码"
+                    width="200"
+                    prop="usPassword">
+
+            </el-table-column>
+            <el-table-column
+                    fixed="right"
+                    label="操作"
+                    width="180">
+<!--------------------------------------编辑删除按钮------------------------------------------------>
+                <template slot-scope="scope">
+                    <el-button
+                            size="mini"
+                            @click=" dialogFormVisible = true,handleEdit(scope.$index, scope.row)">Edit</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+<!-----------------------------------------弹框----------------------------------------------------->
+        <el-dialog title="会员信息编辑" :visible.sync="dialogFormVisible">
+            <el-form :model="add">
+                <el-form-item label="ID" :label-width="formLabelWidth">
+                    <el-input v-model="add.usId" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="姓名" :label-width="formLabelWidth">
+                    <el-input v-model="add.usName" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="年龄" :label-width="formLabelWidth">
+                    <el-input v-model="add.usAge" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="电话" :label-width="formLabelWidth">
+                    <el-input v-model="add.usPhone" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" :label-width="formLabelWidth">
+                    <el-input v-model="add.usPassword" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+<!-------------------------------------弹框的按钮---------------------------------------------------->
+            <div slot="footer" class="dialog-footer">
+                <el-button >取 消</el-button>
+                <el-button type="primary"  v-on:click="update()">提交</el-button>
+            </div>
+
+        </el-dialog>
+    </template>
+
+</div>
+</body>
+<script>
+    new Vue({
+            el: '#app',
+            data() {
+                return {
+                    info: [],
+                    add:{},
+                    dialogFormVisible: false,
+                    formLabelWidth: '120px'
+                }
+            },
+        created(){
+                this.getAll();
+        },
+            methods: {
+                getAll(){
+                    axios.get("http://localhost:8080/user/toList").then(res=>{
+                        console.log("here is userdetail");
+                         this.info = res.data ;
+                    })
+                },
+                submitf() {
+                    axios.post("http://localhost:8080/user/register", this.add).then(rel => {
+                        alert(rel.data);
+                        this.getAll();
+                    })
+                },
+                update() {
+                    axios.put("http://localhost:8080/user/update",this.add).then(rel=>{
+                        alert(rel.data);
+                        this.getAll();
+                    })
+                },
+                deletes(){
+                    axios.delete("http://localhost:8080/user/"+this.add.usId).then(res=>{
+                        alert(res.data);
+                        this.getAll();
+                    })
+                },
+                searchs(){
+                    console.log(1);
+                   axios.get("http://localhost:8080/user/get/"+this.add.usId).then(rel=>{
+                            console.log(rel);
+                        this.info=rel.data;
+                    });
+                }
+            }
+        }
+    )
+</script>
+</html>
