@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FoodKa - Food Ordering, Delivery & Restuarent </title>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="static/css/animate.min.css">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/magnific.min.css">
+    <link rel="stylesheet" href="static/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="static/css/nice-select.min.css">
+    <link rel="stylesheet" href="static/css/owl.min.css">
+    <link rel="stylesheet" href="static/css/slick-slide.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.min.css">
+    <link rel="stylesheet" href="static/css/remixicon.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/responsive.css">
+
+    <!--Google Fonts-->
+    <link href="static/css/css2.css" rel="stylesheet">
+
+
+</head>
+<body class='sc5'>
+    <!-- preloader area start -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div id="wave1">
+            </div>
+            <div class="spinner">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+        </div>
+    </div>
+    <!-- preloader area end -->
+
+    <!-- search popup area start -->
+    <div class="body-overlay" id="body-overlay"></div>
+    <div class="td-search-popup" id="td-search-popup">
+        <form action="index.html" class="search-form">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search.....">
+            </div>
+            <button type="submit" class="submit-btn"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+    <!-- //. search Popup -->
+
+    <!-- navbar start -->
+    <header class="navbar-area">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container nav-container">
+                <div class="responsive-mobile-menu">
+                    <button class="menu toggle-btn d-block d-lg-none" data-target="#themefie_main_menu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-left"></span>
+                        <span class="icon-right"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="themefie_main_menu">
+                    <ul class="navbar-nav menu-open">
+                        <li class="current-menu-item menu-item-has-children">
+                            <a href="">主页</a>
+                            <ul class="sub-menu ps-0">
+                                <li><a href="">主页 01</a></li>
+                                <li><a href="home-2.html">主页 02</a></li>
+                            </ul>
+                        </li>
+                        <li class="current-menu-item menu-item-has-children">
+                            <a href="#">页面</a>
+                            <ul class="sub-menu ps-0">
+                                <li><a href="about.html">关于</a></li>
+                                <li><a href="blog.html">博客</a></li>
+                                <li><a href="blog-details.html">详细博客</a></li>
+                                <li><a href="menu.html">菜单</a></li>
+                                <li><a href="menu-list.html">菜单列表</a></li>
+                                <li><a href="shop.html">商城</a></li>
+                                <li><a href="single-product.html">商城详情</a></li>
+                                <li><a href="cart.html">购物车</a></li>
+                                <li><a href="checkout.html">查看</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="about.html">关于我们</a>
+                        </li>
+                        <li>
+                            <a href="contact.html">联系我们</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="logo">
+                    <a class="main-logo" href=""><img src="static/picture/logo.png" alt="img"></a>
+                </div>
+                <div class="nav-right-part nav-right-part-mobile">
+                    <ul>
+                        <li><a class="search" href="#"><i class="ri-search-line"></i></a>
+                        </li>
+                        <li class="phone-contact d-md-block d-none"><i class="ri-phone-fill float-start"></i>
+                           +（023）123456
+                        </li>
+                        <li class="menu-cart"><a href="cart.html">已选菜品 <span>1</span></a></li>
+                        <li>255</li>
+                    </ul>
+                </div>
+                <div class="nav-right-part nav-right-part-desktop">                    
+                    <ul>
+                        <li><a class="search" href="#"><i class="ri-search-line"></i></a>
+                        </li>
+                        <li class="phone-contact"><i class="ri-phone-fill float-start"></i>
+                           +（023）123456
+                        </li>
+                        <li class="menu-cart"><a href="cart.html">已选菜品 <span>1</span></a></li>
+                        <li>255</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- navbar end -->
+
+    <!-- Banner Area Start-->
+    <section class="banner-area">
+        <div class="banner-thumb">
+            <img src="static/picture/banner.png" alt="img">
+        </div>
+        <div class="banner-bg-img"></div>
+        <div class="banner-shape-1"><img src="static/picture/shape-1.png" alt="img"></div>
+        <div class="banner-shape-2"><img src="static/picture/shape-2.png" alt="img"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8 align-self-center">
+                    <div class="banner-inner text-center">
+                        <h3>super delicius</h3>
+                        <h1>Different food new experience</h1>
+                        <a class="btn btn-secondary" href="shop.html">开始</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Area End --> 
+    
+    <!-- category Area Start-->
+    <section class="category-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12 align-self-center">
+                    <ul class="category-menu">
+                        <li class="category-wrap"><a href="shop.html"><img src="static/picture/14.png" alt="category">拉面</a>
+                            
+                        </li>
+                        <li class="category-wrap"><a href="#"><img src="static/picture/24.png" alt="category">披萨</a>
+                            <div class="category-sub-menu">
+                                <div class="row">
+                                    <div class="col-md-3 col-6">
+                                        <div class="single-item-wrap text-center">
+                                            <div class="thumb">
+                                                <img src="static/picture/15.png" alt="img">
+                                            </div>
+                                            <div class="wrap-details">
+                                                <h6><a href="shop.html">玛格丽特披萨</a></h6>                          
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-6">
+                                        <div class="single-item-wrap text-center">
+                                            <div class="thumb">
+                                                <img src="static/picture/25.png" alt="img">
+                                            </div>
+                                            <div class="wrap-details">
+                                                <h6><a href="shop.html">墨西哥豪华披萨</a></h6>                          
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-6">
+                                        <div class="single-item-wrap text-center">
+                                            <div class="thumb">
+                                                <img src="static/picture/34.png" alt="img">
+                                            </div>
+                                            <div class="wrap-details">
+                                                <h6><a href="shop.html">风情夏威夷披萨</a></h6>                          
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-6">
+                                        <a href="#"><img src="static/picture/ad.png" alt="img"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="category-wrap"><a href="#"><img src="static/picture/35.png" alt="category">汉堡</a>
+                            <div class="category-sub-menu">
+                                <div class="row">
+                                    <div class="col-md-3 col-6">
+                                        <div class="single-item-wrap text-center">
+                                            <div class="thumb">
+                                                <img src="static/picture/16.png" alt="img">
+                                            </div>
+                                            <div class="wrap-details">
+                                                <h6><a href="shop.html">比奇堡牛肉汉堡</a></h6>                          
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-6">
+                                        <div class="single-item-wrap text-center">
+                                            <div class="thumb">
+                                                <img src="static/picture/16.png" alt="img">
+                                            </div>
+                                            <div class="wrap-details">
+                                                <h6><a href="shop.html">魁地奇飞速汉堡</a></h6>                          
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-6">
+                                        <div class="single-item-wrap text-center">
+                                            <div class="thumb">
+                                                <img src="static/picture/16.png" alt="img">
+                                            </div>
+                                            <div class="wrap-details">
+                                                <h6><a href="shop.html">加勒比沉没汉堡</a></h6>                          
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-6">
+                                        <a href="#"><img src="static/picture/ad.png" alt="img"></a>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </li>
+                        <li class="category-wrap"><a href="shop.html"><img src="static/picture/44.png" alt="category">薯条</a>
+                            
+                        </li>
+                        <li class="category-wrap"><a href="shop.html"><img src="static/picture/52.png" alt="category">套餐</a>
+                            
+                        </li>
+                        <li class="category-wrap"><a href="shop.html"><img src="static/picture/62.png" alt="category">汽水饮料</a>
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- category Area End --> 
+
+    <!-- offer Area Start-->
+    <section class="offer-area pd-top-120 pd-bottom-90">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 align-self-center d-contents">
+                    <div class="single-offer-wrap" style="background-color: var(--main-color);">
+                        <img class="bg-img" src="static/picture/17.png" alt="img">
+                        <div class="wrap-details">
+                            <h2>新奇美味体验 </h2>
+                            <h5>玛格丽特披萨</h5>
+                            <a class="btn btn-white" href="shop.html">立即品尝</a>
+                        </div>
+                        <div class="offer-sticker">
+                            <img src="static/picture/offer.png" alt="img">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 align-self-center">
+                    <div class="single-offer-wrap" style="background-color: var(--heading-color);">
+                        <img class="bg-img" src="static/picture/26.png" alt="img">
+                        <div class="wrap-details">
+                            <h3>畅享<br/><span>豪华</span>美味</h3>
+                            <a class="btn btn-white" href="shop.html">立即预定</a>
+                        </div>
+                    </div>
+                    <div class="single-offer-wrap" style="background-color: #FFEECC">
+                        <div class="animated-img"><img src="static/picture/03.png" alt="img"></div>
+                        <div class="animated-img animated-img-2"><img src="static/picture/03.png" alt="img"></div>
+                        <div class="overlay-gradient"></div>
+                        <div class="wrap-details">
+                            <h3 class="text-heading">快速送达 <br/><span>Food</span></h3>
+                            <a class="btn btn-white" href="shop.html">立即体验</a>
+                        </div>
+                        <img class="bg-img-2" src="static/picture/36.png" alt="img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- offer Area End --> 
+
+    <!-- populer Area Start-->
+    <section class="populer-area pd-bottom-90">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="section-title text-center">
+                      <h3 class="sub-title">Our signature</h3>
+                        <h2 class="title">热门菜单</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-item-wrap">
+                        <div class="thumb">
+                            <img src="static/picture/15.png" alt="img">
+                            <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                        </div>
+                        <div class="wrap-details">
+                            <h5><a href="single-product.html">玛格丽特披萨</a></h5>
+                            <div class="wrap-footer">
+                                <div class="rating">
+                                    4.9
+                                    <span class="rating-inner">
+                                        <i class="ri-star-fill ps-0"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-half-line pe-0"></i>
+                                    </span>
+                                    (200)
+                                </div>
+                                <h6 class="price">99.00</h6>
+                            </div>                            
+                        </div>
+                        <div class="btn-area">
+                            <a class="btn btn-secondary" href="single-product.html">与爱同行</a>         
+                        </div> 
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-item-wrap">
+                        <div class="thumb">
+                            <img src="static/picture/25.png" alt="img">
+                            <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                        </div>
+                        <div class="wrap-details">
+                            <h5><a href="single-product.html">墨西哥豪华披萨</a></h5>
+                            <div class="wrap-footer">
+                                <div class="rating">
+                                    4.9
+                                    <span class="rating-inner">
+                                        <i class="ri-star-fill ps-0"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-half-line pe-0"></i>
+                                    </span>
+                                    (928)
+                                </div>
+                                <h6 class="price">89.00</h6>
+                            </div>
+                            <div class="btn-area">
+                                <a class="btn btn-secondary" href="single-product.html">激情绽放</a>         
+                            </div>                                               
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-item-wrap">
+                        <div class="thumb">
+                            <img src="static/picture/16.png" alt="img">
+                            <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                        </div>
+                        <div class="wrap-details">
+                            <h5><a href="single-product.html">帕蒂汉堡</a></h5>
+                            <div class="wrap-footer">
+                                <div class="rating">
+                                    4.9
+                                    <span class="rating-inner">
+                                        <i class="ri-star-fill ps-0"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-fill"></i>
+                                        <i class="ri-star-half-line pe-0"></i>
+                                    </span>
+                                    (462)
+                                </div>
+                                <h6 class="price">49.00</h6>
+                            </div>                            
+                        </div>
+                        <div class="btn-area">
+                            <a class="btn btn-secondary" href="single-product.html">帝王享受 </a>         
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- populer Area End -->
+
+    <!-- featured Area Start-->
+    <section class="featured-area pd-bottom-150" style="background-image: url(static/image/featured.png);">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section-title text-center">
+                        <h3 class="sub-title text-secondary">Tasty how The new</h3>
+                        <h2 class="title text-white">午餐新体验</h2>
+                        <a class="btn btn-base" href="menu.html">全部菜单</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- featured Area End -->
+
+    <!-- about Area Start-->
+    <section class="about-area pd-top-120 pd-bottom-90">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="thumb mb-lg-0 mb-4">
+                        <img src="static/picture/about.png" alt="img">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="section-title text-lg-start text-center">
+                        <h3 class="sub-title">为什么选择我们</h3>
+                        <h2 class="title">我们为什么是最好的</h2>
+						<p>食物，是人生的宝藏<br/>我们竭尽全力为您献上一份浪漫的宝藏<br/> <br/>采购最新鲜的食材，给您安全与新鲜的享受<br/>
+						专业、传承、创新，主厨的追求与能力为您带来美好享受</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="single-about-wrap">
+                                <img src="static/picture/1.png" alt="img">
+                                新鲜食材
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="single-about-wrap">
+                                <img src="static/picture/2.png" alt="img">
+                                快速送达
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="single-about-wrap">
+                                <img src="static/picture/3.png" alt="img">
+                                质量保证
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="single-about-wrap">
+                                <img src="static/picture/4.png" alt="img">
+                                专业服务
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- about Area End -->
+
+    <!-- product Area Start-->
+    <section class="product-area pd-bottom-90">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="section-title text-center">
+                        <h3 class="sub-title">Our signature</h3>
+                        <h2 class="title">美妙折扣尽享美味&nbsp;</h2>
+                    </div>
+                    <ul class="product-nav nav nav-pills" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link active" id="pills-ramen-tab" data-bs-toggle="pill" data-bs-target="#pills-ramen" type="button" role="tab" aria-controls="pills-ramen" aria-selected="true"><img src="static/picture/14.png" alt="img">拉面</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="pills-pizza-tab" data-bs-toggle="pill" data-bs-target="#pills-pizza" type="button" role="tab" aria-controls="pills-pizza" aria-selected="false"><img src="static/picture/24.png" alt="img">披萨</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="pills-burger-tab" data-bs-toggle="pill" data-bs-target="#pills-burger" type="button" role="tab" aria-controls="pills-burger" aria-selected="false"><img src="static/picture/35.png" alt="img">汉堡</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-french-fry-tab" data-bs-toggle="pill" data-bs-target="#pills-french-fry" type="button" role="tab" aria-controls="pills-french-fry" aria-selected="false"><img src="static/picture/44.png" alt="img">薯条</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-fast-food-tab" data-bs-toggle="pill" data-bs-target="#pills-fast-food" type="button" role="tab" aria-controls="pills-fast-food" aria-selected="false"><img src="static/picture/52.png" alt="img">套餐</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-drinks-tab" data-bs-toggle="pill" data-bs-target="#pills-drinks" type="button" role="tab" aria-controls="pills-drinks" aria-selected="false"><img src="static/picture/62.png" alt="img">汽水饮料</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-ramen" role="tabpanel" aria-labelledby="pills-ramen-tab">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/lamian1.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">和风拉面</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (200)
+                                        </div>
+                                        <h6 class="price">29.00</h6>
+                                    </div>                            
+                                </div>
+                                <div class="btn-area">
+                                    <a class="btn btn-secondary" href="single-product.html">34-5 </a>         
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/lamian2.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">魔鬼拉面</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (928)
+                                        </div>
+                                        <h6 class="price">29.00</h6>
+                                    </div>
+                                    <div class="btn-area">
+                                        <a class="btn btn-secondary" href="single-product.html">34-5</a>         
+                                    </div>                                               
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/lamian3.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">风情拉面</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (462)
+                                        </div>
+                                        <h6 class="price">29.00</h6>
+                                    </div>                            
+                                </div>
+                                <div class="btn-area">
+                                    <a class="btn btn-secondary" href="single-product.html">34-5</a>         
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-pizza" role="tabpanel" aria-labelledby="pills-pizza-tab">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/15.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">玛格丽特披萨</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (200)
+                                        </div>
+                                        <h6 class="price">99.00</h6>
+                                    </div>                            
+                                </div>
+                                <div class="btn-area">
+                                    <a class="btn btn-secondary" href="single-product.html">109-10</a>         
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/25.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">墨西哥豪华披萨</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (928)
+                                        </div>
+                                        <h6 class="price">89.00</h6>
+                                    </div>
+                                    <div class="btn-area">
+                                        <a class="btn btn-secondary" href="single-product.html">99-10</a>         
+                                    </div>                                               
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/34.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">风情夏威夷披萨</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (462)
+                                        </div>
+                                        <h6 class="price">89.00</h6>
+                                    </div>                            
+                                </div>
+                                <div class="btn-area">
+                                    <a class="btn btn-secondary" href="single-product.html">99-10</a>         
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/45.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">格列佛披萨</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (462)
+                                        </div>
+                                        <h6 class="price">99.00</h6>
+                                    </div>                            
+                                </div>
+                                <div class="btn-area">
+                                    <a class="btn btn-secondary" href="single-product.html">109-10</a>         
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/53.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">火辣亚马逊比萨</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (200)
+                                        </div>
+                                        <h6 class="price">89.00</h6>
+                                    </div>                            
+                                </div>
+                                <div class="btn-area">
+                                    <a class="btn btn-secondary" href="single-product.html">99-10</a>         
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/63.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">激情威尼斯披萨</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (928)
+                                        </div>
+                                        <h6 class="price">89.00</h6>
+                                    </div>                            
+                                </div>
+                                <div class="btn-area">
+                                    <a class="btn btn-secondary" href="single-product.html">99-10</a>         
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-burger" role="tabpanel" aria-labelledby="pills-burger-tab">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/hanbao1.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">格兰芬多汉堡</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (200)
+                                        </div>
+                                        <h6 class="price">48.00</h6>
+                                    </div>                            
+                                </div>
+                                <div class="btn-area">
+                                    <a class="btn btn-secondary" href="single-product.html">53-5</a>         
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/hanbao2.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">斯莱特林汉堡</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (928)
+                                        </div>
+                                        <h6 class="price">48.00</h6>
+                                    </div>
+                                    <div class="btn-area">
+                                        <a class="btn btn-secondary" href="single-product.html">53-5</a>         
+                                    </div>                                               
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/hanbao3.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">拉文克劳汉堡</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (462)
+                                        </div>
+                                        <h6 class="price">48.00</h6>
+                                    </div>                            
+                                </div>
+                                <div class="btn-area">
+                                    <a class="btn btn-secondary" href="single-product.html">53-5</a>         
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-french-fry" role="tabpanel" aria-labelledby="pills-french-fry-tab">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/shutiao3.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">钢铁侠爱吃的薯条</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (200)
+                                        </div>
+                                        <h6 class="price">25.00</h6>
+                                    </div>                            
+                                </div>
+                                <div class="btn-area">
+                                    <a class="btn btn-secondary" href="single-product.html">25-0</a>         
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/shutiao2.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">美队爱吃的薯条</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (928)
+                                        </div>
+                                        <h6 class="price">25.00</h6>
+                                    </div>
+                                    <div class="btn-area">
+                                        <a class="btn btn-secondary" href="single-product.html">25-0 </a>         
+                                    </div>                                               
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/shutiao1.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">雷神爱吃的薯条</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (462)
+                                        </div>
+                                        <h6 class="price">25.00</h6>
+                                    </div>                            
+                                </div>
+                                <div class="btn-area">
+                                    <a class="btn btn-secondary" href="single-product.html">25-0</a>         
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-fast-food" role="tabpanel" aria-labelledby="pills-fast-food-tab">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/ma.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">复仇者联盟套餐</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (200)
+                                        </div>
+                                        <h6 class="price">299.00</h6>
+                                    </div>                            
+                                </div>
+                                <div class="btn-area">
+                                    <a class="btn btn-secondary" href="single-product.html">399-100</a>         
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/hp.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">哈利·波特套餐</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (928)
+                                        </div>
+                                        <h6 class="price">299.00</h6>
+                                    </div>
+                                    <div class="btn-area">
+                                        <a class="btn btn-secondary" href="single-product.html">399-100</a>         
+                                    </div>                                               
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/dc.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">正义联盟套餐</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (462)
+                                        </div>
+                                        <h6 class="price">299.00</h6>
+                                    </div>                            
+                                </div>
+                                <div class="btn-area">
+                                    <a class="btn btn-secondary" href="single-product.html">399-100</a>         
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-drinks" role="tabpanel" aria-labelledby="pills-drinks-tab">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/sprite.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">多啦a梦梦幻水</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (200)
+                                        </div>
+                                        <h6 class="price">18</h6>
+                                    </div>                            
+                                </div>
+                                <div class="btn-area">
+                                    <a class="btn btn-secondary" href="single-product.html">C20-2</a>         
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/cola.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">开心超人开心水</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (928)
+                                        </div>
+                                        <h6 class="price">18.00</h6>
+                                    </div>
+                                    <div class="btn-area">
+                                        <a class="btn btn-secondary" href="single-product.html">20-2</a>         
+                                    </div>                                               
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-item-wrap">
+                                <div class="thumb">
+                                    <img src="static/picture/milk.png" alt="img">
+                                    <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                                </div>
+                                <div class="wrap-details">
+                                    <h5><a href="single-product.html">魔法小樱可爱水</a></h5>
+                                    <div class="wrap-footer">
+                                        <div class="rating">
+                                            4.9
+                                            <span class="rating-inner">
+                                                <i class="ri-star-fill ps-0"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-fill"></i>
+                                                <i class="ri-star-half-line pe-0"></i>
+                                            </span>
+                                            (462)
+                                        </div>
+                                        <h6 class="price">18.00</h6>
+                                    </div>                            
+                                </div>
+                                <div class="btn-area">
+                                    <a class="btn btn-secondary" href="single-product.html">20-2</a>         
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- product Area End -->
+
+    <!-- subscribe Area Start-->
+    <section class="subscribe-area pd-bottom-150" style="background-image: url(static/image/location.png);">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-9 col-md-10">
+                    <div class="section-title text-center">
+                        <h3 class="sub-title text-secondary">Our Location</h3>
+                        <h2 class="title text-white">Foodka在您身边</h2>
+                        <form>
+                            <div class="single-input-wrap mb-0 with-btn">
+                                <input type="email" placeholder="">
+                                <button class="btn btn-base">输入位置</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- subscribe Area End -->
+
+    <!-- testimonial Area Start-->
+    <section class="testimonial-area text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-10">
+                    <div class="testimonial-slider owl-carousel">
+                        <div class="item">
+                            <div class="testimonial-wrap">
+                                <p>“We have no regrets! I don't know what else to say. It really saves me time and effort. Food is exactly what our business has been lacking”</p>
+                                <h3>Julia R. Davis
+                                </h3>
+                                <h6>Food Bloger</h6>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-wrap">
+                                <p>“We have no regrets! I don't know what else to say. It really saves me time and effort. Food is exactly what our business has been lacking”</p>
+                                <h3>Davis J. Rulia
+                                </h3>
+                                <h6>Food Bloger</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- testimonial Area End -->
+
+    <!-- blog Area Start-->
+    <section class="blog-area pd-bottom-90">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-lg-7">
+                    <div class="section-title text-center">
+                        <h3 class="sub-title">News & Blog</h3>
+                        <h2 class="title">享受美味</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-blog-wrap">
+                        <div class="thumb">
+                            <img src="static/picture/11.png" alt="img">
+                        </div>
+                        <div class="wrap-details">
+                            <span class="cat">
+                                <span class="date">
+                                    <i class="ri-calendar-todo-fill"></i>3/14/2021
+                                </span>
+                                <a href="#" class="tag me-0">
+                                    <i class="ri-price-tag-3-fill"></i>汉堡
+                                </a>
+                            </span>
+                            <h5><a href="blog-details.html">希腊早餐碗与汉堡的完美碰撞</a></h5> 
+                            <div class="wrap-hover-area">
+                                <p> 酸甜酸奶与芝士汉堡的完美融合，开始还在担心是暗黑料理，没想到意外的好吃！不得不说主厨脑洞大开且能力在线
+                                </p> 
+                                <a class="link-btn" href="blog-details.html">更多</a> 
+                            </div>                       
+                        </div> 
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-blog-wrap">
+                        <div class="thumb">
+                            <img src="static/picture/21.png" alt="img">
+                        </div>
+                        <div class="wrap-details">
+                            <span class="cat">
+                                <span class="date">
+                                    <i class="ri-calendar-todo-fill"></i>4/05/2021
+                                </span>
+                                <a href="#" class="tag me-0">
+                                    <i class="ri-price-tag-3-fill"></i>披萨
+                                </a>
+                            </span>
+                            <h5><a href="blog-details.html">Broad beans, tomato, garlic & cheese bruschetta
+                            </a></h5> 
+                            <div class="wrap-hover-area">
+                                <p> It with just a touch of sauce. saucy riff, more in the style of takeout American Chinese kung pao. The sauce makes it perfect for eating with rice.
+                                </p> 
+                                <a class="link-btn" href="blog-details.html">更多</a> 
+                            </div>                       
+                        </div> 
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-blog-wrap">
+                        <div class="thumb">
+                            <img src="static/picture/31.png" alt="img">
+                        </div>
+                        <div class="wrap-details">
+                            <span class="cat">
+                                <span class="date">
+                                    <i class="ri-calendar-todo-fill"></i>4/14/2021
+                                </span>
+                                <a href="#" class="tag me-0">
+                                    <i class="ri-price-tag-3-fill"></i>披萨
+                                </a>
+                            </span>
+                            <h5><a href="blog-details.html">Make authentic Italian margherita pizza at home
+                            </a></h5> 
+                            <div class="wrap-hover-area">
+                                <p> It with just a touch of sauce. saucy riff, more in the style of takeout American Chinese kung pao. The sauce makes it perfect for eating with rice.
+                                </p> 
+                                <a class="link-btn" href="blog-details.html">更多</a> 
+                            </div>                       
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- blog Area End -->
+
+    <!-- footer area start -->
+    <footer class="footer-area pd-top-100">
+        <div class="footer-inner padding-top-100 padding-bottom-65">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer-widget widget">
+                            <div class="logo">
+                                <img src="static/picture/logo.png" alt="img">
+                            </div>
+                            <ul class="contact_info_list">
+                                <li class="single-info-item">
+                                    <img src="static/picture/location.png" alt="icon">
+                                    <div class="details">
+                                        地址：
+                                    </div>
+                                </li>
+                                <li class="single-info-item">
+                                    <img src="static/picture/envelope.png" alt="icon">
+                                    <div class="details">
+                                        邮箱：
+                                    </div>
+                                </li>
+                                <li class="single-info-item">
+                                    <img src="static/picture/phone.png" alt="icon">
+                                    <div class="details">
+                                       电话：
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer-widget widget widget_link">
+                            <h4 class="widget-title">热门菜单</h4>
+                            <ul>
+                                <li><a href="menu-list.html">玛格丽特披萨</a></li>
+                                <li><a href="menu-list.html">比奇堡牛肉汉堡</a></li>
+                                <li><a href="menu-list.html">帕蒂汉堡</a></li>
+                                <li><a href="menu-list.html">格列佛披萨</a></li>
+                                <li><a href="menu-list.html">墨西哥豪华披萨</a></li>
+                                <li><a href="menu-list.html">激情威尼斯披萨</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer-widget widget widget_link">
+                            <h4 class="widget-title">营业时间</h4>
+                           <ul>
+                               <li>星期一 : 09.00am-10.00pm</li>
+                               <li>星期二 : 09.00am-10.00pm</li>
+                               <li>星期三 : 09.00am-10.00pm</li>
+                               <li>星期四 : 09.00am-10.00pm</li>
+                               <li>星期五  : 09.00am-10.00pm</li>
+                               <li>周末 : <span>休息</span></li>
+                           </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer-widget widget widget_instagram_feeds">
+                            <h4 class="widget-title">INS 推荐</h4>
+                            <ul>
+                                <li><a href="#"><img src="static/picture/12.png" alt="instagram"></a></li>
+                                <li><a href="#"><img src="static/picture/22.png" alt="instagram"></a></li>
+                                <li><a href="#"><img src="static/picture/32.png" alt="instagram"></a></li>
+                                <li><a href="#"><img src="static/picture/41.png" alt="instagram"></a></li>
+                                <li><a href="#"><img src="static/picture/5.png" alt="instagram"></a></li>
+                                <li><a href="#"><img src="static/picture/6.png" alt="instagram"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-md-start text-center">
+                        <div class="copyright-area">
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="social-area text-md-end text-center mt-md-0 mt-2">
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li> 
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li> 
+                            <li><a href="#"><i class="fab fa-behance"></i></a></li> 
+                            <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer area end -->    
+
+    <!-- back-to-top end -->
+    <div class="back-to-top">
+        <span class="back-top"><i class="fas fa-angle-double-up"></i></span>
+    </div>
+
+    
+
+    <!-- all plugins here -->
+    <script src="static/js/jquery.3.6.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/imageloded.min.js"></script>
+    <script src="static/js/counterup.js"></script>
+    <script src="static/js/waypoint.js"></script>
+    <script src="static/js/magnific.min.js"></script>
+    <script src="static/js/isotope.pkgd.min.js"></script>
+    <script src="static/js/jquery-ui.min.js"></script>
+    <script src="static/js/nice-select.min.js"></script>
+    <script src="static/js/fontawesome.min.js"></script>
+    <script src="static/js/owl.min.js"></script>
+    <script src="static/js/slick-slider.min.js"></script>
+    <script src="static/js/wow.min.js"></script>
+    <script src="static/js/tweenmax.min.js"></script>
+    <!-- main js  -->
+    <script src="static/js/main.js"></script>
+</body>
+</html>
