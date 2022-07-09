@@ -145,4 +145,15 @@ public class UserController {
         userPage.setRecords(userList);
         return userPage;
     }
+
+    @GetMapping("/getus")
+    public User getUs(@RequestParam String usName){
+        List<User> userList = userService.list();
+        for(User value: userList){
+            if(usName.equals(value.getUsName())) {
+                return value;
+            }
+        }
+        return null;
+    }
 }
