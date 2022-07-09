@@ -33,19 +33,19 @@
 
         <h1 style="text-align: center;margin-bottom: 5%">用户信息管理</h1>
 
-        <div style="width: 20%;text-align:center;">
+        <div style="width:20%;text-align:center;margin-bottom: 10%; ">
 
-            <el-button icon="el-icon-search"  size="mini"
-                       @click="mohuSearch" style="margin-left: 17vh; float: left;" circle></el-button> <!--圆形搜索图标-->
+            <el-input   v-model="input" placeholder="用户名模糊查询" style="margin-left: 22vh;float: left">
+                <el-button slot="append" icon="el-icon-search"  size="mini"
+                           @click="mohuSearch"  circle></el-button>
+            </el-input>
 
-            <el-input  v-model="input" placeholder="请输入用户名" style="margin-left: 22vh;float: left"></el-input>
-
-
+            <!--圆形搜索图标-->
 
         </div>
 
 
-        <el-card style="width: 80%;margin: 0 auto">
+        <el-card style="width: 80%; margin: 0 auto;">
             <el-table :data="listData" stripe style="width: 80%;margin:0 auto;" >
                 <el-table-column prop="usId" label="用户Id" width="180">
                 </el-table-column>
@@ -126,7 +126,7 @@
                         num:0,
                         usName:'',
                         total:'',
-                        size:2,
+                        size:5,
                         page:0
                     },
                     FormVisible:true,
