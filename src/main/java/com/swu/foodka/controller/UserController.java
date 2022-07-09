@@ -43,7 +43,8 @@ public class UserController {
     // 规范化接口
     @PostMapping("/save")
     public AjaxResult save(@RequestBody User user) throws Exception{
-        //user.setUsPassword(EncryptUtil.shaEncode(user.getUsPassword()));
+        // 密码加密
+        user.setUsPassword(EncryptUtil.shaEncode(user.getUsPassword()));
         AjaxResult result = new AjaxResult();
         if(userService.save(user)){
             System.out.println(user.getUsName()+"Save success!");
@@ -77,13 +78,13 @@ public class UserController {
      * 前段vue用rel.data接收返回值判断
      */
     @PostMapping("/login")
-    public AjaxResult login(@RequestBody User user){
+    public AjaxResult login(@RequestBody User user) throws Exception {
         AjaxResult result = new AjaxResult();
         List<User> userList = userService.list();
         //request.getSession().setAttribute("user",user); // 把登陆用户放入Session中
         for(User value: userList) {
             if (value.getUsName().equals(user.getUsName())) {
-                if (value.getUsPassword().equals(user.getUsPassword())) {
+                if (value.getUsPassword().equals(EncryptUtil.shaEncode(user.getUsPassword()))) {
                     result.setFlag(true);
                     result.setMsg("登陆成功！欢迎：" + user.getUsName());
                     result.setDatas(user);
@@ -102,7 +103,7 @@ public class UserController {
      * @return if success
      */
     @PostMapping("/register")
-    public AjaxResult register(@RequestBody User user){
+    public AjaxResult register(@RequestBody User user) throws Exception {
         AjaxResult result = new AjaxResult();
         List<User> userList = userService.list();
         for(User value: userList){
@@ -112,6 +113,8 @@ public class UserController {
                 return result;
             }
         }
+        // 密码加密
+        user.setUsPassword(EncryptUtil.shaEncode(user.getUsPassword()));
         userService.save(user);
         result.setFlag(true);
         result.setMsg("注册成功！欢迎："+user.getUsName());
