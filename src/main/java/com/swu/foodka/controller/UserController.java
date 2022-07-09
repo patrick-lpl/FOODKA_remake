@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author liuxiaolin
+ */
 @RestController // 添加到ioc容器
 @RequestMapping("/user") // 设置访问路径
 @CrossOrigin // 解决跨域问题

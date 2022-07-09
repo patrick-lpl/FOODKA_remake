@@ -12,12 +12,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+/**
+ * @author liuxiaolin
+ */
 @Controller
 @CrossOrigin
 public class PhotoController {
 
     @Value("${SavePath.ProfilePhoto}")
     private String ProfilePhotoSavePath; // 图标物理存储路径
+
     @Value("${SavePath.ProfilePhotoMapper}")
     private String ProfilePhotoMapperPath; //图标映射路径
 
