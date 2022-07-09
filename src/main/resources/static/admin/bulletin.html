@@ -2,9 +2,236 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>FOODKA会员管理系统</title>
+
+    <link rel="stylesheet" href="../../assets/css/login.css"/>
+    <link rel="stylesheet" href="../../assets/css/element-ui/index.css"/>
+    <link rel="stylesheet" href="../../assets/css/goods.css" >
+    <script src="../../assets/js/vue.js"></script>
+    <script src="../../assets/css/element-ui/index.js"></script>
+    <script src="../../assets/js/vue-resource.js"></script>
+    <script src="../../assets/js/axios.min.js"></script>
+    <title>公告发布界面</title>
 </head>
+
+
 <body>
+<div id="app">
+    <template>
+
+        <h1 style="text-align: center;margin-bottom: 5%">公告信息栏</h1>
+        <span>内容</span>
+        <div style="width: 30%;">
+
+            <el-input v-model="add.info"  placeholder="请输入内容"></el-input>
+
+        </div>
+        <template>
+            <div class="block">
+                <span class="demonstration">时间</span>
+                <el-date-picker
+                        v-model="add.createTime"
+                        type="datetime"
+                        placeholder="选择日期">
+                </el-date-picker>
+            </div>
+        </template>
+        <el-button
+                size="mini"
+                @click="submitf">发布公告</el-button>
+
+        <div style="width: 20%;text-align:center;">
+
+            <el-button icon="el-icon-search"  size="mini"
+                       @click="mohuSearch" style="margin-left: 17vh; float: left;" circle></el-button> <!--圆形搜索图标-->
+
+            <template>
+                <div class="block">
+                    <p>组件值：{{ input }}</p>
+                    <el-date-picker
+                            v-model="input"
+                            type="daterange"
+                            start-placeholder="开始日期"
+                            end-placeholder="结束日期"
+                            :default-time="['00:00:00', '23:59:59']">
+                    </el-date-picker>
+                </div>
+            </template>
+
+
+
+        </div>
+
+
+        <el-card style="width: 80%;margin: 0 auto">
+            <el-table :data="listData" stripe style="width: 80%;margin:0 auto;" >
+                <el-table-column prop="info" label="公告信息" width="500">
+                </el-table-column>
+                <el-table-column prop="createTime" label="建立时间">
+                </el-table-column>
+                <el-table-column label="操作" width="250" style=" display: flex;">
+                    <template slot-scope="scope">
+                        <el-button
+                                size="mini"
+                                type="danger"
+                                plain @click="deletes(scope.row)" icon="el-icon-delete">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-card>
+        <!--        <el-dialog title="会员信息编辑" :visible.sync="dialogFormVisible">-->
+        <!--            <el-form :model="add">-->
+        <!--                <el-form-item label="姓名" :label-width="formLabelWidth">-->
+        <!--                    <el-input v-model="add.usName" autocomplete="off"></el-input>-->
+        <!--                </el-form-item>-->
+        <!--                <el-form-item label="年龄" :label-width="formLabelWidth">-->
+        <!--                    <el-input v-model="add.usAge" autocomplete="off"></el-input>-->
+        <!--                </el-form-item>-->
+        <!--                <el-form-item label="电话" :label-width="formLabelWidth">-->
+        <!--                    <el-input v-model="add.usPhone" autocomplete="off"></el-input>-->
+        <!--                </el-form-item>-->
+        <!--                <el-form-item label="密码" :label-width="formLabelWidth">-->
+        <!--                    <el-input v-model="add.usPassword" autocomplete="off"></el-input>-->
+        <!--                </el-form-item>-->
+        <!--            </el-form>-->
+        <!--            <div slot="footer" class="dialog-footer">-->
+        <!--                <el-button @click="dialogFormVisible = false">取 消</el-button>-->
+        <!--                <el-button type="primary"  v-on:click="update()">提交</el-button>-->
+        <!--            </div>-->
+        <!--        </el-dialog>-->
+
+
+        <el-button-group style="margin-left: 97vh">   <!--上一页下一页格式-->
+            <el-button type="info" icon="el-icon-arrow-left" @click="upt()">上一页</el-button>
+
+            <el-button type="info"  @click="next()">下一页<i class="el-icon-arrow-right el-icon--right"></i></el-button>
+        </el-button-group>
+
+    </template>
+</div>
+
+
+
+</body>
+<script>
+
+
+    new Vue({
+            el: '#app',
+
+            data() {
+                return {
+                    input:'',
+                    add:{},
+                    usId:'',
+                    listData:[],
+                    tableData:{},
+                    dialogFormTitle: "",
+                    value: '',
+                    searchdata:{
+                        info:{},
+                        formData:{},
+                        // listData:[]
+                    },
+                    tableDatas: {
+                        // listdata:[],
+                        formdata:{},
+                        num:0,
+                        usName:'',
+                        total:'',
+                        size:2,
+                        page:0
+                    },
+                    FormVisible:true,
+                    dialogFormVisible: false,
+                    formLabelWidth: '120px',
+                }
+            },
+            created(){
+                this.getAll();
+            },
+            methods: {
+
+
+                getAll(){
+                    this.tableDatas.page =(this.tableDatas.num)*(this.tableDatas.size),
+                        console.log(this.tableDatas.num);
+                    axios.get("http://localhost:8080/bulletin/pages?num="+this.tableDatas.page+"&size="+this.tableDatas.size).then(res=>{
+                        console.log(res.data.records);
+                        // this.tableDatas.listdata=res.data.records;
+                        this.listData=res.data.records;
+                        this.tableDatas.total=res.data.total;
+                    });
+                },
+                disabledDate(time) {
+                    return time.getTime() > Date.now();
+                },
+
+                // mohuSearch(){
+                //     axios.get("http://localhost:8080/user/like?bulletin.createTime="+this.input).then(res=>{
+                //         // this.searchdata.listData=res.data;
+                //         this.listData=res.data;
+                //         console.log(this.searchdata.listData)
+                //     });
+                // },
+                next(){
+                    if(this.tableDatas.page<this.tableDatas.total){
+                        this.tableDatas.num++;
+                    }else
+                        alert("已经是最后一页了")
+                    this.getAll();
+                },
+                upt(){
+                    if(this.tableDatas.page>0){
+                        this.tableDatas.num--;
+                    }else{
+                        alert("已经是第一页了")
+                    }
+                    this.getAll();
+                },
+                // handleEdit(index, row) {
+                //     console.log(index, row);
+                // },
+                deleteRow(index, rows) {
+                    rows.splice(index, 1);
+                },
+                submitf() {
+                    axios.post("http://localhost:8080/bulletin/save",this.add).then(rel => {
+                        alert(rel.data);
+                        this.getAll();
+                    })
+                },
+                // update(row) {
+                //     axios.put("http://localhost:8080/user/update",this.row).then(rel=>{
+                //         alert(rel.data);
+                //         this.getAll();
+                //     })
+                // },
+                deletes(row){
+                    console.log(row);
+                    var id = row.bulletinId;
+                    axios.delete("http://localhost:8080/bulletin/"+id).then(rel=>{
+                        alert(rel.data);
+                        this.getAll();
+                    });
+                },
+                // search(){
+                //     axios.get("http://localhost:8080/user/get/"+this.add.usId).then(rel=>{
+                //         this.info=rel.data;
+                //     })
+                // }
+            }
+        }
+    )
+</script>
+<p>
+    这是公告发布界面！
+</p>
+
 
 </body>
 </html>
