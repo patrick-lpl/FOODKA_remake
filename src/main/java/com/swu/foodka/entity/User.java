@@ -27,6 +27,11 @@ public class User {
      */
     private String createTime;
 
+    /**
+     * 用户密码
+     */
     private String usPassword;
+
+    private String usPhoto;
 
 }
