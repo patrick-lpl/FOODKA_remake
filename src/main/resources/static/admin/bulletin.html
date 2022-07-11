@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>FOODKA会员管理系统</title>
-
     <link rel="stylesheet" href="../../assets/css/login.css"/>
     <link rel="stylesheet" href="../../assets/css/element-ui/index.css"/>
     <link rel="stylesheet" href="../../assets/css/goods.css" >
@@ -67,13 +65,15 @@
         </div>
 
 
-        <el-card style="width: 80%;margin: 0 auto">
-            <el-table :data="listData" stripe style="width: 80%;margin:0 auto;" >
-                <el-table-column prop="info" label="公告信息" width="500">
+        <el-card>
+            <el-table :data="listData" stripe style="width: 100%; " >
+                <el-table-column prop="bulletinId" label="公告Id" width="180">
                 </el-table-column>
-                <el-table-column prop="createTime" label="建立时间">
+                <el-table-column prop="info" label="公告内容" width="180">
                 </el-table-column>
-                <el-table-column label="操作" width="250" style=" display: flex;">
+                <el-table-column prop="createTime" label="发布时间">
+                </el-table-column>
+                <el-table-column label="操作" width="250" style="display: flex;">
                     <template slot-scope="scope">
                         <el-button
                                 size="mini"
@@ -83,28 +83,6 @@
                 </el-table-column>
             </el-table>
         </el-card>
-        <!--        <el-dialog title="会员信息编辑" :visible.sync="dialogFormVisible">-->
-        <!--            <el-form :model="add">-->
-        <!--                <el-form-item label="姓名" :label-width="formLabelWidth">-->
-        <!--                    <el-input v-model="add.usName" autocomplete="off"></el-input>-->
-        <!--                </el-form-item>-->
-        <!--                <el-form-item label="年龄" :label-width="formLabelWidth">-->
-        <!--                    <el-input v-model="add.usAge" autocomplete="off"></el-input>-->
-        <!--                </el-form-item>-->
-        <!--                <el-form-item label="电话" :label-width="formLabelWidth">-->
-        <!--                    <el-input v-model="add.usPhone" autocomplete="off"></el-input>-->
-        <!--                </el-form-item>-->
-        <!--                <el-form-item label="密码" :label-width="formLabelWidth">-->
-        <!--                    <el-input v-model="add.usPassword" autocomplete="off"></el-input>-->
-        <!--                </el-form-item>-->
-        <!--            </el-form>-->
-        <!--            <div slot="footer" class="dialog-footer">-->
-        <!--                <el-button @click="dialogFormVisible = false">取 消</el-button>-->
-        <!--                <el-button type="primary"  v-on:click="update()">提交</el-button>-->
-        <!--            </div>-->
-        <!--        </el-dialog>-->
-
-
         <el-button-group style="margin-left: 97vh">   <!--上一页下一页格式-->
             <el-button type="info" icon="el-icon-arrow-left" @click="upt()">上一页</el-button>
 
@@ -141,7 +119,6 @@
                         // listdata:[],
                         formdata:{},
                         num:0,
-                        usName:'',
                         total:'',
                         size:2,
                         page:0
@@ -170,47 +147,36 @@
                 disabledDate(time) {
                     return time.getTime() > Date.now();
                 },
-
-                // mohuSearch(){
-                //     axios.get("http://localhost:8080/user/like?bulletin.createTime="+this.input).then(res=>{
-                //         // this.searchdata.listData=res.data;
-                //         this.listData=res.data;
-                //         console.log(this.searchdata.listData)
-                //     });
-                // },
                 next(){
-                    if(this.tableDatas.page<this.tableDatas.total){
+                    if(this.tableDatas.num<this.tableDatas.total-1){
                         this.tableDatas.num++;
                     }else
                         alert("已经是最后一页了")
                     this.getAll();
                 },
                 upt(){
-                    if(this.tableDatas.page>0){
+                    if(this.tableDatas.num>0){
                         this.tableDatas.num--;
                     }else{
                         alert("已经是第一页了")
                     }
                     this.getAll();
                 },
-                // handleEdit(index, row) {
-                //     console.log(index, row);
-                // },
+                handleEdit(index, row) {
+                    axios.get("http://localhost:8080/bulletin/selectId?id="+row.bulletinId).then(rel => {
+                        this.add=rel.data;
+
+                    })
+                },
                 deleteRow(index, rows) {
                     rows.splice(index, 1);
                 },
                 submitf() {
                     axios.post("http://localhost:8080/bulletin/save",this.add).then(rel => {
-                        alert(rel.data);
+                        alert("添加成功！！");
                         this.getAll();
                     })
                 },
-                // update(row) {
-                //     axios.put("http://localhost:8080/user/update",this.row).then(rel=>{
-                //         alert(rel.data);
-                //         this.getAll();
-                //     })
-                // },
                 deletes(row){
                     console.log(row);
                     var id = row.bulletinId;
@@ -219,17 +185,11 @@
                         this.getAll();
                     });
                 },
-                // search(){
-                //     axios.get("http://localhost:8080/user/get/"+this.add.usId).then(rel=>{
-                //         this.info=rel.data;
-                //     })
-                // }
             }
         }
     )
 </script>
 <p>
-    这是公告发布界面！
 </p>
 
 

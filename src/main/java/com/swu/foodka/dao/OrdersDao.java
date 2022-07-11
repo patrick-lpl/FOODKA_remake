@@ -19,14 +19,14 @@ public interface OrdersDao extends BaseMapper<Orders> {
      * @param pageSize
      * @return
      */
-    @Select("select * from order limit #{pageNum},#{pageSize}")
+    @Select("select * from orders limit #{pageNum},#{pageSize}")
     List<Orders> selectPages(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
 
     /**
      * 查询总数
      * @return
      */
-    @Select("select count(*) from user")
+    @Select("select count(*) from orders")
     int selectCount();
 
     /**

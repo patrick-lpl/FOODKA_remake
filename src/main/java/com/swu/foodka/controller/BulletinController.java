@@ -1,6 +1,8 @@
 package com.swu.foodka.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.swu.foodka.dao.BulletinDao;
 import com.swu.foodka.entity.Bulletin;
 import com.swu.foodka.service.BulletinService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +21,11 @@ public class BulletinController {
 
     @Autowired
     private BulletinService bulletinService;
+    @Autowired
+    private BulletinDao bulletinDao;
 
     /**
-     * getAll公告
+     * getAll
      * @return
      */
     @GetMapping
@@ -30,7 +34,17 @@ public class BulletinController {
     }
 
     /**
-     * 添加新公告
+     * 根据id查询公告
+     * @param id
+     * @return Bulletin
+     */
+    @GetMapping("/selectId")
+    public Bulletin selectId (@RequestParam Integer id){
+        return bulletinService.getById(id);
+    }
+
+    /**
+     * 新增公告
      * @param bulletin
      * @return
      */
@@ -40,7 +54,7 @@ public class BulletinController {
     }
 
     /**
-     * 删除公告
+     * 根据id删除公告
      * @param id
      * @return
      */
@@ -50,7 +64,7 @@ public class BulletinController {
     }
 
     /**
-     * 根据id查找公告
+     * getById
      * @param id
      * @return
      */
@@ -59,6 +73,29 @@ public class BulletinController {
         List<Bulletin> bulletinList=new ArrayList<>();
         bulletinList.add(bulletinService.getById(id));
         return bulletinList;
+    }
+
+    /**
+     * 分页
+     * @param num
+     * @param size
+     * @return
+     */
+    @GetMapping("/pages")
+    public Page getAll(@RequestParam Integer num, @RequestParam Integer size){
+        Page<Bulletin> bulletinPage=new Page<Bulletin>(num,size);
+        List<Bulletin> bulletinList = bulletinDao.selectPages(num, size);
+        int max = bulletinDao.selectCount();
+        System.out.println(max/size);
+        System.out.println(max*1.0/size);
+        if(max/size==max*1.0/size){
+            bulletinPage.setTotal(max/size);
+        }else{            //分页出现不能整除情况
+            bulletinPage.setTotal((max/size)+1);
+        }
+        System.out.println("total"+bulletinPage.getTotal());
+        bulletinPage.setRecords(bulletinList);
+        return bulletinPage;
     }
 
 }
