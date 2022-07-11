@@ -7,6 +7,7 @@ import com.swu.foodka.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,8 +36,10 @@ public class DishController {
      * @return
      */
     @GetMapping("/get/{id}")
-    public Dish getById(@PathVariable int id) {
-        return dishService.getById(id);
+    public List<Dish> getById(@PathVariable int id) {
+        List<Dish>dishlist=new ArrayList<>();
+            dishlist.add(dishService.getById(id));
+        return dishlist;
     }
 
     /**

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>FOODKA会员管理系统</title>
     <link rel="stylesheet" href="../../assets/css/login.css"/>
     <link rel="stylesheet" href="../../assets/css/element-ui/index.css"/>
     <link rel="stylesheet" href="../../assets/css/goods.css" >
@@ -14,63 +13,34 @@
     <script src="../../assets/css/element-ui/index.js"></script>
     <script src="../../assets/js/vue-resource.js"></script>
     <script src="../../assets/js/axios.min.js"></script>
-    <title>用户信息管理</title>
+    <title>用户点餐管理</title>
 </head>
 <style>
 
 </style>
 
 <body>
-
-
 <div id="app">
-    <span>用户名</span>
-    <div style="width: 30%;">
-
-        <el-input v-model="add.usName"  placeholder="请输入内容"></el-input>
-
-    </div>
-    <span>年龄</span>
-    <div style="width: 30%;">
-        <el-input  v-model="add.usAge" placeholder="请输入内容"></el-input>
-    </div>
-    <span>联系方式</span>
-    <div style="width: 30%;">
-
-        <el-input v-model="add.usPhone" placeholder="请输入内容"></el-input>
-    </div>
-    <span>密码</span>
-    <div style="width: 30%;">
-        <el-input  v-model="add.usPassword" placeholder="请输入内容"></el-input>
-        <el-button
-                size="mini"
-                @click="submitf">ADD</el-button>
-    </div>
-
-
     <template>
         <div class="search" style="width: 30%;" >
-            <p>ID</p>
-            <el-input v-model="add.usId" placeholder="请输入ID"></el-input>
+            <p>订餐ID</p>
+            <el-input v-model="add.orderId" placeholder="请输入订餐ID"></el-input>
             <el-button
                     size="mini"
-                    @click="search ">search</el-button>
+                    @click="search">搜索</el-button>
         </div>
         <el-card>
             <el-table :data="listData" stripe style="width: 100%; " >
-                <el-table-column prop="usId" label="用户Id" width="180">
+                <el-table-column prop="orderId" label="订餐Id" width="180">
                 </el-table-column>
-                <el-table-column prop="usName" label="用户名称" width="180">
+                <el-table-column prop="usId" label="用户ID" width="180">
                 </el-table-column>
-                <el-table-column prop="usAge" label="年龄">
+                <el-table-column prop="orderCost" label="消费金额">
                 </el-table-column>
-                <el-table-column prop="usPhone" label="联系电话">
+                <el-table-column prop="createTime" label="消费时间">
                 </el-table-column>
                 <el-table-column label="操作" width="250" style="display: flex;">
                     <template slot-scope="scope">
-                        <el-button
-                                size="mini"
-                                @click="dialogFormVisible = true,handleEdit(scope.$index, scope.row)">编辑</el-button>
                         <el-button
                                 size="mini"
                                 type="danger"
@@ -81,29 +51,6 @@
                 </el-table-column>
             </el-table>
         </el-card>
-        <el-dialog title="会员信息编辑" :visible.sync="dialogFormVisible">
-            <el-form :model="add">
-                <el-form-item label="ID" :label-width="formLabelWidth">
-                    <el-input v-model="add.usId" disabled ="true" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="姓名" :label-width="formLabelWidth">
-                    <el-input v-model="add.usName" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="年龄" :label-width="formLabelWidth">
-                    <el-input v-model="add.usAge" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="电话" :label-width="formLabelWidth">
-                    <el-input v-model="add.usPhone" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="密码" :label-width="formLabelWidth">
-                    <el-input v-model="add.usPassword" autocomplete="off"></el-input>
-                </el-form-item>
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-                <el-button @click="dialogFormVisible = false">取 消</el-button>
-                <el-button type="primary"  v-on:click="update()">提交</el-button>
-            </div>
-        </el-dialog>
         <div style="width: 100%;text-align:center" >
             <el-button
                     size="mini"
@@ -112,14 +59,6 @@
             <el-button
                     size="mini"
                     @click="next()">下一页</el-button>
-        </div>
-        <div style="width: 100%;text-align:center">
-            <el-input  v-model="input" placeholder="请输入用户名"></el-input>
-            <el-button
-                    size="mini"
-                    @click="mohuSearch">模糊查询</el-button>
-
-
         </div>
     </template>
 </div>
@@ -134,7 +73,7 @@
                     updata:'',
                     input:'',
                     add:{},
-                    usId:'',
+                    orderId:'',
                     listData:[],
                     tableData:{},
                     dialogFormTitle: "",
@@ -147,9 +86,8 @@
                         // listdata:[],
                         formdata:{},
                         num:0,
-                        usName:'',
                         total:'',
-                        size:5,
+                        size:2,
                         page:0
                     },
                     FormVisible:true,
@@ -161,24 +99,27 @@
                 this.getAll();
             },
             methods: {
-
                 getAll(){
                     this.tableDatas.page =(this.tableDatas.num)*(this.tableDatas.size),
                         console.log(this.tableDatas.num);
-                    axios.get("http://localhost:8080/user/pages?num="+this.tableDatas.page+"&size="+this.tableDatas.size).then(res=>{
+                    axios.get("http://localhost:8080/orders/pages?num="+this.tableDatas.page+"&size="+this.tableDatas.size).then(res=>{
                         console.log(res.data.records);
                         // this.tableDatas.listdata=res.data.records;
                         this.listData=res.data.records;
                         this.tableDatas.total=res.data.total;
                     });
                 },
+                handleEdit(index, row) {
+                    axios.get("http://localhost:8080/orders/selectId?id="+row.usId).then(rel => {
+                        this.add=rel.data;
 
-                mohuSearch(){
-                    axios.get("http://localhost:8080/user/like?usName="+this.input).then(res=>{
-                        // this.searchdata.listData=res.data;
-                        this.listData=res.data;
-                        console.log(this.searchdata.listData)
-                    });
+                    })
+                },
+                deleteRow() {
+                    axios.post("http://localhost:8080/orders/save", this.add).then(rel => {
+                        alert(rel.data);
+                        this.getAll();
+                    })
                 },
                 next(){
                     if(this.tableDatas.page<this.tableDatas.total){
@@ -195,41 +136,29 @@
                     }
                     this.getAll();
                 },
-                handleEdit(index, row) {
-                    axios.get("http://localhost:8080/user/selectId?id="+row.usId).then(rel => {
-                        this.add=rel.data;
-
-                    })
-                },
-                deleteRow() {
-                    axios.post("http://localhost:8080/user/register", this.add).then(rel => {
-                        alert(rel.data);
-                        this.getAll();
-                    })
-                },
                 submitf() {
-                    axios.post("http://localhost:8080/user/register", this.add).then(rel => {
+                    axios.post("http://localhost:8080/orders/save", this.add).then(rel => {
                         alert(rel.data);
                         this.getAll();
                     })
                 },
                 update() {
-                    axios.put("http://localhost:8080/user/update",this.add,).then(rel=>{
+                    axios.put("http://localhost:8080/orders/update",this.add,).then(rel=>{
                         alert(rel.data);
                         this.getAll();
                     })
                 },
                 deletes(row){
                     console.log(row);
-                    var id = row.usId;
-                    axios.delete("http://localhost:8080/user/"+id).then(rel=>{
+                    var id = row.orderId;
+                    axios.delete("http://localhost:8080/orders/"+id).then(rel=>{
                         alert(rel.data);
                         this.getAll();
                     });
                 },
                 search(){
-                    axios.get("http://localhost:8080/user/get/"+this.add.usId).then(rel=>{
-                        this.info=rel.data;
+                    axios.get("http://localhost:8080/orders/get/"+this.add.orderId).then(rel=>{
+                        console.log(rel.data);
                         this.listData=rel.data;
                     })
                 }
