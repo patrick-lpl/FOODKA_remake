@@ -21,12 +21,23 @@ import java.util.UUID;
 @RequestMapping("/img")
 public class PhotoController {
 
+    /**
+     * 图标物理存储路径
+     */
     @Value("${SavePath.ProfilePhoto}")
-    private String ProfilePhotoSavePath; // 图标物理存储路径
-
+    private String ProfilePhotoSavePath;
+    /**
+     * 图标映射路径
+     */
     @Value("${SavePath.ProfilePhotoMapper}")
-    private String ProfilePhotoMapperPath; //图标映射路径
+    private String ProfilePhotoMapperPath;
 
+    /**
+     * 图片上传
+     * @param fileUpload
+     * @param model
+     * @return
+     */
     @PostMapping("/api/profilePhotoUpload")
     public String profilePhotoUpload(@RequestParam("files")MultipartFile fileUpload, Model model){
         // 获取文件名

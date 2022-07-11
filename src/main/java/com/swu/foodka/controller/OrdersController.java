@@ -80,7 +80,12 @@ public class OrdersController {
         return ordersService.updateById(orders);
     }
 
-    //分页查询
+    /**
+     * 分页
+     * @param num
+     * @param size
+     * @return
+     */
     @GetMapping("/pages")
     public Page getAll(@RequestParam Integer num, @RequestParam Integer size){
         Page<Orders> ordersPage=new Page<Orders>(num,size);

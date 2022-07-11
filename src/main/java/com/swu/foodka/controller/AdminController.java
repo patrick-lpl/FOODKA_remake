@@ -25,7 +25,10 @@ public class AdminController {
     @Autowired
     private MessageDao messageDao;
 
-    // check
+    /**
+     * getAll
+     * @return
+     */
     @GetMapping("toList")
     public List<Admin> getAll(){
         return adminService.list();
@@ -52,7 +55,11 @@ public class AdminController {
         return adminService.removeById(id);
     }
 
-    // check
+    /**
+     * getById
+     * @param id
+     * @return
+     */
     @GetMapping("/get/{id}")
     public Admin getById(@PathVariable int id){
         return adminService.getById(id);
@@ -113,11 +120,20 @@ public class AdminController {
         return messageDao.insert(msg)>0;
     }
 
+    /**
+     * 更新消息
+     * @param id
+     * @return
+     */
     @PutMapping("putMsg")
     public  boolean updateMsg(@RequestParam("msg_id") Integer id){
         return messageDao.updataMsg(id)>0;
     }
 
+    /**
+     * 消息推送，get未读消息
+     * @return
+     */
     @GetMapping("/msg")
     public List<Message> getMsg(){
         return messageDao.selectType(1);
