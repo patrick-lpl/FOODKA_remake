@@ -125,14 +125,14 @@ public class AdminController {
     private MessageService messageService;
     /**
      * 更新消息
-     * @param id
+     * @param msg_id
      * @return
      */
     @PutMapping("putMsg")
     public  boolean updateMsg(@RequestParam("msg_id") Integer msg_id){
         boolean update =messageDao.updataMsg(msg_id)>0;
         Message msg = messageService.getById(msg_id);
-        System.out.println("6666666666");
+
         return update;
     }
 
