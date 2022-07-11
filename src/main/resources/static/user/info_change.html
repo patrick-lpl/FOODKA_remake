@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" >
+<meta charset="UTF-8">
+<head>
+
+    <script src="../../assets/js/vue.js"></script>
+
+    <script src="../../assets/js/axios.min.js"></script>
+    <title>用户上传头像</title>
+</head>
+
+
+<body>
+
+<div id="app">
+
+    <div id="myPhoto" v-show="true">
+
+        <div class="viewPhoto">
+            <img src="image/刺猬.jpg" alt="" id="portrait" style="width: 60px;height: 60px;border-radius: 60px;" />
+        </div>
+
+
+        <div class="listBox">
+            <dl>请上传图片</dl>
+            <dd>
+                <input type="file" id="saveImage" name="myphoto">
+            </dd>
+        </div>
+
+
+        <div class="save">
+            <input type="button" value="上传头像" @click="imageSubmit">
+        </div>
+
+
+
+    </div>
+
+
+
+
+</div>
+
+
+</body>
+<script>
+
+
+    new Vue({
+        el: '#app',
+        data:{
+            personalPhoto:true,
+            dialogFormVisible: false,
+            formLabelWidth: '120px'
+
+
+        },
+        methods:{
+            imageSubmit(){
+                let x = document.getElementById('saveImage').files[0];
+
+
+                let params = new FormData();
+                    params.append('file',x,x.name);
+                let config = {
+                    headers:{'Content-Type':'multipart/form-data'}
+                };
+                console.log('丸辣，芭比Q辣');
+                axios.post("http://localhost:8080/img/api/profilePhotoUpload",params,config).then(function (res) {
+                    var img = "image/" + res.data.slice(0);
+                    console.log(img);
+                    document.getElementById("portrait").src = img;
+                })
+                    .catch(function (error){
+                        console.log(error);
+                    })
+
+
+
+            }
+        }
+
+    })
+</script>
+
+
+
+
+</html>
