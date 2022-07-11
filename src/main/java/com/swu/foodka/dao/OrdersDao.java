@@ -13,10 +13,22 @@ import java.util.List;
 @Component
 @Mapper
 public interface OrdersDao extends BaseMapper<Orders> {
-    //分页查询
+    /**
+     * 分页
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @Select("select * from order limit #{pageNum},#{pageSize}")
     List<Orders> selectPages(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
-    //查询总数
+
+    /**
+     * 查询总数
+     * @return
+     */
     @Select("select count(*) from user")
     int selectCount();
+
+    @Select("select * from orders where us_id=#{id}")
+    List<Orders> selectUsOrders(@Param("id") Integer id);
 }
