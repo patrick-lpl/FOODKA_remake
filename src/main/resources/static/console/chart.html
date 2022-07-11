@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../assets/js/echarts.js"></script>
+</head>
+<body>
+<!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+<div id="main" style="width: 600px;height:400px;">
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            series: [
+                {
+                    type: 'pie',
+                    data: [
+                        {
+                            value: 100,
+                            name: '15~20'
+                        },
+                        {
+                            value: 200,
+                            name: '20~30'
+                        },
+                        {
+                            value: 300,
+                            name: '30~40'
+                        },
+                        {
+                            value: 400,
+                            name: '40~50'
+                        },
+                        {
+                            value: 500,
+                            name: '>50'
+                        }
+                    ],
+                    roseType: 'area'
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</div>
+</body>
+</html>
