@@ -42,4 +42,8 @@ public class User {
      * 用户权限
      */
     private Integer usQx;
+    /**
+     * 用户所在地
+     */
+    private String usArea;
 }
