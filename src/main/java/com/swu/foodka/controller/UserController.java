@@ -124,7 +124,6 @@ public class UserController {
                     result.setFlag(true);
                     result.setMsg("登陆成功！欢迎：" + user.getUsName());
                     result.setDatas(user);
-
                     return result;
                 }
             }
@@ -141,7 +140,6 @@ public class UserController {
      */
     @PostMapping("/register")
     public AjaxResult register(@RequestBody User user) throws Exception {
-
         AjaxResult result = new AjaxResult();
         List<User> userList = userService.list();
         for(User value: userList){
@@ -151,7 +149,7 @@ public class UserController {
                 return result;
             }
         }
-        ObjEvent objEvent=new ObjEvent(user.getUsName(),user,"new users");
+        ObjEvent objEvent = new ObjEvent(user.getUsName(),user,"new user!");
         // 密码加密
         user.setUsPassword(EncryptUtil.shaEncode(user.getUsPassword()));
         userService.save(user);
@@ -227,8 +225,18 @@ public class UserController {
         return num>1?"成功":"失败";
     }
 
-
-
-
-
+    @PostMapping("/changePwd")
+    public AjaxResult changePwd(@RequestBody User user) throws Exception {
+        AjaxResult result = new AjaxResult();
+        User us = userService.getById(user.getUsId());
+        if (user.getUsPassword().equals(us.getUsPassword())) {
+            result.setFlag(false);
+            result.setMsg("新密码不能与旧密码相同！");
+        } else {
+            us.setUsPassword(EncryptUtil.shaEncode(user.getUsPassword()));
+            result.setFlag(true);
+            result.setMsg("密码修改成功！");
+        }
+        return result;
+    }
 }
