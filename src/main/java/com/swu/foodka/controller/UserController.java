@@ -33,12 +33,21 @@ public class UserController {
     @Autowired
     private WebApplicationContext webapplicationcontext;
 
-    // check
+    /**
+     * getAll返回用户list
+     * @return
+     */
     @GetMapping("toList")
     public List<User> getAll(){
         return userService.list();
     }
 
+    /**
+     * 更新用户数据，包括密码加密
+     * @param user
+     * @return
+     * @throws Exception
+     */
     @PutMapping("/update")
     public boolean update(@RequestBody User user) throws Exception {
         System.out.println("更新用户："+user.getUsName());
@@ -47,7 +56,12 @@ public class UserController {
         return userService.updateById(user);
     }
 
-    // 规范化接口
+    /**
+     * 新增用户、密码加密（已规范化接口）
+     * @param user
+     * @return
+     * @throws Exception
+     */
     @PostMapping("/save")
     public AjaxResult save(@RequestBody User user) throws Exception{
         // 密码加密
@@ -64,13 +78,22 @@ public class UserController {
         return result;
     }
 
+    /**
+     * 删除用户
+     * @param id
+     * @return
+     */
     @DeleteMapping("/{id}")
     public boolean delete(@PathVariable Integer id){
         System.out.println("删除用户："+id+"，"+userService.getById(id).getUsName());
         return userService.removeById(id);
     }
 
-    // check
+    /**
+     * 根据id搜索
+     * @param id
+     * @return
+     */
     @GetMapping("/get/{id}")
     public List<User>  getById(@PathVariable int id){
         List<User> userList=new ArrayList<>();
@@ -130,14 +153,23 @@ public class UserController {
         return result;
     }
 
-    //模糊查询
+    /**
+     * 模糊查询
+     * @param usName
+     * @return
+     */
     @GetMapping("/like")
     public List<User> getAllList(@RequestParam String usName){
         System.out.println(usName);
         return userDao.selectPagesLike("%"+usName+"%");
     }
 
-    //分页查询
+    /**
+     * 分页
+     * @param num
+     * @param size
+     * @return
+     */
     @GetMapping("/pages")
     public Page getAll(@RequestParam Integer num, @RequestParam Integer size){
         Page<User> userPage=new Page<User>(num,size);
@@ -154,6 +186,11 @@ public class UserController {
         return userPage;
     }
 
+    /**
+     * 根据usName返回usId
+     * @param usName
+     * @return
+     */
     @GetMapping("/getus")
     public Integer getUs(@RequestParam String usName){
         List<User> userList = userService.list();
@@ -165,6 +202,11 @@ public class UserController {
         return -1;
     }
 
+    /**
+     * 消息推送接口
+     * @param user
+     * @return
+     */
     @PostMapping("/saveMsg")
     public String rest(@RequestBody User user){
         user.setUsQx(1);
