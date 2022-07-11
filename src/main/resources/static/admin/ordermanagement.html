@@ -106,7 +106,7 @@
                 },
                 searchs(){
                     console.log(1);
-                   axios.get("http://localhost:8080/orders/get/"+this.add.usId).then(rel=>{
+                   axios.get("http://localhost:8080/orders/getUsOrder/"+this.add.usId).then(rel=>{
                             console.log(rel);
                         this.info=rel.data;
                     });

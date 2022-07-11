@@ -24,38 +24,18 @@
 
 
 <div id="app">
-    <span>用户名</span>
-    <div style="width: 30%;">
 
-        <el-input v-model="add.usName"  placeholder="请输入内容"></el-input>
-
-    </div>
-    <span>年龄</span>
-    <div style="width: 30%;">
-        <el-input  v-model="add.usAge" placeholder="请输入内容"></el-input>
-    </div>
-    <span>联系方式</span>
-    <div style="width: 30%;">
-
-        <el-input v-model="add.usPhone" placeholder="请输入内容"></el-input>
-    </div>
-    <span>密码</span>
-    <div style="width: 30%;">
-        <el-input  v-model="add.usPassword" placeholder="请输入内容"></el-input>
-        <el-button
-                size="mini"
-                @click="submitf">ADD</el-button>
-    </div>
 
 
     <template>
-        <div class="search" style="width: 30%;" >
-            <p>ID</p>
-            <el-input v-model="add.usId" placeholder="请输入ID"></el-input>
-            <el-button
+        <div style="width: 30%;text-align:center; margin-top: 100px;">
+            <el-input  v-model="input" placeholder="请输入用户名" > <el-button
                     size="mini"
-                    @click="search ">search</el-button>
+                    slot="append"
+                    style="color: #0b5ed7;"
+                    @click="mohuSearch">模糊查询</el-button></el-input>
         </div>
+        <el-button type="primary" plain style="margin:15px 20px;" @click="dialogFormVisible1 = true" icon="el-icon-plus">新增用户</el-button>
         <el-card>
             <el-table :data="listData" stripe style="width: 100%; " >
                 <el-table-column prop="usId" label="用户Id" width="180">
@@ -82,21 +62,21 @@
             </el-table>
         </el-card>
         <el-dialog title="会员信息编辑" :visible.sync="dialogFormVisible">
-            <el-form :model="add">
+            <el-form :model="up">
                 <el-form-item label="ID" :label-width="formLabelWidth">
-                    <el-input v-model="add.usId" disabled ="true" autocomplete="off"></el-input>
+                    <el-input v-model="up.usId" disabled ="true" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="姓名" :label-width="formLabelWidth">
-                    <el-input v-model="add.usName" autocomplete="off"></el-input>
+                    <el-input v-model="up.usName" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="年龄" :label-width="formLabelWidth">
-                    <el-input v-model="add.usAge" autocomplete="off"></el-input>
+                    <el-input v-model="up.usAge" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="电话" :label-width="formLabelWidth">
-                    <el-input v-model="add.usPhone" autocomplete="off"></el-input>
+                    <el-input v-model="up.usPhone" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="密码" :label-width="formLabelWidth">
-                    <el-input v-model="add.usPassword" autocomplete="off"></el-input>
+                    <el-input v-model="up.usPassword" autocomplete="off"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -113,15 +93,36 @@
                     size="mini"
                     @click="next()">下一页</el-button>
         </div>
-        <div style="width: 100%;text-align:center">
-            <el-input  v-model="input" placeholder="请输入用户名"></el-input>
-            <el-button
-                    size="mini"
-                    @click="mohuSearch">模糊查询</el-button>
 
-
-        </div>
     </template>
+    <el-dialog title="添加用户" :visible.sync="dialogFormVisible1">
+        <el-form :model="add">
+            <el-form-item label="用户名" :label-width="formLabelWidth">
+                <div style="width: 30%;">
+                    <el-input v-model="add.usName" placeholder="请输入用户名"></el-input>
+                </div>
+            </el-form-item>
+            <el-form-item label="年龄" :label-width="formLabelWidth">
+                <div style="width: 30%;">
+                    <el-input  v-model="add.usAge" placeholder="请输入年龄"></el-input>
+                </div>
+            </el-form-item>
+            <el-form-item label="联系方式" :label-width="formLabelWidth">
+                <div style="width: 30%;">
+                    <el-input v-model="add.usPhone" placeholder="请输入联系方式"></el-input>
+                </div>
+            </el-form-item>
+            <el-form-item label="密码" :label-width="formLabelWidth">
+                <div style="width: 30%;">
+                    <el-input  v-model="add.usPassword" placeholder="请输入密码"></el-input>
+                </div>
+            </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible1 = false">取 消</el-button>
+            <el-button type="primary" @click="submitf()" >提交</el-button>
+        </div>
+    </el-dialog>
 </div>
 
 </body>
@@ -134,6 +135,7 @@
                     updata:'',
                     input:'',
                     add:{},
+                    up:{},
                     usId:'',
                     listData:[],
                     tableData:{},
@@ -149,11 +151,12 @@
                         num:0,
                         usName:'',
                         total:'',
-                        size:5,
+                        size:2,
                         page:0
                     },
                     FormVisible:true,
                     dialogFormVisible: false,
+                    dialogFormVisible1:false,
                     formLabelWidth: '120px'
                 }
             },
@@ -181,7 +184,7 @@
                     });
                 },
                 next(){
-                    if(this.tableDatas.page<this.tableDatas.total){
+                    if(this.tableDatas.page<this.tableDatas.total+1){
                         this.tableDatas.num++;
                     }else
                         alert("已经是最后一页了")
@@ -197,7 +200,7 @@
                 },
                 handleEdit(index, row) {
                     axios.get("http://localhost:8080/user/selectId?id="+row.usId).then(rel => {
-                        this.add=rel.data;
+                        this.up=rel.data;
 
                     })
                 },
@@ -209,12 +212,12 @@
                 },
                 submitf() {
                     axios.post("http://localhost:8080/user/register", this.add).then(rel => {
-                        alert(rel.data);
+                        alert("添加成功！");
                         this.getAll();
                     })
                 },
                 update() {
-                    axios.put("http://localhost:8080/user/update",this.add,).then(rel=>{
+                    axios.put("http://localhost:8080/user/update",this.up).then(rel=>{
                         alert(rel.data);
                         this.getAll();
                     })

@@ -29,16 +29,16 @@
 <style>
     #app{
         margin-left: 30%;
-        margin-top: 10%;
+        margin-top: 5%;
     }
 </style>
 
 <body>
-<div id="app">
+<div id="app" style="margin-left: 100px;">
 
     <!-----------------------搜索栏输入框------------------------------------------------------>
     <template>
-        <div style="width: 30%;" >
+        <div style="width: 30%; " >
             <p>菜品ID</p>
             <el-input v-model="add.dishId" placeholder="请输入菜品名搜索" style="margin-bottom:20px">
                 <el-button icon="el-icon-search" slot="append" style="color: #0b5ed7;" size="mini" @click="searchs()">search</el-button>

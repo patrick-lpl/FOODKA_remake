@@ -42,6 +42,11 @@ public class UserController {
         return userService.list();
     }
 
+    @GetMapping("/selectId")
+    public User selectId (@RequestParam Integer id){
+        return userService.getById(id);
+    }
+
     /**
      * 更新用户数据，包括密码加密
      * @param user
