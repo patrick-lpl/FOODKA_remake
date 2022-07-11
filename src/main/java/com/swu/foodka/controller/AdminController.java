@@ -5,6 +5,7 @@ import com.swu.foodka.dao.MessageDao;
 import com.swu.foodka.entity.Admin;
 import com.swu.foodka.entity.Message;
 import com.swu.foodka.service.AdminService;
+import com.swu.foodka.service.MessageService;
 import com.swu.foodka.utils.EncryptUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -120,6 +121,8 @@ public class AdminController {
         return messageDao.insert(msg)>0;
     }
 
+    @Autowired
+    private MessageService messageService;
     /**
      * 更新消息
      * @param id
@@ -127,7 +130,10 @@ public class AdminController {
      */
     @PutMapping("putMsg")
     public  boolean updateMsg(@RequestParam("msg_id") Integer id){
-        return messageDao.updataMsg(id)>0;
+        boolean update =messageDao.updataMsg(id)>0;
+        Message msg = messageService.getById(id);
+        System.out.println(msg.getMsgId());
+        return update;
     }
 
     /**
