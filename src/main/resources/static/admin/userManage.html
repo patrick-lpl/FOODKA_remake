@@ -120,7 +120,7 @@
         </el-form>
         <div slot="footer" class="dialog-footer">
             <el-button @click="dialogFormVisible1 = false">取 消</el-button>
-            <el-button type="primary" @click="submitf()" >提交</el-button>
+            <el-button type="primary" @click="submitf() " >提交</el-button>
         </div>
     </el-dialog>
 </div>
@@ -213,12 +213,14 @@
                 submitf() {
                     axios.post("http://localhost:8080/user/register", this.add).then(rel => {
                         alert("添加成功！");
+                        this.dialogFormVisible1=false;
                         this.getAll();
                     })
                 },
                 update() {
                     axios.put("http://localhost:8080/user/update",this.up).then(rel=>{
                         alert(rel.data);
+                        this.dialogFormVisible=false;
                         this.getAll();
                     })
                 },
