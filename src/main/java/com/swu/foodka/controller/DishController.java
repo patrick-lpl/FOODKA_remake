@@ -1,8 +1,11 @@
 package com.swu.foodka.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.swu.foodka.dao.DishDao;
+import com.swu.foodka.dao.UserDao;
 import com.swu.foodka.entity.Dish;
+import com.swu.foodka.entity.User;
 import com.swu.foodka.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +24,13 @@ public class DishController {
     @Autowired
     private DishService dishService;
 
+    @Autowired
+    private DishDao dishDao;
+
+    @GetMapping("/selectId")
+    public Dish selectId (@RequestParam Integer id){
+        return dishService.getById(id);
+    }
     /**
      * 获取全部菜品
      * @return
@@ -60,7 +70,7 @@ public class DishController {
      */
     @PostMapping("/save")
     public boolean save(@RequestBody Dish dish){
-        System.out.println("saveing dish......");
+        System.out.println("saveing dish......"+dish.getDishName());
         return dishService.save(dish);
     }
 
@@ -69,7 +79,7 @@ public class DishController {
      * @param dish 商品对象
      * @return if success
      */
-    @PutMapping
+    @PutMapping("/update")
     public boolean update(@RequestBody Dish dish){
         System.out.println("updating dish"+dish.getDishName());
         return dishService.updateById(dish);
@@ -79,9 +89,31 @@ public class DishController {
      * 模糊查询
      */
     @GetMapping("/like")
-    public List<Dish> getAllList(@RequestParam String name){
-        System.out.println(name);
-        return DishDao.selectPagesLike("%"+name+"%");
+    public List<Dish> getAllList(@RequestParam String dishName){
+        System.out.println(dishName);
+        return dishDao.selectPagesLike("%"+dishName+"%");
+    }
+
+    /**
+     * 分页
+     * @param num
+     * @param size
+     * @return
+     */
+    @GetMapping("/pages")
+    public Page getAll(@RequestParam Integer num, @RequestParam Integer size){
+        Page<Dish> dishPage=new Page<Dish>(num,size);
+        List<Dish> dishList = dishDao.selectPages(num, size);
+        int max = dishDao.selectCount();
+        System.out.println(max*1.0/size);
+        if(max/size==max*1.0/size){
+            dishPage.setTotal(max/size);
+        }else{            //分页出现不能整除情况
+            dishPage.setTotal((max/size)+1);
+        }
+        System.out.println("total"+dishPage.getTotal());
+        dishPage.setRecords(dishList);
+        return dishPage;
     }
 
 }

@@ -10,21 +10,27 @@ import java.util.List;
 
 @Mapper
 public interface DishDao extends BaseMapper<Dish> {
+    /**
+     * 分页查询
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @Select("select * from dish limit #{pageNum},#{pageSize}")
+    List<Dish> selectPages(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
 
     /**
      * 模糊查询
-     * @param name
+     * @param dishName
      * @return
      */
-    @Select("select * from goods where goods_name like #{name}")
-    static List<Dish> selectPagesLike(@Param("name") String name) {
-        return null;
-    }
+    @Select("select * from dish where dish_name like #{dishName}")
+    List<Dish> selectPagesLike(@Param("dishName") String dishName);
 
     /**
      * 查询有多少数据
      * @return
      */
-    @Select("select count(*) from goods")
+    @Select("select count(*) from dish")
     int selectCount();
 }

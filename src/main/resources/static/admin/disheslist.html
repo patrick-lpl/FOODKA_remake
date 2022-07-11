@@ -47,7 +47,7 @@
         <el-button type="primary" plain style="margin:0px 0px;" @click="dialogFormVisible1 = true" icon="el-icon-plus" style="float: left;">新增菜品</el-button>
 
         <!----------------------展示栏的导航栏------------------------------------------------------->
-        <el-table :data="info" style="width:660px; margin-top: 20px;margin-left:5px;" max-height="80%">
+        <el-table :data="listData" style="width:660px; margin-top: 20px;margin-left:5px;" max-height="80%">
             <el-table-column
                     fixed
                     label="菜品ID"
@@ -85,20 +85,32 @@
                 </template>
             </el-table-column>
         </el-table>
+        <div style="width: 100%;text-align:center" >
+            <el-button
+                    size="mini"
+                    @click="upt()">上一页</el-button>
+
+            <el-button
+                    size="mini"
+                    @click="next()">下一页</el-button>
+        </div>
     </template>
     <!--------------------------------------对话框------------------------------------------------>
     <el-dialog title="菜品信息编辑" :visible.sync="dialogFormVisible">
-        <el-form :model="add">
+        <el-form :model="up">
+            <el-form-item label=" " :label-width="formLabelWidth">
+                <el-input v-model="up.dishId" autocomplete="off" disabled="true"></el-input>
+            </el-form-item>
             <el-form-item label="菜品名" :label-width="formLabelWidth">
-                <el-input v-model="add.dishName" autocomplete="off"></el-input>
+                <el-input v-model="up.dishName" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="菜品单价" :label-width="formLabelWidth">
-                <el-input v-model="add.dishPrice" autocomplete="off"></el-input>
+                <el-input v-model="up.dishPrice" autocomplete="off"></el-input>
             </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
             <el-button @click="dialogFormVisible = false">取 消</el-button>
-            <el-button type="primary"  v-on:click="update()">提交</el-button>
+            <el-button type="primary"  v-on:click="updates() ">提交</el-button>
         </div>
     </el-dialog>
     <el-dialog title="添加菜品" :visible.sync="dialogFormVisible1">
@@ -124,9 +136,24 @@
                 return {
                     info:[],
                     add:{},
+                    up:{},
+                    listData:[],
+                    updata:'',
+                    input:'',
+                    dishId:'',
+                    tableData:{},
+                    dialogFormTitle: "",
                     dialogFormVisible: false,
                     dialogFormVisible1: false,
-                    formLabelWidth: '120px'
+                    formLabelWidth: '120px',
+                    tableDatas: {
+                        // listdata:[],
+                        formdata:{},
+                        num:0,
+                        total:'',
+                        size:2,
+                        page:0
+                    },
                 }
             },
             created(){
@@ -134,9 +161,33 @@
             },
             methods: {
                 getAll(){
-                    axios.get("http://localhost:8080/dish/toList").then(res=>{
-                        console.log("here is userdetail");
-                        this.info = res.data ;
+                    this.tableDatas.page =(this.tableDatas.num)*(this.tableDatas.size),
+                        console.log(this.tableDatas.num);
+                    axios.get("http://localhost:8080/dish/pages?num="+this.tableDatas.page+"&size="+this.tableDatas.size).then(res=>{
+                        console.log(res.data.records);
+                        // this.tableDatas.listdata=res.data.records;
+                        this.listData=res.data.records;
+                        this.tableDatas.total=res.data.total;
+                    });
+                },
+                next(){
+                    if(this.tableDatas.num<this.tableDatas.total-1){
+                        this.tableDatas.num++;
+                    }else
+                        alert("已经是最后一页了")
+                    this.getAll();
+                },
+                upt(){
+                    if(this.tableDatas.page>0){
+                        this.tableDatas.num--;
+                    }else{
+                        alert("已经是第一页了")
+                    }
+                    this.getAll();
+                },
+                handleEdit(index, row) {
+                    axios.get("http://localhost:8080/dish/selectId?id="+row.dishId).then(rel => {
+                        this.up=rel.data;
                     })
                 },
                 submitf() {
@@ -146,9 +197,10 @@
                         this.getAll();
                     })
                 },
-                update() {
-                    axios.put("http://localhost:8080/dish/update",this.add).then(rel=>{
+                updates() {
+                    axios.put("http://localhost:8080/dish/update",this.up).then(rel=>{
                         alert(rel.data);
+                        this.dialogFormVisible=false;
                         this.getAll();
                     })
                 },
