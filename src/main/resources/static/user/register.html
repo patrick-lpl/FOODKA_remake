@@ -54,6 +54,27 @@
                         </el-row>
                     </el-form-item>
 
+                    <el-form-item label=""  prop="usName" style="margin-top:10px;">
+                        <el-row>
+                    <el-col :span='2'>
+                        <span class="el-icon-location-information" ></span>
+                    </el-col>
+                    <el-col :span='20'>
+                    <templat>
+                        <el-select v-model="value" placeholder="请选择" style="width: 290px">
+                            <el-option
+                                    v-for="item in cities"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span>
+                            </el-option>
+                        </el-select>
+                    </templat>
+                    </el-col>
+                        </el-row>
+                    </el-form-item>
                     <el-form-item label="" prop="usPhone" style="margin-top:10px;">
                         <el-row>
                             <el-col :span='2'>
@@ -115,6 +136,7 @@
                 registerForm: {
                     usName: '',
                     usAge:'',
+                    usArea:'',
                     usPhone: '',
                     usPassword: ''
                 },
@@ -122,8 +144,111 @@
             data(){
                 return {
                     registerForm: {},
-                }
-            },
+                    cities: [{
+                        value: 'anhui',
+                        label: '安徽'
+                    }, {
+                        value: 'beijing',
+                        label: '北京'
+                    }, {
+                        value: 'chongqing',
+                        label: '重庆'
+                    }, {
+                        value: 'fujian',
+                        label: '福建'
+                    },{
+                        value: 'gansu',
+                        label: '甘肃'
+                    }, {
+                        value: 'fujian',
+                        label: '福建'
+                    }, {
+                        value: 'gansu',
+                        label: '甘肃'
+                    },{
+                        value: 'guangdong',
+                        label: '广东'
+                    },{
+                    value: 'guangxi',
+                            label: '广西'
+                    },{
+                        value: 'guizhou',
+                            label: '贵州'
+                    },{
+                        value: 'hainan',
+                            label: '海南'
+                    },{
+                        value: 'hebei',
+                            label: '河北'
+                    },{
+                        value: 'henan',
+                        label: '河南'
+                    }, {
+                        value: 'heilongjiang',
+                        label: '黑龙江'
+                    }, {
+                        value: 'hubei',
+                        label: '湖北'
+                    },{
+                        value: 'hunan',
+                        label: '湖南'
+                    }, {
+                        value: 'jiangxi',
+                        label: '江西'
+                    }, {
+                        value: 'jilin',
+                        label: '吉林'
+                    },{
+                        value: 'jiangsu',
+                        label: '江苏'
+                    },{
+                        value: 'liaoning',
+                        label: '辽宁'
+                    },{
+                        value: 'neimenggu',
+                        label: '内蒙古'
+                    },{
+                        value: 'ningxia',
+                        label: '宁夏'
+                    },{
+                        value: 'qinghai',
+                        label: '青海'
+                    },{
+                        value: 'shanxi',
+                        label: '山西'
+                    },{
+                        value: 'shandong',
+                        label: '山东'
+                    },{
+                        value: 'shanxi',
+                        label: '陕西'
+                    },{
+                        value: 'shanghai',
+                        label: '上海'
+                    },{
+                        value: 'sichan',
+                        label: '四川'
+                    },{
+                        value: 'tianjin',
+                        label: '天津'
+                    },{
+                        value: 'xizang',
+                        label: '西藏'
+                    },{
+                        value: 'xinjiang',
+                        label: '新疆'
+                    },{
+                        value: 'yunnan',
+                        label: '云南'
+                    },{
+                        value: 'zhejiang',
+                        label: '浙江'
+                    }],
+                        value: ''
+                    }
+                },
+
+
 
             methods: {
                 register() {
@@ -139,5 +264,7 @@
                 }
             }
         })
+
+
     </script>
 </html>
