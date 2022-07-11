@@ -95,52 +95,52 @@
                         style="height: 94vh;">
 
 
-                    <el-submenu index="1">
-                        <template slot="title">
-                            <i class="el-icon-location"></i>
-                            <span slot="title" style="font-size: x-large;font-weight: bold">管理员功能</span>
-                        </template>
-                        <el-menu-item-group>
-                            <el-submenu index="1-1">
-                          <span slot="title"  style="font-size:large;font-weight: bold">
-                               <i class="el-icon-document"></i>管理员操作</span>
-                                <el-menu-item index="1-1-1">
-                                    <i class="el-icon-menu" ></i>
-                                    <span @click="openUrl('')"  style="font-weight: bold">基本信息</span>
-                                </el-menu-item>
-                                <el-menu-item index="1-2-1">
-                                    <i class="el-icon-menu"></i>
-                                    <span @click="openUrl('manger-password.html')" style="font-weight: bold">密码修改</span>
-                                </el-menu-item>
-                            </el-submenu>
-                        </el-menu-item-group>
-                        <el-submenu index="1-3">
-                          <span slot="title" style="font-size:large;font-weight: bold">
-                               <i class="el-icon-document"></i>会员管理</span>
-                            <el-menu-item index="1-3-1">
-                                <i class="el-icon-menu"></i>
-                                <span @click="openUrl('userManage.html')" style="font-weight: bold" src="userManage.html">会员信息管理</span>
-                            </el-menu-item>
-                            <el-menu-item index="1-3-2">
-                                <i class="el-icon-menu"></i>
-                                <span @click="openUrl('')" style="font-weight: bold">会员密码修改</span>
-                            </el-menu-item>
-                        </el-submenu>
+<!--                    <el-submenu index="1">-->
+<!--                        <template slot="title">-->
+<!--                            <i class="el-icon-location"></i>-->
+<!--                            <span slot="title" style="font-size: x-large;font-weight: bold">管理员功能</span>-->
+<!--                        </template>-->
+<!--                        <el-menu-item-group>-->
+<!--                            <el-submenu index="1-1">-->
+<!--                          <span slot="title"  style="font-size:large;font-weight: bold">-->
+<!--                               <i class="el-icon-document"></i>管理员操作</span>-->
+<!--                                <el-menu-item index="1-1-1">-->
+<!--                                    <i class="el-icon-menu" ></i>-->
+<!--                                    <span @click="openUrl('')"  style="font-weight: bold">基本信息</span>-->
+<!--                                </el-menu-item>-->
+<!--                                <el-menu-item index="1-2-1">-->
+<!--                                    <i class="el-icon-menu"></i>-->
+<!--                                    <span @click="openUrl('manger-password.html')" style="font-weight: bold">密码修改</span>-->
+<!--                                </el-menu-item>-->
+<!--                            </el-submenu>-->
+<!--                        </el-menu-item-group>-->
+<!--                        <el-submenu index="1-3">-->
+<!--                          <span slot="title" style="font-size:large;font-weight: bold">-->
+<!--                               <i class="el-icon-document"></i>会员管理</span>-->
+<!--                            <el-menu-item index="1-3-1">-->
+<!--                                <i class="el-icon-menu"></i>-->
+<!--                                <span @click="openUrl('userManage.html')" style="font-weight: bold" src="userManage.html">会员信息管理</span>-->
+<!--                            </el-menu-item>-->
+<!--                            <el-menu-item index="1-3-2">-->
+<!--                                <i class="el-icon-menu"></i>-->
+<!--                                <span @click="openUrl('')" style="font-weight: bold">会员密码修改</span>-->
+<!--                            </el-menu-item>-->
+<!--                        </el-submenu>-->
 
-                        <el-submenu index="1-4">
-                          <span slot="title" style="font-size:large;font-weight: bold">
-                               <i class="el-icon-document"></i>公告</span>
-                            <el-menu-item index="1-4-1">
-                                <i class="el-icon-menu"></i>
-                                <span @click="openUrl('bulletin.html')" style="font-weight: bold" src="bulletin.html">公告管理</span>
-                            </el-menu-item>
-                        </el-submenu>
-
-
-                    </el-submenu>
+<!--                        <el-submenu index="1-4">-->
+<!--                          <span slot="title" style="font-size:large;font-weight: bold">-->
+<!--                               <i class="el-icon-document"></i>公告</span>-->
+<!--                            <el-menu-item index="1-4-1">-->
+<!--                                <i class="el-icon-menu"></i>-->
+<!--                                <span @click="openUrl('bulletin.html')" style="font-weight: bold" src="bulletin.html">公告管理</span>-->
+<!--                            </el-menu-item>-->
+<!--                        </el-submenu>-->
 
 
-<<<<<<<< HEAD:src/main/resources/static/admin/admin_manger.html
+<!--                    </el-submenu>-->
+
+
+
 <!--                    <el-submenu index="2-1">-->
 <!--                        <template slot="title">-->
 <!--                            <i class="el-icon-location"></i>-->
@@ -151,7 +151,7 @@
 <!--                            <span slot="title" @click="openUrl('')" style="font-weight: bold">会员个人信息管理</span>-->
 <!--                        </el-menu-item>-->
 <!--                    </el-submenu>-->
-========
+
                     <el-submenu index="2">
                         <template slot="title">
                             <i class="el-icon-location"></i>
@@ -161,28 +161,29 @@
                             <i class="el-icon-menu"></i>
                             <span slot="title" @click="openUrl('')" style="font-weight: bold">会员个人信息</span>
                         </el-menu-item>
+
                     </el-submenu>
->>>>>>>> origin/master:src/main/resources/static/admin/manger.html
 
 
-                    <el-submenu index="3-1">
-                        <template slot="title">
-                            <i class="el-icon-s-order"></i>
-                            <span slot="title" style="font-size: x-large;font-weight: bold">餐厅信息管理</span>
-                        </template>
-                        <el-menu-item index="3-1-1">
-                            <i class="el-icon-menu"></i>
-                            <span slot="title" @click="openUrl('')"  style="font-weight: bold">菜品信息管理</span>
-                        </el-menu-item>
-                        <el-menu-item index="3-1-2">
-                            <i class="el-icon-menu"></i>
-                            <span slot="title" @click="openUrl('ordermanagement.html')"  style="font-weight: bold">订单管理</span>
-                        </el-menu-item>
-                        <el-menu-item index="3-1-3">
-                            <i class="el-icon-menu"></i>
-                            <span slot="title" @click="openUrl('')"  style="font-weight: bold">还有什么功能？</span>
-                        </el-menu-item>
-                    </el-submenu >
+
+<!--                    <el-submenu index="3-1">-->
+<!--                        <template slot="title">-->
+<!--                            <i class="el-icon-s-order"></i>-->
+<!--                            <span slot="title" style="font-size: x-large;font-weight: bold">餐厅信息管理</span>-->
+<!--                        </template>-->
+<!--                        <el-menu-item index="3-1-1">-->
+<!--                            <i class="el-icon-menu"></i>-->
+<!--                            <span slot="title" @click="openUrl('')"  style="font-weight: bold">菜品信息管理</span>-->
+<!--                        </el-menu-item>-->
+<!--                        <el-menu-item index="3-1-2">-->
+<!--                            <i class="el-icon-menu"></i>-->
+<!--                            <span slot="title" @click="openUrl('ordermanagement.html')"  style="font-weight: bold">订单管理</span>-->
+<!--                        </el-menu-item>-->
+<!--                        <el-menu-item index="3-1-3">-->
+<!--                            <i class="el-icon-menu"></i>-->
+<!--                            <span slot="title" @click="openUrl('')"  style="font-weight: bold">还有什么功能？</span>-->
+<!--                        </el-menu-item>-->
+<!--                    </el-submenu >-->
 
 
                     <el-submenu index="4-1-1">
