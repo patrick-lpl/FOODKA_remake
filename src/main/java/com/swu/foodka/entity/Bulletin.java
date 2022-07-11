@@ -13,9 +13,16 @@ import lombok.Data;
 public class Bulletin {
     @TableId("bulletin_id")
 
+    /**
+     * 公告ID
+     */
     private Integer bulletinId;
-
+    /**
+     * 公告内容
+     */
     private String info;
-
+    /**
+     * 公告发布时间
+     */
     private String createTime;
 }

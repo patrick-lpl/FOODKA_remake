@@ -13,6 +13,14 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class UserInterceptor implements HandlerInterceptor {
 
+    /**
+     * 拦截器
+     * @param request
+     * @param response
+     * @param handler
+     * @return
+     * @throws Exception
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         User user = (User)request.getSession().getAttribute("user");

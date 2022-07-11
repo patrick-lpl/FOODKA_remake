@@ -29,6 +29,11 @@ public interface OrdersDao extends BaseMapper<Orders> {
     @Select("select count(*) from user")
     int selectCount();
 
+    /**
+     * 通过usId筛选订单
+     * @param id
+     * @return
+     */
     @Select("select * from orders where us_id=#{id}")
     List<Orders> selectUsOrders(@Param("id") Integer id);
 }

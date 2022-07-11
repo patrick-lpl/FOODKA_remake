@@ -12,10 +12,16 @@ import lombok.Data;
 @TableName("dish")
 public class Dish {
     @TableId("dish_id")
-    // 菜品编号
+    /**
+     * 菜品编号
+     */
     private Integer dishId;
-    // 菜品名称
+    /**
+     * 菜品名称
+     */
     private String dishName;
-    // 菜品单价
+    /**
+     * 菜品单价
+     */
     private Double dishPrice;
 }
