@@ -14,6 +14,10 @@ public class EmailListener implements ApplicationListener<ObjEvent> {
     @Autowired
     AdminController adminController;
 
+    /**
+     * 邮件监听器
+     * @param event
+     */
     @Override
     public void onApplicationEvent(ObjEvent event) {
         Object source = event.getSource();

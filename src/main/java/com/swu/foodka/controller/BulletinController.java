@@ -2,7 +2,6 @@ package com.swu.foodka.controller;
 
 
 import com.swu.foodka.entity.Bulletin;
-import com.swu.foodka.entity.User;
 import com.swu.foodka.service.BulletinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

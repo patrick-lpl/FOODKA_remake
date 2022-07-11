@@ -9,15 +9,24 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class PhotoConfig implements WebMvcConfigurer {
+
     /**
+     * 图标物理存储路径
      * @Value可以将配置文件的内容自动注入到属性内
      */
     @Value("${SavePath.ProfilePhoto}")
-    private String ProfilePhoto; // 图标物理存储路径
+    private String ProfilePhoto;
 
+    /**
+     * 图标映射路径
+     */
     @Value("${SavePath.ProfilePhotoMapper}")
-    private String ProfilePhotoMapperPath; //图标映射路径
+    private String ProfilePhotoMapperPath;
 
+    /**
+     * 图片上传
+     * @param registry
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
         registry.addResourceHandler(ProfilePhotoMapperPath+"**").addResourceLocations("file"+ProfilePhoto);
