@@ -2,6 +2,7 @@ package com.swu.foodka.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.swu.foodka.config.ObjEvent;
 import com.swu.foodka.dao.OrdersDao;
 import com.swu.foodka.dao.UserDao;
 import com.swu.foodka.entity.Orders;
@@ -10,6 +11,7 @@ import com.swu.foodka.service.OrdersService;
 import com.swu.foodka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,8 @@ public class OrdersController {
     private OrdersService ordersService;
     @Autowired
     private OrdersDao ordersDao;
+    @Autowired
+    private WebApplicationContext webApplicationContext;
 
     /**
      * 获取全部订单
@@ -77,6 +81,8 @@ public class OrdersController {
     @PostMapping("/save")
     public boolean saveOrder(@RequestBody Orders orders){
         System.out.println("saving order......");
+        ObjEvent objEvent = new ObjEvent(orders.getOrderId(),orders,"new order!");
+        webApplicationContext.publishEvent(objEvent);
         return ordersService.save(orders);
     }
 
