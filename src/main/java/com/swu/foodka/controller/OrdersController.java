@@ -36,7 +36,7 @@ public class OrdersController {
     }
 
     /**
-     * 根据id获取订单信息
+     * 根据订单id获取订单信息
      * @param id
      * @return
      */
@@ -44,6 +44,17 @@ public class OrdersController {
     public List<Orders> getById(@PathVariable int id) {
         List<Orders> ordersList=new ArrayList<>();
         ordersList.add(ordersService.getById(id));
+        return ordersList;
+    }
+
+    /**
+     * 根据用户id查询订单信息
+     * @param id
+     * @return
+     */
+    @GetMapping("/getUsOrder/{id}")
+    public List<Orders> getByUsId(@PathVariable int id){
+        List<Orders> ordersList = ordersDao.selectUsOrders(id);
         return ordersList;
     }
 
@@ -80,7 +91,12 @@ public class OrdersController {
         return ordersService.updateById(orders);
     }
 
-    //分页查询
+    /**
+     * 分页
+     * @param num
+     * @param size
+     * @return
+     */
     @GetMapping("/pages")
     public Page getAll(@RequestParam Integer num, @RequestParam Integer size){
         Page<Orders> ordersPage=new Page<Orders>(num,size);
