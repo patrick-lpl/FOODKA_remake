@@ -124,6 +124,7 @@ public class UserController {
                     result.setFlag(true);
                     result.setMsg("登陆成功！欢迎：" + user.getUsName());
                     result.setDatas(user);
+
                     return result;
                 }
             }
@@ -140,6 +141,7 @@ public class UserController {
      */
     @PostMapping("/register")
     public AjaxResult register(@RequestBody User user) throws Exception {
+
         AjaxResult result = new AjaxResult();
         List<User> userList = userService.list();
         for(User value: userList){
@@ -149,12 +151,14 @@ public class UserController {
                 return result;
             }
         }
+        ObjEvent objEvent=new ObjEvent(user.getUsName(),user,"new users");
         // 密码加密
         user.setUsPassword(EncryptUtil.shaEncode(user.getUsPassword()));
         userService.save(user);
         result.setFlag(true);
         result.setMsg("注册成功！欢迎："+user.getUsName());
         result.setDatas(user);
+        webapplicationcontext.publishEvent(objEvent);
         return result;
     }
 
@@ -220,4 +224,9 @@ public class UserController {
         webapplicationcontext.publishEvent(objEvent);
         return num>1?"成功":"失败";
     }
+
+
+
+
+
 }

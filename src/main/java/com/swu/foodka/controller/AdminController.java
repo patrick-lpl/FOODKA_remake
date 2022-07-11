@@ -116,7 +116,7 @@ public class AdminController {
 
     public boolean saveMsg(){
         Message msg = new Message();
-        msg.setMsgContent("有新用户注册！");
+        msg.setMsgContent("New Users!");
         msg.setMsgType(1);
         return messageDao.insert(msg)>0;
     }
@@ -129,10 +129,10 @@ public class AdminController {
      * @return
      */
     @PutMapping("putMsg")
-    public  boolean updateMsg(@RequestParam("msg_id") Integer id){
-        boolean update =messageDao.updataMsg(id)>0;
-        Message msg = messageService.getById(id);
-        System.out.println(msg.getMsgId());
+    public  boolean updateMsg(@RequestParam("msg_id") Integer msg_id){
+        boolean update =messageDao.updataMsg(msg_id)>0;
+        Message msg = messageService.getById(msg_id);
+        System.out.println("6666666666");
         return update;
     }
 

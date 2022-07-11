@@ -30,6 +30,6 @@ public interface MessageDao extends BaseMapper<Message> {
      * @param id
      * @return
      */
-    @Update("update message set msg_type=0  where message_id=#{id}")
+    @Update("update message set msg_type=0  where msg_id=#{id}")
     public  Integer updataMsg(@Param("id") Integer id);
 }
