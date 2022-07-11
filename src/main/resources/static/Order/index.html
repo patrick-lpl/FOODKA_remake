@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 <head>
+    <script src="static/js/vue.js"></script>
+    <script src="../../assets/js/vue-resource.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>FoodKa - Food Ordering, Delivery & Restuarent </title>
+    <link rel="stylesheet" href="../../assets/css/login.css"/>
+    <link rel="stylesheet" href="../../assets/css/element-ui/index.css"/>
+    <link rel="stylesheet" href="../../assets/css/goods.css" >
+    <script src="../../assets/js/vue.js"></script>
+    <script src="../../assets/css/element-ui/index.js"></script>
+    <script src="../../assets/js/vue-resource.js"></script>
+    <script src="../../assets/js/axios.min.js"></script>
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="static/css/animate.min.css">
@@ -21,10 +30,13 @@
 
     <!--Google Fonts-->
     <link href="static/css/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/element-ui/index.css">
+    <script src="../../assets/js/axios.min.js"></script>
 
 
 </head>
 <body class='sc5'>
+<div id='app'>
     <!-- preloader area start -->
     <div class="preloader" id="preloader">
         <div class="preloader-inner">
@@ -72,34 +84,43 @@
                         <li class="current-menu-item menu-item-has-children">
                             <a href="#">页面</a>
                             <ul class="sub-menu ps-0">
-
                                 <li><a href="menu.html">菜单</a></li>
-
+                            </ul>
+                        </li>
+                        <li>
+                            <el-button @click='handleOpenDialog' style="color: #FFFFFF;background-color: #CE2829; border: #CE2829 1px; font-size: medium">公告</el-button>
+                            <el-dialog title='公告' center :visible.sync='outVisible'>
+                                <el-table :data='listData'>
+                                    <el-table-column prop='createTime' label='发布时间'></el-table-column>
+                                    <el-table-column prop='info' label='公告内容'></el-table-column>
+                                </el-table>
+                            </el-dialog>
                         </li>
 
+
                     </ul>
+
                 </div>
                 <div class="logo">
                     <a class="main-logo" href=""><img src="static/picture/logo.png" alt="img"></a>
                 </div>
-
-                <div class="nav-right-part nav-right-part-desktop">                    
+                <div class="nav-right-part nav-right-part-mobile">
                     <ul>
-                        <li><a class="search" href="#"><i class="ri-search-line"></i></a>
-                        </li>
-                        <li class="phone-contact"><i class="ri-phone-fill float-start"></i>
-                           +（023）123456
-                        </li>
                         <li class="menu-cart"><a href="menu.html">已选菜品 </a></li>
                         <li class="menu-cart"><a href="../user/user_manger.html">个人信息 </a></li>
-
+                    </ul>
+                </div>
+                <div class="nav-right-part nav-right-part-desktop">
+                    <ul>
+                        <li class="menu-cart"><a href="menu.html">已选菜品 </a></li>
+                        <li class="menu-cart"><a href="../user/user_manger.html">个人信息 </a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
     <!-- navbar end -->
-
+    <div class="line"></div>
     <!-- Banner Area Start-->
     <section class="banner-area">
         <div class="banner-thumb">
@@ -116,12 +137,13 @@
                         <h1>Different food new experience</h1>
                         <a class="btn btn-secondary" href="shop.html">开始</a>
                     </div>
+
                 </div>
             </div>
         </div>
     </section>
-    <!-- Banner Area End --> 
-    
+    <!-- Banner Area End -->
+
     <!-- category Area Start-->
     <section class="category-area">
         <div class="container">
@@ -129,7 +151,7 @@
                 <div class="col-lg-12 align-self-center">
                     <ul class="category-menu">
                         <li class="category-wrap"><a href="shop.html"><img src="static/picture/14.png" alt="category">拉面</a>
-                            
+
                         </li>
                         <li class="category-wrap"><a href="#"><img src="static/picture/24.png" alt="category">披萨</a>
                             <div class="category-sub-menu">
@@ -140,8 +162,8 @@
                                                 <img src="static/picture/15.png" alt="img">
                                             </div>
                                             <div class="wrap-details">
-                                                <h6><a href="shop.html">玛格丽特披萨</a></h6>                          
-                                            </div> 
+                                                <h6><a href="shop.html">玛格丽特披萨</a></h6>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-6">
@@ -150,8 +172,8 @@
                                                 <img src="static/picture/25.png" alt="img">
                                             </div>
                                             <div class="wrap-details">
-                                                <h6><a href="shop.html">墨西哥豪华披萨</a></h6>                          
-                                            </div> 
+                                                <h6><a href="shop.html">墨西哥豪华披萨</a></h6>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-6">
@@ -160,8 +182,8 @@
                                                 <img src="static/picture/34.png" alt="img">
                                             </div>
                                             <div class="wrap-details">
-                                                <h6><a href="shop.html">风情夏威夷披萨</a></h6>                          
-                                            </div> 
+                                                <h6><a href="shop.html">风情夏威夷披萨</a></h6>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-6">
@@ -179,8 +201,8 @@
                                                 <img src="static/picture/16.png" alt="img">
                                             </div>
                                             <div class="wrap-details">
-                                                <h6><a href="shop.html">比奇堡牛肉汉堡</a></h6>                          
-                                            </div> 
+                                                <h6><a href="shop.html">比奇堡牛肉汉堡</a></h6>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-6">
@@ -189,8 +211,8 @@
                                                 <img src="static/picture/16.png" alt="img">
                                             </div>
                                             <div class="wrap-details">
-                                                <h6><a href="shop.html">魁地奇飞速汉堡</a></h6>                          
-                                            </div> 
+                                                <h6><a href="shop.html">魁地奇飞速汉堡</a></h6>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-6">
@@ -199,31 +221,31 @@
                                                 <img src="static/picture/16.png" alt="img">
                                             </div>
                                             <div class="wrap-details">
-                                                <h6><a href="shop.html">加勒比沉没汉堡</a></h6>                          
-                                            </div> 
+                                                <h6><a href="shop.html">加勒比沉没汉堡</a></h6>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-6">
                                         <a href="#"><img src="static/picture/ad.png" alt="img"></a>
                                     </div>
                                 </div>
-                            </div>                            
+                            </div>
                         </li>
                         <li class="category-wrap"><a href="shop.html"><img src="static/picture/44.png" alt="category">薯条</a>
-                            
+
                         </li>
                         <li class="category-wrap"><a href="shop.html"><img src="static/picture/52.png" alt="category">套餐</a>
-                            
+
                         </li>
                         <li class="category-wrap"><a href="shop.html"><img src="static/picture/62.png" alt="category">汽水饮料</a>
-                            
+
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
-    <!-- category Area End --> 
+    <!-- category Area End -->
 
     <!-- offer Area Start-->
     <section class="offer-area pd-top-120 pd-bottom-90">
@@ -264,7 +286,7 @@
             </div>
         </div>
     </section>
-    <!-- offer Area End --> 
+    <!-- offer Area End -->
 
     <!-- populer Area Start-->
     <section class="populer-area pd-bottom-90">
@@ -272,7 +294,7 @@
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="section-title text-center">
-                      <h3 class="sub-title">Our signature</h3>
+                        <h3 class="sub-title">Our signature</h3>
                         <h2 class="title">热门菜单</h2>
                     </div>
                 </div>
@@ -299,11 +321,11 @@
                                     (200)
                                 </div>
                                 <h6 class="price">99.00</h6>
-                            </div>                            
+                            </div>
                         </div>
                         <div class="btn-area">
-                            <a class="btn btn-secondary" href="single-product.html">与爱同行</a>         
-                        </div> 
+                            <a class="btn btn-secondary" href="single-product.html">与爱同行</a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -329,8 +351,8 @@
                                 <h6 class="price">89.00</h6>
                             </div>
                             <div class="btn-area">
-                                <a class="btn btn-secondary" href="single-product.html">激情绽放</a>         
-                            </div>                                               
+                                <a class="btn btn-secondary" href="single-product.html">激情绽放</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -355,11 +377,11 @@
                                     (462)
                                 </div>
                                 <h6 class="price">49.00</h6>
-                            </div>                            
+                            </div>
                         </div>
                         <div class="btn-area">
-                            <a class="btn btn-secondary" href="single-product.html">帝王享受 </a>         
-                        </div> 
+                            <a class="btn btn-secondary" href="single-product.html">帝王享受 </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -397,8 +419,8 @@
                     <div class="section-title text-lg-start text-center">
                         <h3 class="sub-title">为什么选择我们</h3>
                         <h2 class="title">我们为什么是最好的</h2>
-						<p>食物，是人生的宝藏<br/>我们竭尽全力为您献上一份浪漫的宝藏<br/> <br/>采购最新鲜的食材，给您安全与新鲜的享受<br/>
-						专业、传承、创新，主厨的追求与能力为您带来美好享受</p>
+                        <p>食物，是人生的宝藏<br/>我们竭尽全力为您献上一份浪漫的宝藏<br/> <br/>采购最新鲜的食材，给您安全与新鲜的享受<br/>
+                            专业、传承、创新，主厨的追求与能力为您带来美好享受</p>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
@@ -443,13 +465,13 @@
                     </div>
                     <ul class="product-nav nav nav-pills" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                          <button class="nav-link active" id="pills-ramen-tab" data-bs-toggle="pill" data-bs-target="#pills-ramen" type="button" role="tab" aria-controls="pills-ramen" aria-selected="true"><img src="static/picture/14.png" alt="img">拉面</button>
+                            <button class="nav-link active" id="pills-ramen-tab" data-bs-toggle="pill" data-bs-target="#pills-ramen" type="button" role="tab" aria-controls="pills-ramen" aria-selected="true"><img src="static/picture/14.png" alt="img">拉面</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                          <button class="nav-link" id="pills-pizza-tab" data-bs-toggle="pill" data-bs-target="#pills-pizza" type="button" role="tab" aria-controls="pills-pizza" aria-selected="false"><img src="static/picture/24.png" alt="img">披萨</button>
+                            <button class="nav-link" id="pills-pizza-tab" data-bs-toggle="pill" data-bs-target="#pills-pizza" type="button" role="tab" aria-controls="pills-pizza" aria-selected="false"><img src="static/picture/24.png" alt="img">披萨</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                          <button class="nav-link" id="pills-burger-tab" data-bs-toggle="pill" data-bs-target="#pills-burger" type="button" role="tab" aria-controls="pills-burger" aria-selected="false"><img src="static/picture/35.png" alt="img">汉堡</button>
+                            <button class="nav-link" id="pills-burger-tab" data-bs-toggle="pill" data-bs-target="#pills-burger" type="button" role="tab" aria-controls="pills-burger" aria-selected="false"><img src="static/picture/35.png" alt="img">汉堡</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-french-fry-tab" data-bs-toggle="pill" data-bs-target="#pills-french-fry" type="button" role="tab" aria-controls="pills-french-fry" aria-selected="false"><img src="static/picture/44.png" alt="img">薯条</button>
@@ -487,11 +509,11 @@
                                             (200)
                                         </div>
                                         <h6 class="price">29.00</h6>
-                                    </div>                            
+                                    </div>
                                 </div>
                                 <div class="btn-area">
-                                    <a class="btn btn-secondary" href="single-product.html">34-5 </a>         
-                                </div> 
+                                    <a class="btn btn-secondary" href="single-product.html">34-5 </a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
@@ -517,8 +539,8 @@
                                         <h6 class="price">29.00</h6>
                                     </div>
                                     <div class="btn-area">
-                                        <a class="btn btn-secondary" href="single-product.html">34-5</a>         
-                                    </div>                                               
+                                        <a class="btn btn-secondary" href="single-product.html">34-5</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -543,11 +565,11 @@
                                             (462)
                                         </div>
                                         <h6 class="price">29.00</h6>
-                                    </div>                            
+                                    </div>
                                 </div>
                                 <div class="btn-area">
-                                    <a class="btn btn-secondary" href="single-product.html">34-5</a>         
-                                </div> 
+                                    <a class="btn btn-secondary" href="single-product.html">34-5</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -575,11 +597,11 @@
                                             (200)
                                         </div>
                                         <h6 class="price">99.00</h6>
-                                    </div>                            
+                                    </div>
                                 </div>
                                 <div class="btn-area">
-                                    <a class="btn btn-secondary" href="single-product.html">109-10</a>         
-                                </div> 
+                                    <a class="btn btn-secondary" href="single-product.html">109-10</a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
@@ -605,8 +627,8 @@
                                         <h6 class="price">89.00</h6>
                                     </div>
                                     <div class="btn-area">
-                                        <a class="btn btn-secondary" href="single-product.html">99-10</a>         
-                                    </div>                                               
+                                        <a class="btn btn-secondary" href="single-product.html">99-10</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -631,11 +653,11 @@
                                             (462)
                                         </div>
                                         <h6 class="price">89.00</h6>
-                                    </div>                            
+                                    </div>
                                 </div>
                                 <div class="btn-area">
-                                    <a class="btn btn-secondary" href="single-product.html">99-10</a>         
-                                </div> 
+                                    <a class="btn btn-secondary" href="single-product.html">99-10</a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
@@ -659,11 +681,11 @@
                                             (462)
                                         </div>
                                         <h6 class="price">99.00</h6>
-                                    </div>                            
+                                    </div>
                                 </div>
                                 <div class="btn-area">
-                                    <a class="btn btn-secondary" href="single-product.html">109-10</a>         
-                                </div> 
+                                    <a class="btn btn-secondary" href="single-product.html">109-10</a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
@@ -687,11 +709,11 @@
                                             (200)
                                         </div>
                                         <h6 class="price">89.00</h6>
-                                    </div>                            
+                                    </div>
                                 </div>
                                 <div class="btn-area">
-                                    <a class="btn btn-secondary" href="single-product.html">99-10</a>         
-                                </div> 
+                                    <a class="btn btn-secondary" href="single-product.html">99-10</a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
@@ -715,11 +737,11 @@
                                             (928)
                                         </div>
                                         <h6 class="price">89.00</h6>
-                                    </div>                            
+                                    </div>
                                 </div>
                                 <div class="btn-area">
-                                    <a class="btn btn-secondary" href="single-product.html">99-10</a>         
-                                </div> 
+                                    <a class="btn btn-secondary" href="single-product.html">99-10</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -747,11 +769,11 @@
                                             (200)
                                         </div>
                                         <h6 class="price">48.00</h6>
-                                    </div>                            
+                                    </div>
                                 </div>
                                 <div class="btn-area">
-                                    <a class="btn btn-secondary" href="single-product.html">53-5</a>         
-                                </div> 
+                                    <a class="btn btn-secondary" href="single-product.html">53-5</a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
@@ -777,8 +799,8 @@
                                         <h6 class="price">48.00</h6>
                                     </div>
                                     <div class="btn-area">
-                                        <a class="btn btn-secondary" href="single-product.html">53-5</a>         
-                                    </div>                                               
+                                        <a class="btn btn-secondary" href="single-product.html">53-5</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -803,11 +825,11 @@
                                             (462)
                                         </div>
                                         <h6 class="price">48.00</h6>
-                                    </div>                            
+                                    </div>
                                 </div>
                                 <div class="btn-area">
-                                    <a class="btn btn-secondary" href="single-product.html">53-5</a>         
-                                </div> 
+                                    <a class="btn btn-secondary" href="single-product.html">53-5</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -835,11 +857,11 @@
                                             (200)
                                         </div>
                                         <h6 class="price">25.00</h6>
-                                    </div>                            
+                                    </div>
                                 </div>
                                 <div class="btn-area">
-                                    <a class="btn btn-secondary" href="single-product.html">25-0</a>         
-                                </div> 
+                                    <a class="btn btn-secondary" href="single-product.html">25-0</a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
@@ -865,8 +887,8 @@
                                         <h6 class="price">25.00</h6>
                                     </div>
                                     <div class="btn-area">
-                                        <a class="btn btn-secondary" href="single-product.html">25-0 </a>         
-                                    </div>                                               
+                                        <a class="btn btn-secondary" href="single-product.html">25-0 </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -891,11 +913,11 @@
                                             (462)
                                         </div>
                                         <h6 class="price">25.00</h6>
-                                    </div>                            
+                                    </div>
                                 </div>
                                 <div class="btn-area">
-                                    <a class="btn btn-secondary" href="single-product.html">25-0</a>         
-                                </div> 
+                                    <a class="btn btn-secondary" href="single-product.html">25-0</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -923,11 +945,11 @@
                                             (200)
                                         </div>
                                         <h6 class="price">299.00</h6>
-                                    </div>                            
+                                    </div>
                                 </div>
                                 <div class="btn-area">
-                                    <a class="btn btn-secondary" href="single-product.html">399-100</a>         
-                                </div> 
+                                    <a class="btn btn-secondary" href="single-product.html">399-100</a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
@@ -953,8 +975,8 @@
                                         <h6 class="price">299.00</h6>
                                     </div>
                                     <div class="btn-area">
-                                        <a class="btn btn-secondary" href="single-product.html">399-100</a>         
-                                    </div>                                               
+                                        <a class="btn btn-secondary" href="single-product.html">399-100</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -979,11 +1001,11 @@
                                             (462)
                                         </div>
                                         <h6 class="price">299.00</h6>
-                                    </div>                            
+                                    </div>
                                 </div>
                                 <div class="btn-area">
-                                    <a class="btn btn-secondary" href="single-product.html">399-100</a>         
-                                </div>  
+                                    <a class="btn btn-secondary" href="single-product.html">399-100</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1011,11 +1033,11 @@
                                             (200)
                                         </div>
                                         <h6 class="price">18</h6>
-                                    </div>                            
+                                    </div>
                                 </div>
                                 <div class="btn-area">
-                                    <a class="btn btn-secondary" href="single-product.html">C20-2</a>         
-                                </div> 
+                                    <a class="btn btn-secondary" href="single-product.html">C20-2</a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
@@ -1041,8 +1063,8 @@
                                         <h6 class="price">18.00</h6>
                                     </div>
                                     <div class="btn-area">
-                                        <a class="btn btn-secondary" href="single-product.html">20-2</a>         
-                                    </div>                                               
+                                        <a class="btn btn-secondary" href="single-product.html">20-2</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1067,11 +1089,11 @@
                                             (462)
                                         </div>
                                         <h6 class="price">18.00</h6>
-                                    </div>                            
+                                    </div>
                                 </div>
                                 <div class="btn-area">
-                                    <a class="btn btn-secondary" href="single-product.html">20-2</a>         
-                                </div> 
+                                    <a class="btn btn-secondary" href="single-product.html">20-2</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1158,13 +1180,13 @@
                                     <i class="ri-price-tag-3-fill"></i>汉堡
                                 </a>
                             </span>
-                            <h5><a href="blog-details.html">希腊早餐碗与汉堡的完美碰撞</a></h5> 
+                            <h5><a href="blog-details.html">希腊早餐碗与汉堡的完美碰撞</a></h5>
                             <div class="wrap-hover-area">
                                 <p> 酸甜酸奶与芝士汉堡的完美融合，开始还在担心是暗黑料理，没想到意外的好吃！不得不说主厨脑洞大开且能力在线
-                                </p> 
-                                <a class="link-btn" href="blog-details.html">更多</a> 
-                            </div>                       
-                        </div> 
+                                </p>
+                                <a class="link-btn" href="blog-details.html">更多</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -1182,13 +1204,13 @@
                                 </a>
                             </span>
                             <h5><a href="blog-details.html">Broad beans, tomato, garlic & cheese bruschetta
-                            </a></h5> 
+                            </a></h5>
                             <div class="wrap-hover-area">
                                 <p> It with just a touch of sauce. saucy riff, more in the style of takeout American Chinese kung pao. The sauce makes it perfect for eating with rice.
-                                </p> 
-                                <a class="link-btn" href="blog-details.html">更多</a> 
-                            </div>                       
-                        </div> 
+                                </p>
+                                <a class="link-btn" href="blog-details.html">更多</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -1206,13 +1228,13 @@
                                 </a>
                             </span>
                             <h5><a href="blog-details.html">Make authentic Italian margherita pizza at home
-                            </a></h5> 
+                            </a></h5>
                             <div class="wrap-hover-area">
                                 <p> It with just a touch of sauce. saucy riff, more in the style of takeout American Chinese kung pao. The sauce makes it perfect for eating with rice.
-                                </p> 
-                                <a class="link-btn" href="blog-details.html">更多</a> 
-                            </div>                       
-                        </div> 
+                                </p>
+                                <a class="link-btn" href="blog-details.html">更多</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1246,7 +1268,7 @@
                                 <li class="single-info-item">
                                     <img src="static/picture/phone.png" alt="icon">
                                     <div class="details">
-                                       电话：
+                                        电话：
                                     </div>
                                 </li>
                             </ul>
@@ -1268,14 +1290,14 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="footer-widget widget widget_link">
                             <h4 class="widget-title">营业时间</h4>
-                           <ul>
-                               <li>星期一 : 09.00am-10.00pm</li>
-                               <li>星期二 : 09.00am-10.00pm</li>
-                               <li>星期三 : 09.00am-10.00pm</li>
-                               <li>星期四 : 09.00am-10.00pm</li>
-                               <li>星期五  : 09.00am-10.00pm</li>
-                               <li>周末 : <span>休息</span></li>
-                           </ul>
+                            <ul>
+                                <li>星期一 : 09.00am-10.00pm</li>
+                                <li>星期二 : 09.00am-10.00pm</li>
+                                <li>星期三 : 09.00am-10.00pm</li>
+                                <li>星期四 : 09.00am-10.00pm</li>
+                                <li>星期五  : 09.00am-10.00pm</li>
+                                <li>周末 : <span>休息</span></li>
+                            </ul>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
@@ -1299,46 +1321,99 @@
                 <div class="row align-items-center">
                     <div class="col-md-6 text-md-start text-center">
                         <div class="copyright-area">
-                            
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <ul class="social-area text-md-end text-center mt-md-0 mt-2">
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li> 
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li> 
-                            <li><a href="#"><i class="fab fa-behance"></i></a></li> 
-                            <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li> 
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                            <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    <!-- footer area end -->    
+    <!-- footer area end -->
 
     <!-- back-to-top end -->
     <div class="back-to-top">
         <span class="back-top"><i class="fas fa-angle-double-up"></i></span>
     </div>
-
-    
-
-    <!-- all plugins here -->
-    <script src="static/js/jquery.3.6.min.js"></script>
-    <script src="static/js/bootstrap.min.js"></script>
-    <script src="static/js/imageloded.min.js"></script>
-    <script src="static/js/counterup.js"></script>
-    <script src="static/js/waypoint.js"></script>
-    <script src="static/js/magnific.min.js"></script>
-    <script src="static/js/isotope.pkgd.min.js"></script>
-    <script src="static/js/jquery-ui.min.js"></script>
-    <script src="static/js/nice-select.min.js"></script>
-    <script src="static/js/fontawesome.min.js"></script>
-    <script src="static/js/owl.min.js"></script>
-    <script src="static/js/slick-slider.min.js"></script>
-    <script src="static/js/wow.min.js"></script>
-    <script src="static/js/tweenmax.min.js"></script>
-    <!-- main js  -->
-    <script src="static/js/main.js"></script>
+</div>
 </body>
+
+
+
+<!-- all plugins here -->
+<script src="static/js/jquery.3.6.min.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/imageloded.min.js"></script>
+<script src="static/js/counterup.js"></script>
+<script src="static/js/waypoint.js"></script>
+<script src="static/js/magnific.min.js"></script>
+<script src="static/js/isotope.pkgd.min.js"></script>
+<script src="static/js/jquery-ui.min.js"></script>
+<script src="static/js/nice-select.min.js"></script>
+<script src="static/js/fontawesome.min.js"></script>
+<script src="static/js/owl.min.js"></script>
+<script src="static/js/slick-slider.min.js"></script>
+<script src="static/js/wow.min.js"></script>
+<script src="static/js/tweenmax.min.js"></script>
+<!-- main js  -->
+<script src="static/js/main.js"></script>
+
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                outVisible: false,
+                innerVisible: false,
+                formData: { createTime: '', info: '' },
+                listData: [],
+                tableDatas: {
+                    // listdata:[],
+                    formdata:{},
+                    num:0,
+                    total:'',
+                    size:10,
+                    page:0
+                },
+            }
+        },
+        created(){
+            this.getAll();
+        },
+        methods: {
+            getAll(){
+                axios.get("http://localhost:8080/bulletin/pages?num="+this.tableDatas.page+"&size="+this.tableDatas.size).then(res=> {
+                    console.log(res.data.records);
+                    // this.tableDatas.listdata=res.data.records;
+                    this.listData = res.data.records;
+                    this.tableDatas.total = res.data.total;
+                })
+            },
+            handleOpenDialog() {
+                this.outVisible = true
+            },
+            outClose(done) {
+                this.$confirm('确认关闭', '提示框').then(() => {
+                    done()
+                }).catch(() => {
+
+                })
+            },
+            handleEdit(row) {
+                this.formData = row
+                this.innerVisible = true
+            }
+        }
+    })
+
+</script>
 </html>
