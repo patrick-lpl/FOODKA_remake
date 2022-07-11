@@ -2,44 +2,94 @@
 <html lang="en" >
 <meta charset="UTF-8">
 <head>
-
+    <link rel="stylesheet" href="../../assets/css/login.css"/>
+    <link rel="stylesheet" href="../../assets/css/element-ui/index.css"/>
+    <link rel="stylesheet" href="../../assets/css/goods.css" >
     <script src="../../assets/js/vue.js"></script>
-
+    <script src="../../assets/css/element-ui/index.js"></script>
+    <script src="../../assets/js/vue-resource.js"></script>
     <script src="../../assets/js/axios.min.js"></script>
     <title>用户上传头像</title>
 </head>
-
-
 <body>
 
 <div id="app">
+    你的ID：{{userId}}
+<!--    <div id="myPhoto" v-show="true">-->
 
-    <div id="myPhoto" v-show="true">
-
-        <div class="viewPhoto">
-            <img src="image/刺猬.jpg" alt="" id="portrait" style="width: 60px;height: 60px;border-radius: 60px;" />
-        </div>
-
-
-        <div class="listBox">
-            <dl>请上传图片</dl>
-            <dd>
-                <input type="file" id="saveImage" name="myphoto">
-            </dd>
-        </div>
+<!--        <div class="viewPhoto">-->
+<!--            <img src="image/刺猬.jpg" alt="" id="portrait" style=" width: 60px;height: 60px;border-radius: 60px;" />-->
+<!--        </div>-->
+<!--        -->
 
 
-        <div class="save">
-            <input type="button" value="上传头像" @click="imageSubmit">
-        </div>
+<!--        <div class="listBox">-->
+<!--            <dl>请上传图片</dl>-->
+<!--            <dd>-->
+<!--                <input type="file" id="saveImage" name="myphoto">-->
+<!--            </dd>-->
+<!--        </div>-->
 
 
+<!--        <div class="save">-->
+<!--            <input type="button" value="上传头像" @click="imageSubmit">-->
+<!--        </div>-->
 
-    </div>
+<!--    </div>-->
+<!--    <el-dialog title="会员头像" :visible.sync="dialogFormVisible">-->
+<!--        <el-form >-->
+<!--            <el-form-item label="ID" :label-width="formLabelWidth">-->
+<!--                <el-input  disabled ="true" autocomplete="off"></el-input>-->
+<!--            </el-form-item>-->
 
-
-
-
+<!--        </el-form>-->
+<!--        <div slot="footer" class="dialog-footer">-->
+<!--            <el-button @click="dialogFormVisible = false">取 消</el-button>-->
+<!--            <el-button type="primary"  v-on:click="update()">提交</el-button>-->
+<!--        </div>-->
+<!--    </el-dialog>-->
+<!--    <el-card>-->
+<!--        <el-table :data="listData" stripe style="width: 100%; " >-->
+<!--            <el-table-column prop="usId" label="用户Id" width="180">-->
+<!--            </el-table-column>-->
+<!--            <el-table-column prop="usName" label="用户名称" width="180">-->
+<!--            </el-table-column>-->
+<!--            <el-table-column prop="usAge" label="年龄">-->
+<!--            </el-table-column>-->
+<!--            <el-table-column prop="usPhone" label="联系电话">-->
+<!--            </el-table-column>-->
+<!--            <el-table-column label="操作" width="250" style="display: flex;">-->
+<!--                <template slot-scope="scope">-->
+<!--                    <el-button-->
+<!--                            size="mini"-->
+<!--                            @click="dialogFormVisible = true,handleEdit(scope.$index, scope.row)">编辑</el-button>-->
+<!--                </template>-->
+<!--            </el-table-column>-->
+<!--        </el-table>-->
+<!--    </el-card>-->
+<!--    <el-dialog title="会员信息编辑" :visible.sync="dialogFormVisible">-->
+<!--        <el-form :model="up">-->
+<!--            <el-form-item label="ID" :label-width="formLabelWidth">-->
+<!--                <el-input v-model="up.usId" disabled ="true" autocomplete="off"></el-input>-->
+<!--            </el-form-item>-->
+<!--            <el-form-item label="姓名" :label-width="formLabelWidth">-->
+<!--                <el-input v-model="up.usName" autocomplete="off"></el-input>-->
+<!--            </el-form-item>-->
+<!--            <el-form-item label="年龄" :label-width="formLabelWidth">-->
+<!--                <el-input v-model="up.usAge" autocomplete="off"></el-input>-->
+<!--            </el-form-item>-->
+<!--            <el-form-item label="电话" :label-width="formLabelWidth">-->
+<!--                <el-input v-model="up.usPhone" autocomplete="off"></el-input>-->
+<!--            </el-form-item>-->
+<!--            <el-form-item label="密码" :label-width="formLabelWidth">-->
+<!--                <el-input v-model="up.usPassword" autocomplete="off"></el-input>-->
+<!--            </el-form-item>-->
+<!--        </el-form>-->
+<!--        <div slot="footer" class="dialog-footer">-->
+<!--            <el-button @click="dialogFormVisible = false">取 消</el-button>-->
+<!--            <el-button type="primary"  v-on:click="update()">提交</el-button>-->
+<!--        </div>-->
+<!--    </el-dialog>-->
 </div>
 
 
@@ -50,36 +100,70 @@
     new Vue({
         el: '#app',
         data:{
-            personalPhoto:true,
-            dialogFormVisible: false,
-            formLabelWidth: '120px'
-
-
+            // personalPhoto:true,
+            // dialogFormVisible: false,
+            // formLabelWidth: '120px',
+            // listData:[],
+            // usId:0,
+            userId:0
+            // up:{},
+            // add:{},
+            // tableData:{},
+            // dialogFormTitle: "",
+            // tableDatas: {
+            //     formdata:{},
+            //     usName:'',
+            },
+        created(){
+            // var usId=localStorage.getItem("userId");
+            // this.usId=usId;
+            var userId=localStorage.getItem("userId");
+            this.userId=userId;
+            // console.log(this.usId);
+            // this.getAll(this.usId);
         },
         methods:{
-            imageSubmit(){
-                let x = document.getElementById('saveImage').files[0];
-
-
-                let params = new FormData();
-                    params.append('file',x,x.name);
-                let config = {
-                    headers:{'Content-Type':'multipart/form-data'}
-                };
-                axios.post("http://localhost:8080/img/api/profilePhotoUpload",params,config).then(function (res) {
-                    var img = "image/" + res.data.slice(0);
-                    console.log(img);
-                    document.getElementById("portrait").src = img;
-                })
-                    .catch(function (error){
-                        console.log(error);
-                    })
-
-
-
-            }
+            //     imageSubmit(){
+            //         let x = document.getElementById('saveImage').files[0];
+            //
+            //
+            //         let params = new FormData();
+            //         params.append('file',x,x.name);
+            //         let config = {
+            //             headers:{'Content-Type':'multipart/form-data'}
+            //         };
+            //         axios.post("http://localhost:8080/img/api/profilePhotoUpload",params,config).then(function (res) {
+            //             var img = "image/" + res.data.slice(0);
+            //             console.log(img);
+            //             document.getElementById("portrait").src = img;
+            //         })
+            //             .catch(function (error){
+            //                 console.log(error);
+            //             })
+            //     },
+            //     getAll(id){
+            //         axios.get("http://localhost:8080/user/get/"+id).then(res=>{
+            //             console.log(res.data);
+            //             // this.tableDatas.listdata=res.data.records;
+            //             this.listData=res.data;
+            //         });
+            //     },
+            //
+            //
+            //     handleEdit(index, row) {
+            //         axios.get("http://localhost:8080/user/selectId?id="+row.usId).then(rel => {
+            //             this.up=rel.data;
+            //
+            //         })
+            //     },
+            //     update() {
+            //         axios.put("http://localhost:8080/user/update",this.up).then(rel=>{
+            //             alert(rel.data);
+            //             this.getAll();
+            //         })
+            //     },
+            // }
         }
-
     })
 </script>
 

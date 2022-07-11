@@ -82,8 +82,9 @@ public class OrdersController {
     public boolean saveOrder(@RequestBody Orders orders){
         System.out.println("saving order......");
         ObjEvent objEvent = new ObjEvent(orders.getOrderId(),orders,"new order!");
+        boolean tf =ordersService.save(orders);
         webApplicationContext.publishEvent(objEvent);
-        return ordersService.save(orders);
+        return tf;
     }
 
     /**

@@ -162,7 +162,11 @@
                                  axios.post("http://localhost:8080/user/login", this.loginForm).then(rel => {
                                      //rel.data.{msg:返回的文本信息, flag:true=登陆成功/false=失败, datas:登陆的user}
                                      alert(rel.data.msg)
-                                     window.location.href = "../Order/index.html";
+                                     if(rel.data.flag){
+                                         sessionStorage.setItem("usName",this.loginForm.usName);
+                                         //  localStorage.setItem()
+                                         window.location.href="../Order/index.html";
+                                     }
                                  })
                              }else{
                                  alert("验证码错误!")

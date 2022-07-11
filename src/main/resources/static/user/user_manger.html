@@ -1,283 +1,171 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="">
+<html lang="en" >
+<meta charset="UTF-8">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>FOODKA会员信息中心</title>
-
     <link rel="stylesheet" href="../../assets/css/login.css"/>
     <link rel="stylesheet" href="../../assets/css/element-ui/index.css"/>
+    <link rel="stylesheet" href="../../assets/css/goods.css" >
     <script src="../../assets/js/vue.js"></script>
     <script src="../../assets/css/element-ui/index.js"></script>
     <script src="../../assets/js/vue-resource.js"></script>
     <script src="../../assets/js/axios.min.js"></script>
+    <title>用户上传头像</title>
 </head>
-
-
-<style>
-
-    /*.el-menu-vertical-demo:not(.el-menu--collapse) {*/
-    /*    width: 200px;*/
-    /*    min-height: 400px;*/
-    /*    !*border: #0f0f0f solid;*!*/
-
-    /*}*/
-    /*.mainweb{*/
-    /*    background-color: #FFFFFF;*/
-
-    /*    !*border: #0f0f0f solid;*!*/
-    /*}*/
-
-
-
-
-    .el-header, .el-footer {
-        background-color: #B3C0D1;
-        color: #333;
-        text-align: center;
-        /*line-height: 5vh;*/
-    }
-
-    .el-aside {
-        background-color: #D3DCE6;
-        color: #333;
-        text-align: left;
-        /*line-height: 95vh;*/
-    }
-
-    .el-main {
-        background-color: #E9EEF3;
-        color: #333;
-        text-align: center;
-        /*line-height: 90vh;*/
-    }
-
-
-    body > .el-container {
-        margin-bottom: 40px;
-    }
-
-    .el-container:nth-child(5) .el-aside,
-    .el-container:nth-child(6) .el-aside {
-        /*line-height: 260px;*/
-    }
-
-    .el-container:nth-child(7) .el-aside {
-        /*line-height: 320px;*/
-    }
-
-
-
-</style>
 <body>
-<div id="app" class="mainweb">
-    <el-container>
 
-        <el-header height="10vh">
+<div id="app">
 
+    <div id="myPhoto" v-show="true">
 
-            <h1 style="text-align: left;font-size: xx-large; margin-top: 20px">个人信息中心</h1>
-
-
-        </el-header>
-
-        <el-container>
-
-            <el-aside>
-                <el-menu
-                        default-active="2"
-                        class="el-menu-vertical-demo"
-                        @open="handleOpen"
-                        @close="handleClose"
-                        style="height: 94vh;">
+        <div class="viewPhoto">
+            <img src="image/" alt="" id="portrait" style=" width: 60px;height: 60px;border-radius: 60px;" />
+        </div>
+        你的ID：{{usId}}
 
 
-<!--                    <el-submenu index="1">-->
-<!--                        <template slot="title">-->
-<!--                            <i class="el-icon-location"></i>-->
-<!--                            <span slot="title" style="font-size: x-large;font-weight: bold">管理员功能</span>-->
-<!--                        </template>-->
-<!--                        <el-menu-item-group>-->
-<!--                            <el-submenu index="1-1">-->
-<!--                          <span slot="title"  style="font-size:large;font-weight: bold">-->
-<!--                               <i class="el-icon-document"></i>管理员操作</span>-->
-<!--                                <el-menu-item index="1-1-1">-->
-<!--                                    <i class="el-icon-menu" ></i>-->
-<!--                                    <span @click="openUrl('')"  style="font-weight: bold">基本信息</span>-->
-<!--                                </el-menu-item>-->
-<!--                                <el-menu-item index="1-2-1">-->
-<!--                                    <i class="el-icon-menu"></i>-->
-<!--                                    <span @click="openUrl('manger-password.html')" style="font-weight: bold">密码修改</span>-->
-<!--                                </el-menu-item>-->
-<!--                            </el-submenu>-->
-<!--                        </el-menu-item-group>-->
-<!--                        <el-submenu index="1-3">-->
-<!--                          <span slot="title" style="font-size:large;font-weight: bold">-->
-<!--                               <i class="el-icon-document"></i>会员管理</span>-->
-<!--                            <el-menu-item index="1-3-1">-->
-<!--                                <i class="el-icon-menu"></i>-->
-<!--                                <span @click="openUrl('userManage.html')" style="font-weight: bold" src="userManage.html">会员信息管理</span>-->
-<!--                            </el-menu-item>-->
-<!--                            <el-menu-item index="1-3-2">-->
-<!--                                <i class="el-icon-menu"></i>-->
-<!--                                <span @click="openUrl('')" style="font-weight: bold">会员密码修改</span>-->
-<!--                            </el-menu-item>-->
-<!--                        </el-submenu>-->
-
-<!--                        <el-submenu index="1-4">-->
-<!--                          <span slot="title" style="font-size:large;font-weight: bold">-->
-<!--                               <i class="el-icon-document"></i>公告</span>-->
-<!--                            <el-menu-item index="1-4-1">-->
-<!--                                <i class="el-icon-menu"></i>-->
-<!--                                <span @click="openUrl('bulletin.html')" style="font-weight: bold" src="bulletin.html">公告管理</span>-->
-<!--                            </el-menu-item>-->
-<!--                        </el-submenu>-->
+        <div class="listBox">
+            <dl>请上传图片</dl>
+            <dd>
+                <input type="file" id="saveImage" name="myphoto">
+            </dd>
+        </div>
 
 
-<!--                    </el-submenu>-->
+        <div class="save">
+            <input type="button" value="上传头像" @click="imageSubmit">
+        </div>
 
+    </div>
+    <el-dialog title="会员头像" :visible.sync="dialogFormVisible">
+        <el-form >
+            <el-form-item label="ID" :label-width="formLabelWidth">
+                <el-input  disabled ="true" autocomplete="off"></el-input>
+            </el-form-item>
 
-
-<!--                    <el-submenu index="2-1">-->
-<!--                        <template slot="title">-->
-<!--                            <i class="el-icon-location"></i>-->
-<!--                            <span slot="title" style="font-size: x-large;font-weight: bold">会员功能</span>-->
-<!--                        </template>-->
-<!--                        <el-menu-item index="2">-->
-<!--                            <i class="el-icon-menu"></i>-->
-<!--                            <span slot="title" @click="openUrl('')" style="font-weight: bold">会员个人信息管理</span>-->
-<!--                        </el-menu-item>-->
-<!--                    </el-submenu>-->
-
-                    <el-submenu index="2">
-                        <template slot="title">
-                            <i class="el-icon-location"></i>
-                            <span slot="title" style="font-size: x-large;font-weight: bold">会员功能</span>
-                        </template>
-                        <el-menu-item index="2-1">
-                            <i class="el-icon-menu"></i>
-                            <span slot="title" @click="openUrl('')" style="font-weight: bold">会员个人信息</span>
-                        </el-menu-item>
-
-                    </el-submenu>
-
-
-
-<!--                    <el-submenu index="3-1">-->
-<!--                        <template slot="title">-->
-<!--                            <i class="el-icon-s-order"></i>-->
-<!--                            <span slot="title" style="font-size: x-large;font-weight: bold">餐厅信息管理</span>-->
-<!--                        </template>-->
-<!--                        <el-menu-item index="3-1-1">-->
-<!--                            <i class="el-icon-menu"></i>-->
-<!--                            <span slot="title" @click="openUrl('')"  style="font-weight: bold">菜品信息管理</span>-->
-<!--                        </el-menu-item>-->
-<!--                        <el-menu-item index="3-1-2">-->
-<!--                            <i class="el-icon-menu"></i>-->
-<!--                            <span slot="title" @click="openUrl('ordermanagement.html')"  style="font-weight: bold">订单管理</span>-->
-<!--                        </el-menu-item>-->
-<!--                        <el-menu-item index="3-1-3">-->
-<!--                            <i class="el-icon-menu"></i>-->
-<!--                            <span slot="title" @click="openUrl('')"  style="font-weight: bold">还有什么功能？</span>-->
-<!--                        </el-menu-item>-->
-<!--                    </el-submenu >-->
-
-
-                    <el-submenu index="4-1-1">
-                        <template slot="title">
-                            <i class="el-icon-setting"></i>
-                            <span slot="title" style="font-size: x-large;font-weight: bold">系统设置</span>
-                        </template>
-                        <el-menu-item index="4-1-2">
-                            <i class="el-icon-menu"></i>
-                            <span slot="title" @click="openUrl('')" style="font-weight: bold">待实现。。。</span>
-                        </el-menu-item>
-                    </el-submenu>
-
-
-                </el-menu>
-                </el-col>
-
-            </el-aside>
-
-            <el-container>
-
-                <el-main >
-                    <iframe id="mainIframe" class="mainFrame" :src="iframeUrl" width="100%" height="700px"
-                            frameborder="0" scrolling="no"></iframe>
-                </el-main>
-
-                <el-footer>
-                    Footer
-                </el-footer>
-
-            </el-container>
-
-        </el-container>
-
-    </el-container>
-
-
-
-
-
-
-
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button type="primary"  v-on:click="update()">提交</el-button>
+        </div>
+    </el-dialog>
+    <el-card>
+        <el-table :data="listData" stripe style="width: 100%; " >
+            <el-table-column prop="usId" label="用户Id" width="180">
+            </el-table-column>
+            <el-table-column prop="usName" label="用户名称" width="180">
+            </el-table-column>
+            <el-table-column prop="usAge" label="年龄">
+            </el-table-column>
+            <el-table-column prop="usPhone" label="联系电话">
+            </el-table-column>
+            <el-table-column label="操作" width="250" style="display: flex;">
+                <template slot-scope="scope">
+                    <el-button
+                            size="mini"
+                            @click="dialogFormVisible = true,handleEdit(scope.$index, scope.row)">编辑</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+    </el-card>
+    <el-dialog title="会员信息编辑" :visible.sync="dialogFormVisible">
+        <el-form :model="up">
+            <el-form-item label="ID" :label-width="formLabelWidth">
+                <el-input v-model="up.usId" disabled ="true" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="姓名" :label-width="formLabelWidth">
+                <el-input v-model="up.usName" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="年龄" :label-width="formLabelWidth">
+                <el-input v-model="up.usAge" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="电话" :label-width="formLabelWidth">
+                <el-input v-model="up.usPhone" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="密码" :label-width="formLabelWidth">
+                <el-input v-model="up.usPassword" autocomplete="off"></el-input>
+            </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button type="primary"  v-on:click="update()">提交</el-button>
+        </div>
+    </el-dialog>
 </div>
+
+
 </body>
 <script>
-    export default {
-        methods: {
-            handleOpen(key, keyPath) {
-                console.log(key, keyPath);
-            },
-            handleClose(key, keyPath) {
-                console.log(key, keyPath);
-            }
-        }
-    }
-</script>
-<script>
+
+
     new Vue({
-            el: '#app',
-            data: function () {
-                return {
-                    tableData: [],
-                    dialogFormVisible: false,
-                    dialogFormTitle: "",
-                    form: {
-                        id: '',
-                        name: '',
-                        userTele: '',
-                        userLocation: '',
-                        userRetailer: ''
-
-                    },
-
-                    iframeUrl: './welcome.html'
-
-                }
+        el: '#app',
+        data:{
+            personalPhoto:true,
+            dialogFormVisible: false,
+            formLabelWidth: '120px',
+            listData:[],
+            usId:0,
+            up:{},
+            add:{},
+            tableData:{},
+            dialogFormTitle: "",
+            tableDatas: {
+                formdata:{},
+                usName:'',
             },
-            methods: {
-                adjustIframe() {
-                    var ifm = document.getElementById("bi_iframe");
-                    ifm.height = document.documentElement.clientHeight;
-                    ifm.width = document.documentElement.clientWidth;
-                },
+        },
+        created(){
+            var a=localStorage.getItem("userId");
+            this.usId=a;
+            console.log(this.usId);
+            this.getAll(this.usId);
+        },
+        methods:{
+            imageSubmit(){
+                let x = document.getElementById('saveImage').files[0];
 
-                openUrl(url) {
 
-                    this.iframeUrl = url;
-                }
+                let params = new FormData();
+                params.append('file',x,x.name);
+                let config = {
+                    headers:{'Content-Type':'multipart/form-data'}
+                };
+                axios.post("http://localhost:8080/img/api/profilePhotoUpload",params,config).then(function (res) {
+                    var img = "image/" + res.data.slice(0);
+                    console.log(img);
+                    document.getElementById("portrait").src = img;
+                })
+                    .catch(function (error){
+                        console.log(error);
+                    })
+            },
+            getAll(id){
+                axios.get("http://localhost:8080/user/get/"+id).then(res=>{
+                    console.log(res.data);
+                    // this.tableDatas.listdata=res.data.records;
+                    this.listData=res.data;
+                });
+            },
 
-            }
+
+            handleEdit(index, row) {
+                axios.get("http://localhost:8080/user/selectId?id="+row.usId).then(rel => {
+                    this.up=rel.data;
+
+                })
+            },
+            update() {
+                axios.put("http://localhost:8080/user/update",this.up).then(rel=>{
+                    alert(rel.data);
+                    this.getAll();
+                })
+            },
         }
-    )
 
-
+    })
 </script>
+
+
+
 
 </html>

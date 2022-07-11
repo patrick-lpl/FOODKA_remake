@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>admin</title>
+    <script src="../../assets/js/vue.js"></script>
+    <script src="../../assets/js/axios.min.js"></script>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #btm{
+            width: 100%;
+            height: 40px;
+            position: absolute;
+            top: 650px;
+            background-color: antiquewhite;
+        }
+        #msgs{
+            width: 200px;
+            height: 300px;
+            border: 1px solid palegoldenrod;
+            position: absolute;
+            top: 350px;
+            left: 1320px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <div id="msgs" v-if="msgsfig">
+        <ul>
+            <li v-for="ms in msgs">
+                消息队列<a href="#">{{ms.msgId}}---{{ms.msgContent}}</a>
+                <a href="#" id="yd" @click="msgtu(ms.msgId)">标为已读</a>
+
+            </li>
+        </ul>
+    </div>
+    <div id="btm">
+        <img src="../user/image/刺猬.jpg" id="imgs" style="width: 30px;height: 30px;float: right"/>
+    </div>
+</div>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            msgsfig:false,
+            msgs:[],
+            tiem:null,
+
+        },
+
+        created(){
+
+            setInterval(this.getAll,1000);
+        },
+        methods:{
+            msgtu(msgId){
+
+                axios.put("http://localhost:8080/admin/putMsg?msg_id="+msgId).then(rel=>{
+                    console.log('有人吗？');
+                    console.log(rel.data);
+
+                    if(rel.data){
+                        this.getAll();
+                    }else {
+                        alert("失败");
+                    }
+                })
+            },
+            test(){
+                var a=0;
+                this.tiem=setInterval(function (){
+                    a++;
+
+                    var iamgs= document.getElementById("imgs");
+                    if(a==1){
+                        iamgs.src="../user/image/刺猬.jpg";
+                    }else if(a==2){
+                        iamgs.src="";
+                    }else{
+                        iamgs.src="../user/image/刺猬.jpg";
+                        a=0;
+                    }
+                },500);
+            },
+            getAll(){
+
+                axios.get("http://localhost:8080/admin/msg").then(resl=>{
+                    if(resl.data.length>0){
+                        this.msgs=resl.data;
+                        this.msgsfig=true;
+                        this.test();
+                    }else{
+                        this.msgsfig=false;
+                        clearInterval(this.tiem);
+                    }
+
+                });
+            }
+        }
+
+    });
+</script>
+</body>
+</html>

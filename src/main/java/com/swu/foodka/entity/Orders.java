@@ -28,4 +28,8 @@ public class Orders {
      * 下单时间
      */
     private String createTime;
+
+    public Object getOrderId() {
+        return orderId;
+    }
 }
