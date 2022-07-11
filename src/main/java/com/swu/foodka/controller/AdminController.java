@@ -1,7 +1,9 @@
 package com.swu.foodka.controller;
 
 import com.swu.foodka.controller.juit.AjaxResult;
+import com.swu.foodka.dao.MessageDao;
 import com.swu.foodka.entity.Admin;
+import com.swu.foodka.entity.Message;
 import com.swu.foodka.service.AdminService;
 import com.swu.foodka.utils.EncryptUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ import java.util.List;
 public class AdminController {
     @Autowired
     private AdminService adminService;
+
+    @Autowired
+    private MessageDao messageDao;
 
     // check
     @GetMapping("toList")
@@ -99,6 +104,23 @@ public class AdminController {
     public boolean register(@RequestBody Admin admin) throws Exception{
         //admin.setPassword(EncryptUtil.shaEncode(admin.getPassword()));
         return adminService.save(admin);
+    }
+
+    public boolean saveMsg(){
+        Message msg = new Message();
+        msg.setMsgContent("有新用户注册！");
+        msg.setMsgType(1);
+        return messageDao.insert(msg)>0;
+    }
+
+    @PutMapping("putMsg")
+    public  boolean updateMsg(@RequestParam("msg_id") Integer id){
+        return messageDao.updataMsg(id)>0;
+    }
+
+    @GetMapping("/msg")
+    public List<Message> getMsg(){
+        return messageDao.selectType(1);
     }
 
 //    //Test

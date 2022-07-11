@@ -34,7 +34,12 @@ public class User {
      * 用户密码
      */
     private String usPassword;
-
+    /**
+     * 用户头像
+     */
     private String usPhoto;
-
+    /**
+     * 用户权限
+     */
+    private Integer usQx;
 }

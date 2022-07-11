@@ -3,6 +3,7 @@ package com.swu.foodka.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.swu.foodka.config.ObjEvent;
 import com.swu.foodka.controller.juit.AjaxResult;
 import com.swu.foodka.dao.UserDao;
 import com.swu.foodka.entity.User;
@@ -10,8 +11,10 @@ import com.swu.foodka.service.UserService;
 import com.swu.foodka.utils.EncryptUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.WebApplicationContext;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +30,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private WebApplicationContext webapplicationcontext;
 
     // check
     @GetMapping("toList")
@@ -78,13 +83,14 @@ public class UserController {
      * 前段vue用rel.data接收返回值判断
      */
     @PostMapping("/login")
-    public AjaxResult login(@RequestBody User user) throws Exception {
+    public AjaxResult login(@RequestBody User user, HttpServletRequest request) throws Exception {
         AjaxResult result = new AjaxResult();
         List<User> userList = userService.list();
-        //request.getSession().setAttribute("user",user); // 把登陆用户放入Session中
         for(User value: userList) {
             if (value.getUsName().equals(user.getUsName())) {
                 if (value.getUsPassword().equals(EncryptUtil.shaEncode(user.getUsPassword()))) {
+                    // 把登陆用户放入Session中
+                    request.getSession().setAttribute("user",user);
                     result.setFlag(true);
                     result.setMsg("登陆成功！欢迎：" + user.getUsName());
                     result.setDatas(user);
@@ -155,5 +161,14 @@ public class UserController {
             }
         }
         return null;
+    }
+
+    @PostMapping("/saveMsg")
+    public String rest(@RequestBody User user){
+        user.setUsQx(1);
+        int num= userDao.insert(user);
+        ObjEvent objEvent=new ObjEvent("users:",user,"新加用户了");
+        webapplicationcontext.publishEvent(objEvent);
+        return num>1?"成功":"失败";
     }
 }
