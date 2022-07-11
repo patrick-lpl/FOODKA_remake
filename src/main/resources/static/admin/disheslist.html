@@ -25,6 +25,14 @@
     <script src="../../assets/js/axios.min.js"></script>
     <title>用户信息管理</title>
 </head>
+
+<style>
+    #app{
+        margin-left: 30%;
+        margin-top: 10%;
+    }
+</style>
+
 <body>
 <div id="app">
 
@@ -36,7 +44,7 @@
                 <el-button icon="el-icon-search" slot="append" style="color: #0b5ed7;" size="mini" @click="searchs()">search</el-button>
             </el-input>
         </div>
-        <el-button type="primary" plain style="margin:15px 20px;" @click="dialogFormVisible1 = true" icon="el-icon-plus">新增菜品</el-button>
+        <el-button type="primary" plain style="margin:0px 0px;" @click="dialogFormVisible1 = true" icon="el-icon-plus" style="float: left;">新增菜品</el-button>
 
         <!----------------------展示栏的导航栏------------------------------------------------------->
         <el-table :data="info" style="width:660px; margin-top: 20px;margin-left:5px;" max-height="80%">
