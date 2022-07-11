@@ -40,8 +40,10 @@ public class UserController {
     }
 
     @PutMapping("/update")
-    public boolean update(@RequestBody User user){
+    public boolean update(@RequestBody User user) throws Exception {
         System.out.println("更新用户："+user.getUsName());
+        // 密码加密
+        user.setUsPassword(EncryptUtil.shaEncode(user.getUsPassword()));
         return userService.updateById(user);
     }
 
@@ -160,7 +162,7 @@ public class UserController {
                 return value.getUsId();
             }
         }
-        return null;
+        return -1;
     }
 
     @PostMapping("/saveMsg")
