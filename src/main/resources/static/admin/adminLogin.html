@@ -108,9 +108,12 @@
                      if(this.loginForm.password!==''){
                                  axios.post("http://localhost:8080/admin/login", this.loginForm).then(rel => {
                                      //rel.data.{msg:返回的文本信息, flag:true=登陆成功/false=失败, datas:登陆的admin}
-                                     alert(rel.data.msg);
-                                     if(rel.data.flag)
-                                         window.location.href="admin_manger.html";
+                                     if(rel.data.flag) {
+                                         alert(rel.data.msg);
+                                         window.location.href = "admin_manger.html";
+                                     }else{
+                                         alert(rel.data.msg);
+                                     }
                                  })
 
                      }

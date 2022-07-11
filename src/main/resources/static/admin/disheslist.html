@@ -38,13 +38,13 @@
 
     <!-----------------------搜索栏输入框------------------------------------------------------>
     <template>
-        <div style="width: 30%; " >
-            <p>菜品ID</p>
-            <el-input v-model="add.dishId" placeholder="请输入菜品名搜索" style="margin-bottom:20px">
-                <el-button icon="el-icon-search" slot="append" style="color: #0b5ed7;" size="mini" @click="searchs()">search</el-button>
-            </el-input>
+        <div style="width: 30%;text-align:center; margin-top: 100px;">
+            <el-input  v-model="input" placeholder="请输入菜品名称" > <el-button
+                    size="mini"
+                    slot="append"
+                    style="color: #0b5ed7;"
+                    @click="mohuSearch">查询</el-button></el-input>
         </div>
-        <el-button type="primary" plain style="margin:0px 0px;" @click="dialogFormVisible1 = true" icon="el-icon-plus" style="float: left;">新增菜品</el-button>
 
         <!----------------------展示栏的导航栏------------------------------------------------------->
         <el-table :data="listData" style="width:660px; margin-top: 20px;margin-left:5px;" max-height="80%">
@@ -112,9 +112,10 @@
             <el-button @click="dialogFormVisible = false">取 消</el-button>
             <el-button type="primary"  v-on:click="updates() ">提交</el-button>
         </div>
+        <!--------------------------------------添加菜品------------------------------------------------>
     </el-dialog>
     <el-dialog title="添加菜品" :visible.sync="dialogFormVisible1">
-        <el-form :model="add">
+        <el-form :model="add" >
             <el-form-item label="菜品名" :label-width="formLabelWidth">
                 <el-input v-model="add.dishName" autocomplete="off"></el-input>
             </el-form-item>
@@ -123,7 +124,7 @@
             </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
-            <el-button @click="dialogFormVisible1 = false">取 消</el-button>
+            <el-button @click="dialogFormVisible1 = false; resetForm('add')">取 消</el-button>
             <el-button type="primary" @click=" submitf" >提交</el-button>
         </div>
     </el-dialog>
@@ -160,6 +161,9 @@
                 this.getAll();
             },
             methods: {
+                resetForm(formName){
+                    this.$refs[formName].resetFields();
+                },
                 getAll(){
                     this.tableDatas.page =(this.tableDatas.num)*(this.tableDatas.size),
                         console.log(this.tableDatas.num);
@@ -194,6 +198,7 @@
                     axios.post("http://localhost:8080/dish/save", this.add).then(rel => {
                         alert(rel.data);
                         this.dialogFormVisible1=false;
+                        this.resetForm('add');
                         this.getAll();
                     })
                 },
@@ -210,12 +215,15 @@
                         this.getAll();
                     })
                 },
-                searchs(){
-                    axios.get("http://localhost:8080/dish/get/"+this.add.dishId).then(rel=>{
-                        console.log(rel);
-                        this.info=rel.data;
+                mohuSearch(){
+                    axios.get("http://localhost:8080/dish/like?dishName="+this.input).then(res=>{
+                        // this.searchdata.listData=res.data;
+                        this.listData=res.data;
+                        console.log(this.searchdata.listData)
                     });
-                }
+                },
+
+
             }
         }
     )
