@@ -153,11 +153,11 @@ public class UserController {
     }
 
     @GetMapping("/getus")
-    public User getUs(@RequestParam String usName){
+    public Integer getUs(@RequestParam String usName){
         List<User> userList = userService.list();
         for(User value: userList){
             if(usName.equals(value.getUsName())) {
-                return value;
+                return value.getUsId();
             }
         }
         return null;
