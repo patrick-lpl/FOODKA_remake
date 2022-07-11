@@ -66,7 +66,6 @@
                 let config = {
                     headers:{'Content-Type':'multipart/form-data'}
                 };
-                console.log('丸辣，芭比Q辣');
                 axios.post("http://localhost:8080/img/api/profilePhotoUpload",params,config).then(function (res) {
                     var img = "image/" + res.data.slice(0);
                     console.log(img);
