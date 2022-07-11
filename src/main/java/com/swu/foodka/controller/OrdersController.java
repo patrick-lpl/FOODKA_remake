@@ -52,7 +52,7 @@ public class OrdersController {
      * @param id
      * @return
      */
-    @GetMapping("/getUsOrder")
+    @GetMapping("/getUsOrder/{id}")
     public List<Orders> getByUsId(@PathVariable int id){
         List<Orders> ordersList = ordersDao.selectUsOrders(id);
         return ordersList;
