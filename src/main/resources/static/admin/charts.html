@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="../../assets/css/charts.css" />
+		<link rel="stylesheet" href="../../assets/css/element-ui/index.css">
+		<script src="../../assets/js/echarts.js"></script>
+		<title></title>
+	</head>
+	<body>
+
+
+	<div id="app">
+		<el-container>
+			<!-- 主体 -->
+			<el-main>
+				<div class="gauge">
+
+					<!--<div class="chart">-->
+						<template>
+							<el-carousel :interval="7000" style="width: 800px; height:800px; margin-top: 20px;">
+
+								<el-carousel-item>
+									<div id="dishPrice" style="width: 550px;height:300px; margin:auto;"></div>
+								</el-carousel-item>
+								<el-carousel-item>
+									<div id="orderCreateTime" style="width: 550px;height:300px; margin:auto;" ></div>
+								</el-carousel-item>
+								<el-carousel-item>
+									<div id="usAge" style="width: 550px;height: 300px; margin:auto;"></div>
+								</el-carousel-item>
+								<el-carousel-item>
+									<div id="usArea" style="width: 550px;height: 300px; margin:auto;"></div>
+								</el-carousel-item>
+								<el-carousel-item>
+									<div id="usCreateTime" style="width: 550px;height: 300px; margin:auto;"></div>
+								</el-carousel-item>
+								<el-carousel-item>
+									<div id="usCost" style="width: 550px;height: 300px; margin:auto;"></div>
+								</el-carousel-item>
+
+							</el-carousel>
+						</template>
+				</div>
+
+
+
+
+			</el-main>
+		</el-container>
+	</div>
+	</body>
+
+
+	<script src="../../assets/js/vue.js"></script>
+	<script src="../../assets/css/element-ui/index.js"></script>
+	<script src="../../assets/js/axios.min.js"></script>
+
+	<script>
+		new Vue({
+			el: '#app',
+			data: function () {
+				return {
+
+				}
+			},
+			mounted() {
+
+			},
+			methods: {
+
+			}
+		})
+	</script>
+
+
+	<script>
+
+		<!--用户订单价格分布图-->
+
+		// 基于准备好的dom，初始化echarts实例
+		var myChart = echarts.init(document.getElementById('usCost'));
+
+		// 指定图表的配置项和数据
+		var option = {
+			xAxis: {
+				data: ['<100', '100~150', '150~200', '200~250', '250~300', '300~400', '>400']
+			},
+			yAxis: {},
+			series: [
+				{
+					type: 'bar',
+					data: [120, 108, 98, 150, 135, 88, 65]
+				}
+			]
+		};
+		// 使用刚指定的配置项和数据显示图表。
+		myChart.setOption(option);
+
+		<!--菜品价格分布图-->
+
+		// 基于准备好的dom，初始化echarts实例
+		var myChart = echarts.init(document.getElementById('dishPrice'));
+
+		// 指定图表的配置项和数据
+		var option = {
+			title: {
+				text: '菜品价格',
+				left: 'center',
+				top: 'center'
+			},
+			series: [
+				{
+					type: 'pie',
+					data: [
+						{
+							value: 3,
+							name: '299'
+						},
+						{
+							value: 2,
+							name: '99'
+						},
+						{
+							value: 4,
+							name: '89'
+						},
+						{
+							value: 1,
+							name: '58'
+						},
+						{
+							value: 5,
+							name: '48'
+						},
+						{
+							value: 3,
+							name: '29'
+						},
+						{
+							value: 3,
+							name: '25'
+						},
+						{
+							value: 3,
+							name: '18'
+						},
+					],
+					radius: ['40%', '70%']
+				}
+			]
+		};
+		// 使用刚指定的配置项和数据显示图表。
+		myChart.setOption(option);
+
+
+	<!--订单创建时间图-->
+
+		// 基于准备好的dom，初始化echarts实例
+		var myChart = echarts.init(document.getElementById('orderCreateTime'));
+
+		// 指定图表的配置项和数据
+		var option = {
+			xAxis: {
+				data: ['11-12', '12-13', '13-14', '17-18','18-19','19-20','20-21','21-22']
+			},
+			yAxis: {},
+			series: [
+				{
+					data: [50, 66, 38, 33, 69,77,78,22],
+					type: 'line',
+					smooth: true
+				}
+			]
+		};
+
+		// 使用刚指定的配置项和数据显示图表。
+		myChart.setOption(option);
+
+	<!--用户年龄分布图-->
+
+		// 基于准备好的dom，初始化echarts实例
+		var myChart = echarts.init(document.getElementById('usAge'));
+
+		// 指定图表的配置项和数据
+		var option = {
+			series: [
+				{
+					type: 'pie',
+					data: [
+						{
+							value: 300,
+							name: '>50'
+						},
+						{
+							value: 500,
+							name: '40~50'
+						},
+						{
+							value: 700,
+							name: '30~40'
+						},
+						{
+							value: 1200,
+							name: '20~30'
+						},
+						{
+							value: 1000,
+							name: '<20'
+						}
+					],
+					roseType: 'area'
+				}
+			]
+		};
+
+		// 使用刚指定的配置项和数据显示图表。
+		myChart.setOption(option);
+
+		<!--用户地区分布图-->
+		// 基于准备好的dom，初始化echarts实例
+		var myChart = echarts.init(document.getElementById('usArea'));
+
+		// 指定图表的配置项和数据
+		var option = {
+			legend: {},
+			tooltip: {},
+			dataset: {
+				source: [
+					['product', '2019', '2020', '2021', '2022'],
+					['重庆', 200, 1000, 800, 1200],
+					['北京', 300, 921, 857, 1831],
+					['上海', 241, 1672, 795, 864],
+					['杭州', 341, 672, 1795, 1864]
+				]
+			},
+			xAxis: [
+				{ type: 'category', gridIndex: 0 },
+				{ type: 'category', gridIndex: 1 }
+			],
+			yAxis: [{ gridIndex: 0 }, { gridIndex: 1 }],
+			grid: [{ bottom: '55%' }, { top: '55%' }],
+			series: [
+				// 这几个系列会出现在第一个直角坐标系中，每个系列对应到 dataset 的每一行。
+				{ type: 'bar', seriesLayoutBy: 'row' },
+				{ type: 'bar', seriesLayoutBy: 'row' },
+				{ type: 'bar', seriesLayoutBy: 'row' },
+				{ type: 'bar', seriesLayoutBy: 'row' },
+				// 这几个系列会出现在第二个直角坐标系中，每个系列对应到 dataset 的每一列。
+				{ type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+				{ type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+				{ type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+				{ type: 'bar', xAxisIndex: 1, yAxisIndex: 1 }
+			]
+		};
+		// 使用刚指定的配置项和数据显示图表。
+		myChart.setOption(option);
+
+		<!--用户注册时间分布图-->
+
+		// 基于准备好的dom，初始化echarts实例
+		var myChart = echarts.init(document.getElementById('usCreateTime'));
+
+		// 指定图表的配置项和数据
+		var option = {
+			xAxis: {
+				data: ['1月', '2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+			},
+			yAxis: {},
+			series: [
+				{
+					data: [100, 220, 280, 230, 190,220,250,288,290,500,650,750],
+					type: 'line',
+					smooth: true
+				}
+			]
+		};
+		// 使用刚指定的配置项和数据显示图表。
+		myChart.setOption(option);
+	</script>
+</html>
