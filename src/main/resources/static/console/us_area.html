@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>us_cost</title>
+    <script src="../../assets/js/echarts.js"></script>
+</head>
+<body>
+<div id="main" style="width: 600px;height:400px;">
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            legend: {},
+            tooltip: {},
+            dataset: {
+                source: [
+                    ['product', '2019', '2020', '2021', '2022'],
+                    ['重庆', 200, 1000, 800, 1200],
+                    ['北京', 300, 921, 857, 1831],
+                    ['上海', 241, 1672, 795, 864],
+                    ['杭州', 341, 672, 1795, 1864]
+                ]
+            },
+            xAxis: [
+                { type: 'category', gridIndex: 0 },
+                { type: 'category', gridIndex: 1 }
+            ],
+            yAxis: [{ gridIndex: 0 }, { gridIndex: 1 }],
+            grid: [{ bottom: '55%' }, { top: '55%' }],
+            series: [
+                // 这几个系列会出现在第一个直角坐标系中，每个系列对应到 dataset 的每一行。
+                { type: 'bar', seriesLayoutBy: 'row' },
+                { type: 'bar', seriesLayoutBy: 'row' },
+                { type: 'bar', seriesLayoutBy: 'row' },
+                { type: 'bar', seriesLayoutBy: 'row' },
+                // 这几个系列会出现在第二个直角坐标系中，每个系列对应到 dataset 的每一列。
+                { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+                { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+                { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+                { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 }
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</div>
+</body>
+</html>

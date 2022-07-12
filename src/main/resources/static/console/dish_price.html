@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>dish_price</title>
+  <script src="../../assets/js/echarts.js"></script>
+</head>
+<body>
+<div id="main" style="width: 600px;height:400px;">
+  <script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+      title: {
+        text: '菜品价格',
+        left: 'center',
+        top: 'center'
+      },
+      series: [
+        {
+          type: 'pie',
+          data: [
+            {
+              value: 3,
+              name: '299'
+            },
+            {
+              value: 2,
+              name: '99'
+            },
+            {
+              value: 4,
+              name: '89'
+            },
+            {
+              value: 1,
+              name: '58'
+            },
+            {
+              value: 5,
+              name: '48'
+            },
+            {
+              value: 3,
+              name: '29'
+            },
+            {
+              value: 3,
+              name: '25'
+            },
+            {
+              value: 3,
+              name: '18'
+            },
+          ],
+          radius: ['40%', '70%']
+        }
+      ]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+  </script>
+</div>
+</body>
+</html>

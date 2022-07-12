@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>order_creat-time</title>
+    <script src="../../assets/js/echarts.js"></script>
+</head>
+<body>
+<!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+<div id="main" style="width: 600px;height:400px;">
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            xAxis: {
+                data: ['11-12', '12-13', '13-14', '17-18','18-19','19-20','20-21','21-22']
+            },
+            yAxis: {},
+            series: [
+                {
+                    data: [50, 66, 38, 33, 69,77,78,22],
+                    type: 'line',
+                    smooth: true
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</div>
+</body>
+</html>
