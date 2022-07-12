@@ -202,7 +202,6 @@ public class UserController {
      */
     @GetMapping("/getus")
     public Integer getUs(@RequestParam String usName){
-        System.out.println("getus");
         List<User> userList = userService.list();
         for(User value: userList){
             if(usName.equals(value.getUsName())) {

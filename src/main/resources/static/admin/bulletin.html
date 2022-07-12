@@ -22,54 +22,36 @@
     <template>
 
         <h1 style="text-align: center;margin-bottom: 5%">公告信息栏</h1>
-        <span>内容</span>
+        <span>公告内容</span>
         <div style="width: 30%;">
 
-            <el-input v-model="add.info"  placeholder="请输入内容"></el-input>
+            <el-input v-model="add.info"  placeholder="请输入公告内容"></el-input>
 
         </div>
         <template>
             <div class="block">
-                <span class="demonstration">时间</span>
+                <span class="demonstration">发布时间</span>
+                <div>
                 <el-date-picker
                         v-model="add.createTime"
                         type="datetime"
                         placeholder="选择日期">
                 </el-date-picker>
+                    <el-button
+                            size="larger"
+                            @click="submitf" style="background-color:lightskyblue" round>发布公告</el-button>
+                </div>
             </div>
         </template>
-        <el-button
-                size="mini"
-                @click="submitf">发布公告</el-button>
+
 
         <div style="width: 20%;text-align:center;">
-
-            <el-button icon="el-icon-search"  size="mini"
-                       @click="mohuSearch" style="margin-left: 17vh; float: left;" circle></el-button> <!--圆形搜索图标-->
-
-            <template>
-                <div class="block">
-                    <p>组件值：{{ input }}</p>
-                    <el-date-picker
-                            v-model="input"
-                            type="daterange"
-                            start-placeholder="开始日期"
-                            end-placeholder="结束日期"
-                            :default-time="['00:00:00', '23:59:59']">
-                    </el-date-picker>
-                </div>
-            </template>
-
-
-
         </div>
-
-
         <el-card>
             <el-table :data="listData" stripe style="width: 100%; " >
                 <el-table-column prop="bulletinId" label="公告Id" width="180">
                 </el-table-column>
-                <el-table-column prop="info" label="公告内容" width="180">
+                <el-table-column prop="info" label="公告内容" width="580">
                 </el-table-column>
                 <el-table-column prop="createTime" label="发布时间">
                 </el-table-column>
@@ -85,11 +67,15 @@
         </el-card>
         <el-button-group style="margin-left: 97vh">   <!--上一页下一页格式-->
             <el-button type="info" icon="el-icon-arrow-left" @click="upt()">上一页</el-button>
-
             <el-button type="info"  @click="next()">下一页<i class="el-icon-arrow-right el-icon--right"></i></el-button>
         </el-button-group>
 
     </template>
+    <div >
+        <el-input  v-model="input" placeholder="请输入查询的公告内容" style="width:30% ; margin-right: 0vh; float: right;"></el-input>
+        <el-button icon="el-icon-search"  size="larger"
+                   @click="mohuSearch" style="margin-right: 0vh; float: right;" circle></el-button> <!--圆形搜索图标-->
+    </div>
 </div>
 
 
@@ -120,7 +106,7 @@
                         formdata:{},
                         num:0,
                         total:'',
-                        size:2,
+                        size:4,
                         page:0
                     },
                     FormVisible:true,
@@ -167,6 +153,13 @@
                         this.add=rel.data;
 
                     })
+                },
+                mohuSearch(){
+                    axios.get("http://localhost:8080/bulletin/like?info="+this.input).then(res=>{
+                        // this.searchdata.listData=res.data;
+                        this.listData=res.data;
+                        console.log(this.searchdata.listData)
+                    });
                 },
                 deleteRow(index, rows) {
                     rows.splice(index, 1);

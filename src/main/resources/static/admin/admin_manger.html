@@ -30,7 +30,11 @@
 
     /*    !*border: #0f0f0f solid;*!*/
     /*}*/
-
+    .el-menu-vertical-demo:not(.el-menu--collapse) {
+        width: 300px;
+        min-height: 400px;
+        margin-bottom: 1px;
+    }
 
 
 
@@ -42,7 +46,7 @@
     }
 
     .el-aside {
-        background-color: #D3DCE6;
+        background-color: #E9EEF3;
         color: #333;
         text-align: left;
         /*line-height: 95vh;*/
@@ -87,11 +91,15 @@
         <el-container>
 
             <el-aside>
+                <el-radio-group v-model="isCollapse" style="margin-bottom: 2px;">
+                    <el-radio-button :label="false">展开</el-radio-button>
+                    <el-radio-button :label="true">收起</el-radio-button>
+                </el-radio-group>
+                <!-- 侧边栏菜单区域 -->
                 <el-menu
                         default-active="2"
                         class="el-menu-vertical-demo"
-                        @open="handleOpen"
-                        @close="handleClose"
+                        @open="handleOpen" @close="handleClose":collapse="isCollapse"
                         style="height: 94vh;">
 
 
@@ -227,23 +235,13 @@
 
 </div>
 </body>
-<script>
-    export default {
-        methods: {
-            handleOpen(key, keyPath) {
-                console.log(key, keyPath);
-            },
-            handleClose(key, keyPath) {
-                console.log(key, keyPath);
-            }
-        }
-    }
-</script>
+
 <script>
     new Vue({
             el: '#app',
             data: function () {
                 return {
+                    isCollapse:true,
                     tableData: [],
                     dialogFormVisible: false,
                     dialogFormTitle: "",
@@ -270,7 +268,13 @@
                 openUrl(url) {
 
                     this.iframeUrl = url;
-                }
+                },
+                handleOpen(key, keyPath) {
+                    console.log(key, keyPath);
+                },
+                handleClose(key, keyPath) {
+                    console.log(key, keyPath);
+                },
 
             }
         }
