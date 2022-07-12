@@ -27,11 +27,11 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    public UserService userService;
     @Autowired
-    private UserDao userDao;
+    public UserDao userDao;
     @Autowired
-    private WebApplicationContext webapplicationcontext;
+    public WebApplicationContext webapplicationcontext;
 
     /**
      * getAll返回用户list
@@ -227,14 +227,18 @@ public class UserController {
     }
 
     @PostMapping("/changePwd")
-    public AjaxResult changePwd(@RequestBody User user) throws Exception {
+    public AjaxResult changePwd(@RequestParam Integer usId,@RequestParam("usPassword") String usPassword) throws Exception {
         AjaxResult result = new AjaxResult();
-        User us = userService.getById(user.getUsId());
-        if (user.getUsPassword().equals(us.getUsPassword())) {
+        //System.out.println(usId+","+usPassword);
+        User us = userService.getById(usId);
+        //System.out.println(us.getUsName());
+
+        if (usPassword.equals(us.getUsPassword())) {
             result.setFlag(false);
             result.setMsg("新密码不能与旧密码相同！");
         } else {
-            us.setUsPassword(EncryptUtil.shaEncode(user.getUsPassword()));
+            us.setUsPassword(EncryptUtil.shaEncode(usPassword));
+            userService.updateById(us);
             result.setFlag(true);
             result.setMsg("密码修改成功！");
         }
