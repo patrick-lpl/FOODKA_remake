@@ -93,12 +93,6 @@
 									<li><a href="">菜单</a></li>
 								</ul>
 							</li>
-							<li>
-								<a href="about.html">关于我们</a>
-							</li>
-							<li>
-								<a href="contact.html">联系我们</a>
-							</li>
 						</ul>
 					</div>
 					<div class="logo">
@@ -113,7 +107,7 @@
 								+（023）123456
 							</li>
 							<li class="menu-cart"><a href="menu.html">已选菜品 </a></li>
-							<li class="menu-cart"><a href="../user/user_manger.html">个人信息 </a></li>
+							<li class="menu-cart"><a href="../user/user_manger.html">个人中心 </a></li>
 
 						</ul>
 					</div>
@@ -1012,6 +1006,7 @@ var num=0;
 		  submit_form(){
 			  // console.log(this.formData)
 			  axios.post("http://localhost:8080/orders/save", this.formData).then(rel=>{
+
 				  if(rel.data){
 					  alert("确认成功！");
 				  }else{alert("传入数据库失败！")}

@@ -46,4 +46,76 @@ public class User {
      * 用户所在地
      */
     private String usArea;
+
+    public Integer getUsId() {
+        return usId;
+    }
+
+    public void setUsId(Integer usId) {
+        this.usId = usId;
+    }
+
+    public String getUsName() {
+        return usName;
+    }
+
+    public void setUsName(String usName) {
+        this.usName = usName;
+    }
+
+    public Integer getUsAge() {
+        return usAge;
+    }
+
+    public void setUsAge(Integer usAge) {
+        this.usAge = usAge;
+    }
+
+    public String getUsPhone() {
+        return usPhone;
+    }
+
+    public void setUsPhone(String usPhone) {
+        this.usPhone = usPhone;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getUsPassword() {
+        return usPassword;
+    }
+
+    public void setUsPassword(String usPassword) {
+        this.usPassword = usPassword;
+    }
+
+    public String getUsPhoto() {
+        return usPhoto;
+    }
+
+    public void setUsPhoto(String usPhoto) {
+        this.usPhoto = usPhoto;
+    }
+
+    public Integer getUsQx() {
+        return usQx;
+    }
+
+    public void setUsQx(Integer usQx) {
+        this.usQx = usQx;
+    }
+
+    public String getUsArea() {
+        return usArea;
+    }
+
+    public void setUsArea(String usArea) {
+        this.usArea = usArea;
+    }
 }

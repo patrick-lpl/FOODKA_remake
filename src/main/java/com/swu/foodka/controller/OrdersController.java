@@ -24,11 +24,11 @@ import java.util.List;
 @CrossOrigin // 解决跨域问题
 public class OrdersController {
     @Autowired
-    private OrdersService ordersService;
+    public OrdersService ordersService;
     @Autowired
-    private OrdersDao ordersDao;
+    public OrdersDao ordersDao;
     @Autowired
-    private WebApplicationContext webApplicationContext;
+    public WebApplicationContext webApplicationContext;
 
     /**
      * 获取全部订单
@@ -81,7 +81,7 @@ public class OrdersController {
     @PostMapping("/save")
     public boolean saveOrder(@RequestBody Orders orders){
         System.out.println("saving order......");
-        ObjEvent objEvent = new ObjEvent(orders.getOrderId(),orders,"new order!");
+        ObjEvent objEvent = new ObjEvent("",orders,"new order!");
         boolean tf =ordersService.save(orders);
         webApplicationContext.publishEvent(objEvent);
         return tf;

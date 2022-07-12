@@ -5,6 +5,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.swu.foodka.entity.Orders;
 import org.springframework.stereotype.Service;
 
-@Service
+
 public interface OrdersService extends IService<Orders> {
 }
