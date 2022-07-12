@@ -259,7 +259,13 @@
                                 if(this.registerForm.usPassword !== '')
                                     axios.post("http://localhost:8080/user/register", this.registerForm).then(rel => {
                                         //rel.data.{msg:返回的文本信息, flag:true=注册成功/false=失败, datas:注册的user}
-                                        alert(rel.data.msg)
+                                        if(rel.data.flag){
+                                            alert(rel.data.msg);
+                                            window.location.href="userLogin.html";
+                                        }else{
+                                            alert(rel.data.msg);
+                                            window.location.href="register.html"
+                                        }
                                     })
                     }
                 }
