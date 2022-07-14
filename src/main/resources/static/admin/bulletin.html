@@ -15,23 +15,42 @@
     <script src="../../assets/js/axios.min.js"></script>
     <title>公告发布界面</title>
 </head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #app {
+        position: absolute;
+        height: 100%;
+        width: 100%;
 
+    }
+    .contentBox{
+        height: 100%;
+        width: 100%;
+        background-color: rgba(155, 155, 155, 0.1);
+        border-radius: 60px 20px;
+        padding-top: 30px;
+        padding-left: 30px;
+    }
+</style>
 
 <body>
-<div id="app">
+<div id="app" class="contentBox">
     <template>
 
-        <h1 style="text-align: center;margin-bottom: 5%">公告信息栏</h1>
+        <h1 style="margin:0 0 20px 30px;">公告信息栏</h1>
         <span>公告内容</span>
-        <div style="width: 30%;">
+        <div style="width: 40%;margin-top: 10px;">
 
             <el-input v-model="add.info"  placeholder="请输入公告内容"></el-input>
 
         </div>
         <template>
-            <div class="block">
+            <div class="block" style="margin-top: 10px;">
                 <span class="demonstration">发布时间</span>
-                <div>
+                <div style="margin-top: 10px;">
                 <el-date-picker
                         v-model="add.createTime"
                         type="datetime"
@@ -39,15 +58,15 @@
                 </el-date-picker>
                     <el-button
                             size="larger"
-                            @click="submitf" style="background-color:lightskyblue" round>发布公告</el-button>
+                            @click="submitf" style="margin-top: 10px;margin-bottom: 10px;" round>发布公告</el-button>
                 </div>
             </div>
         </template>
 
 
-        <div style="width: 20%;text-align:center;">
+        <div style="width: 20%;text-align:center;margin-top: 10px;">
         </div>
-        <el-card>
+        <el-card style="width: 96%; ">
             <el-table :data="listData" stripe style="width: 100%; " >
                 <el-table-column prop="bulletinId" label="公告Id" width="180">
                 </el-table-column>
@@ -72,9 +91,9 @@
 
     </template>
     <div >
-        <el-input  v-model="input" placeholder="请输入查询的公告内容" style="width:30% ; margin-right: 0vh; float: right;"></el-input>
+        <el-input  v-model="input" placeholder="请输入查询的公告内容" style="width:30% ; margin-right: 0vh; float: right;margin-right: 70px;"></el-input>
         <el-button icon="el-icon-search"  size="larger"
-                   @click="mohuSearch" style="margin-right: 0vh; float: right;" circle></el-button> <!--圆形搜索图标-->
+                   @click="mohuSearch()" style="margin-right: 0vh; float: right;" circle></el-button> <!--圆形搜索图标-->
     </div>
 </div>
 
@@ -106,7 +125,7 @@
                         formdata:{},
                         num:0,
                         total:'',
-                        size:4,
+                        size:2,
                         page:0
                     },
                     FormVisible:true,
@@ -155,10 +174,11 @@
                     })
                 },
                 mohuSearch(){
+                    console.log("into mohu.....");
                     axios.get("http://localhost:8080/bulletin/like?info="+this.input).then(res=>{
                         // this.searchdata.listData=res.data;
                         this.listData=res.data;
-                        console.log(this.searchdata.listData)
+                        console.log("this.searchdata.listData"+this.searchdata.listData)
                     });
                 },
                 deleteRow(index, rows) {

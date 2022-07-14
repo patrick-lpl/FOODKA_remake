@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>FOODKA会员信息中心</title>
+    <title>FOODKA会员管理系统</title>
 
     <link rel="stylesheet" href="../../assets/css/login.css"/>
     <link rel="stylesheet" href="../../assets/css/element-ui/index.css"/>
@@ -18,6 +18,9 @@
 
 
 <style>
+    .mainweb{
+        width: 100%;
+        height: 100%;}
 
     /*.el-menu-vertical-demo:not(.el-menu--collapse) {*/
     /*    width: 200px;*/
@@ -30,34 +33,56 @@
 
     /*    !*border: #0f0f0f solid;*!*/
     /*}*/
-
-
-
-
-    .el-header, .el-footer {
-        background-color: #B3C0D1;
-        color: #333;
-        text-align: center;
-        /*line-height: 5vh;*/
+    .el-menu-vertical-demo:not(.el-menu--collapse) {
+        width: 300px;
+        min-height: 400px;
+        margin-bottom: 1px;
     }
+    .el-footer{
+        background-color: rgba(206,40,41,1);
+        text-align: center;
+        color: rgba(255,255,255,1);
+
+    }
+    .el-menu-vertical-demo el-menu{
+        color: #FFC54A;
+    }
+
+
+
+    .el-header {
+        background-color: rgba(206,40,41,1);
+        background-image: url("../../assets/img/logo.png");
+        color: white;
+        text-align: center;
+        /*margin: 0 10px 10px 10px ;*/
+    }
+
 
     .el-aside {
         background-color: #D3DCE6;
         color: #333;
         text-align: left;
+        margin: 0 10px 10px 10px;
         /*line-height: 95vh;*/
     }
 
     .el-main {
-        background-color: #E9EEF3;
+        width: 99%;
+        background-color: rgba(253,201,19,0.1);
         color: #333;
         text-align: center;
         /*line-height: 90vh;*/
+    }
+    .el-menu-vertical-demo{
+        height: 744px;
+
     }
 
 
     body > .el-container {
         margin-bottom: 40px;
+        background-color: #ffffff;
     }
 
     .el-container:nth-child(5) .el-aside,
@@ -67,6 +92,10 @@
 
     .el-container:nth-child(7) .el-aside {
         /*line-height: 320px;*/
+    }
+    .el-radio-button__inner {
+        border:none !important;
+        background: transparent !important;
     }
 
 
@@ -78,72 +107,76 @@
 
         <el-header height="10vh">
 
-
-            <h1 style="text-align: left;font-size: xx-large; margin-top: 20px">个人信息中心</h1>
-
-
         </el-header>
 
         <el-container>
 
-            <el-aside>
-                <el-menu
-                        default-active="2"
-                        class="el-menu-vertical-demo"
-                        @open="handleOpen"
-                        @close="handleClose"
-                        style="height: 94vh;">
+
+
+            <!-- 侧边栏菜单区域 -->
+
+            <el-menu class="el-menu-vertical-demo" default-active="1" style="height: 110vh;"
+                     background-color="#FFC54A" text-color="#0D0D0D" active-text-color="eb9316#"
+                     @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+                <el-radio-group v-model="isCollapse" color="#FFC54A">
+                    <el-radio-button :label="false" v-if="isCollapse" size="medium" style="float:left;"background-color="#FFB821"><i class="el-icon-d-arrow-right"></i>
+                    </el-radio-button>
+                    <el-radio-button :label="true" v-else size="medium"><i class="el-icon-d-arrow-left"></i>
+                    </el-radio-button>
+                </el-radio-group>
+
+
+                <el-submenu index="2">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span slot="title" @click="openUrl('')" style="font-size: x-large;font-weight: bold">会员功能</span>
+                    </template>
+                    <el-menu-item index="2-1">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title" @click="openUrl('info_change.html')" style="font-weight: bold">会员个人信息</span>
+                    </el-menu-item>
+                    <el-menu-item index="2-2">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title" @click="openUrl('user-password.html')" style="font-weight: bold">会员密码修改</span>
+                    </el-menu-item>
+
+                </el-submenu>
 
 
 
-                    <el-submenu index="2">
-                        <template slot="title">
-                            <i class="el-icon-location"></i>
-                            <span slot="title" @click="openUrl('')" style="font-size: x-large;font-weight: bold">会员功能</span>
-                        </template>
-                        <el-menu-item index="2-1">
-                            <i class="el-icon-menu"></i>
-                            <span slot="title" @click="openUrl('info_change.html')" style="font-weight: bold">会员个人信息</span>
-                        </el-menu-item>
-                        <el-menu-item index="2-2">
-                            <i class="el-icon-menu"></i>
-                            <span slot="title" @click="openUrl('manger-password.html')" style="font-weight: bold">会员密码修改</span>
-                        </el-menu-item>
-
-                    </el-submenu>
 
 
 
+                <el-submenu index="4-1-1">
+                    <template slot="title">
+                        <i class="el-icon-setting"></i>
+                        <span slot="title" style="font-size: x-large;font-weight: bold">系统设置</span>
+                    </template>
+                    <el-menu-item index="4-1-2">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title" @click="openUrl('')" style="font-weight: bold">待实现。。。</span>
+                    </el-menu-item>
+                </el-submenu>
 
 
 
-                    <el-submenu index="4-1-1">
-                        <template slot="title">
-                            <i class="el-icon-setting"></i>
-                            <span slot="title" style="font-size: x-large;font-weight: bold">系统设置</span>
-                        </template>
-                        <el-menu-item index="4-1-2">
-                            <i class="el-icon-menu"></i>
-                            <span slot="title" @click="openUrl('')" style="font-weight: bold">待实现。。。</span>
-                        </el-menu-item>
-                    </el-submenu>
+            </el-menu>
+
+            </el-col>
 
 
-                </el-menu>
-                </el-col>
-
-            </el-aside>
 
             <el-container>
 
                 <el-main >
-                    <iframe id="mainIframe" class="mainFrame" :src="iframeUrl" width="100%" height="700px"
+                    <iframe id="mainIframe" class="mainFrame" :src="iframeUrl" width="100%" height="86%"
                             frameborder="0" scrolling="no"></iframe>
+                    <el-footer style="height: 40px;">
+                        Footer
+                    </el-footer>
                 </el-main>
 
-                <el-footer>
-                    Footer
-                </el-footer>
+
 
             </el-container>
 
@@ -159,23 +192,13 @@
 
 </div>
 </body>
-<script>
-    export default {
-        methods: {
-            handleOpen(key, keyPath) {
-                console.log(key, keyPath);
-            },
-            handleClose(key, keyPath) {
-                console.log(key, keyPath);
-            }
-        }
-    }
-</script>
+
 <script>
     new Vue({
             el: '#app',
             data: function () {
                 return {
+                    isCollapse:true,
                     tableData: [],
                     dialogFormVisible: false,
                     dialogFormTitle: "",
@@ -202,7 +225,13 @@
                 openUrl(url) {
 
                     this.iframeUrl = url;
-                }
+                },
+                handleOpen(key, keyPath) {
+                    console.log(key, keyPath);
+                },
+                handleClose(key, keyPath) {
+                    console.log(key, keyPath);
+                },
 
             }
         }

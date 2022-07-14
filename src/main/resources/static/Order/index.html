@@ -137,7 +137,7 @@
                             {{username}},你好
                         </li>
                         <li>
-                            <a @click="getussec()" href="../user/user_manger.html">个人中心</a>
+                            <a  @click="getussec()" href="../user/user_manger.html">个人中心</a>
                         </li>
                         <li class="menu-cart"><a href="menu.html">菜单</a></li>
                         <li>
@@ -164,7 +164,10 @@
                     <div class="banner-inner text-center">
                         <h3>super delicius</h3>
                         <h1>Different food new experience</h1>
-                        <button class="btn btn-secondary" @click="getus()" style="position: absolute" >开始</button>
+<!--                        <button class="btn btn-secondary" @click="getus()" style="position: absolute" >开始</button>-->
+<!--                        <a class="btn btn-secondary" href="menu.html">开始</a>-->
+                        <a href="menu.html" class="btn btn-secondary" @click="getus()"  >开始</a>
+
                     </div>
 
                 </div>
@@ -1404,8 +1407,8 @@
             var usName=sessionStorage.getItem("usName");
             console.log(usName);
             this.username=usName;
-            sessionStorage.setItem("usName",this.username);
-            console.log(this.username);
+            sessionStorage.setItem("usName");
+            // sessionStorage.setItem("usName",this.username);
         },
         methods: {
             getAll(){
@@ -1434,7 +1437,7 @@
                 axios.get("http://localhost:8080/user/getus?username="+this.username).then(res=>{
                     this.usId = res.data;
                     localStorage.setItem("userId",this.usId);
-                    document.location="menu.html";
+                    // document.location="menu.html";
                 })
             },
             getussec() {
@@ -1444,6 +1447,7 @@
                     this.usId = res.data;
                     localStorage.setItem("userId",this.usId);
                     console.log(this.usId);
+                    window.location.href="../user/user_manger.html"
                 })
             }
         }

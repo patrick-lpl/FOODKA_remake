@@ -1,7 +1,5 @@
 package com.swu.foodka.controller;
 
-
-
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.swu.foodka.config.ObjEvent;
 import com.swu.foodka.controller.juit.AjaxResult;
@@ -70,6 +68,7 @@ public class UserController {
     @PostMapping("/save")
     public AjaxResult save(@RequestBody User user) throws Exception{
         // 密码加密
+        System.out.printf("houduan");
         user.setUsPassword(EncryptUtil.shaEncode(user.getUsPassword()));
         AjaxResult result = new AjaxResult();
         if(userService.save(user)){
@@ -101,8 +100,10 @@ public class UserController {
      */
     @GetMapping("/get/{id}")
     public List<User>  getById(@PathVariable int id){
+        System.out.printf("进入后端\n");
         List<User> userList=new ArrayList<>();
         userList.add(userService.getById(id));
+        System.out.printf("userLists:"+userList);
         return userList;
     }
 
@@ -120,7 +121,6 @@ public class UserController {
             if (value.getUsName().equals(user.getUsName())) {
                 if (value.getUsPassword().equals(EncryptUtil.shaEncode(user.getUsPassword()))) {
                     // 把登陆用户放入Session中
-                    request.getSession().setAttribute("user",user);
                     result.setFlag(true);
                     result.setMsg("登陆成功！欢迎：" + user.getUsName());
                     result.setDatas(user);
@@ -149,14 +149,14 @@ public class UserController {
                 return result;
             }
         }
-        ObjEvent objEvent = new ObjEvent(user.getUsName(),user,"new user!");
+       // ObjEvent objEvent = new ObjEvent(user.getUsName(),user,"new user!");
         // 密码加密
         user.setUsPassword(EncryptUtil.shaEncode(user.getUsPassword()));
         userService.save(user);
         result.setFlag(true);
         result.setMsg("注册成功！欢迎："+user.getUsName());
         result.setDatas(user);
-        webapplicationcontext.publishEvent(objEvent);
+        //webapplicationcontext.publishEvent(objEvent);
         return result;
     }
 
@@ -218,7 +218,7 @@ public class UserController {
      */
     @PostMapping("/saveMsg")
     public String rest(@RequestBody User user){
-        user.setUsQx(1);
+      //  user.setUsQx(1);
         int num= userDao.insert(user);
         ObjEvent objEvent=new ObjEvent("users:",user,"新加用户了");
         webapplicationcontext.publishEvent(objEvent);
@@ -226,7 +226,7 @@ public class UserController {
     }
 
     @PostMapping("/changePwd")
-    public AjaxResult changePwd(@RequestParam Integer usId,@RequestParam("usPassword") String usPassword) throws Exception {
+    public AjaxResult changePwd(@RequestParam Integer usId,@RequestParam String usPassword) throws Exception {
         AjaxResult result = new AjaxResult();
         //System.out.println(usId+","+usPassword);
         User us = userService.getById(usId);

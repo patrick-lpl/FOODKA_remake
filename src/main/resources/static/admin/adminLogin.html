@@ -62,20 +62,15 @@
 <script>
     new Vue({
         el: '#app',
-        data: {
-            info: [],
-            loginForm: {
-                username:'',
-                password: '',
-            },
-        },
         created() {
             this.getAll();
-
         },
         data(){
             return {
-                loginForm: {},
+                loginForm: {
+                    username:"",
+                    password:"",
+                },
                 loginRules: {
                     username: [{
                         required: true,
@@ -92,23 +87,21 @@
                         required: true,
                         message: '请输入密码',
                         trigger: 'blur'
-                    }],
+                    }]
                 }
             };
         },
 
         methods: {
-            getAll() {
-                axios.get("http://localhost:8080/admin/toList").then(res => {
-                    this.info = res.data;
-                });
-            },
             login() {
                  if(this.loginForm.username!==''){
                      if(this.loginForm.password!==''){
                                  axios.post("http://localhost:8080/admin/login", this.loginForm).then(rel => {
                                      //rel.data.{msg:返回的文本信息, flag:true=登陆成功/false=失败, datas:登陆的admin}
                                      if(rel.data.flag) {
+                                         console.log("this.loginForm.username:"+this.loginForm.username);
+                                 // JSON.stringify(
+                                         sessionStorage.setItem("usName",this.loginForm.username);
                                          alert(rel.data.msg);
                                          window.location.href = "admin_manger.html";
                                      }else{

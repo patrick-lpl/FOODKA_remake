@@ -22,11 +22,11 @@ public interface BulletinDao extends BaseMapper<Bulletin> {
 
     /**
      * 模糊查询
-     * @param usName
+     * @param
      * @return
      */
-    @Select("select * from user where us_name like #{bulletinName}")
-    List<Bulletin> selectPagesLike(@Param("bulletinName") String usName);
+    @Select("select * from bulletin where info like #{info}")
+    List<Bulletin> selectPagesLike(@Param("info") String info);
 
     /**
      * 查询总数

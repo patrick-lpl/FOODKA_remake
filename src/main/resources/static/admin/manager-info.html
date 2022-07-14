@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" >
+<meta charset="UTF-8">
+<head>
+    <link rel="stylesheet" href="../../assets/css/login.css"/>
+    <link rel="stylesheet" href="../../assets/css/element-ui/index.css"/>
+    <link rel="stylesheet" href="../../assets/css/goods.css" >
+    <script src="../../assets/js/vue.js"></script>
+    <script src="../../assets/css/element-ui/index.js"></script>
+    <script src="../../assets/js/vue-resource.js"></script>
+    <script src="../../assets/js/axios.min.js"></script>
+    <title>管理员信息编辑{{listData.adminId}}</title>
+</head>
+<body>
+
+<div id="app">
+        <div class="viewPhoto">
+            你的name:{{adminName}}<br>
+        </div>
+
+    <div>
+        <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+    </div>
+    <el-dialog title="管理员头像" :visible.sync="dialogFormVisible">
+
+
+        <el-form>
+            <el-form-item label="ID" :label-width="formLabelWidth">
+                <el-input  disabled ="true" autocomplete="off"></el-input>
+            </el-form-item>
+
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button type="primary"  v-on:click="update()">提交</el-button>
+        </div>
+    </el-dialog>
+    <el-card>
+        <el-table :data="listData" stripe style="width: 100%; " >
+            <el-table-column prop="adminId" label="管理员Id" width="100">
+            </el-table-column>
+            <el-table-column prop="adminName" label="管理员名称" width="180">
+            </el-table-column>
+            <el-table-column prop="adminPhone" label="管理员联系电话"  width="280">
+            </el-table-column>
+            <el-table-column prop="adminEmail" label="管理员email"  width="280">
+            </el-table-column>
+            <el-table-column label="操作" width="250" style="display: flex;">
+                <template slot-scope="scope">
+                    <el-button
+                            size="mini"
+                            @click="dialogFormVisible = true,handleEdit(scope.$index, scope.row)">编辑</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+    </el-card>
+    <el-dialog title="管理员个人信息编辑" :visible.sync="dialogFormVisible">
+        <el-form :model="up">
+            <el-form-item label="ID" :label-width="formLabelWidth">
+                <el-input v-model="up.adminId" disabled ="true" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="姓名" :label-width="formLabelWidth">
+                <el-input v-model="up.adminName" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="电话" :label-width="formLabelWidth">
+                <el-input v-model="up.adminPhone" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="邮箱" :label-width="formLabelWidth">
+                <el-input v-model="up.adminEmail" autocomplete="off"></el-input>
+            </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button type="primary"  v-on:click="update()">提交</el-button>
+        </div>
+    </el-dialog>
+</div>
+
+
+</body>
+<script>
+
+
+    new Vue({
+        el: '#app',
+        data:{
+            personalPhoto:true,
+            dialogFormVisible: false,
+            formLabelWidth: '120px',
+            listData:{},
+            up:{},
+            add:{},
+            tableData:{},
+            dialogFormTitle: "",
+            tableDatas: {
+                formdata:{},
+                adminName:'',
+            },
+        },
+        created(){
+            var a=sessionStorage.getItem("usName");
+            this.adminName=a;
+            console.log(this.adminName);
+            this.getAll(this.adminName);
+        },
+        methods:{
+            getAll(A){
+                console.log("进入getall方法中......");
+                axios.get("http://localhost:8080/admin/get?adminName="+A).then(res=>{
+                    console.log(res.data);
+                    // this.tableDatas.listdata=res.data.records;
+                    this.listData=res.data;
+                    console.log("listData's adminId:"+this.listData.adminId);
+                });
+            },
+            handleEdit(index, row) {
+                axios.get("http://localhost:8080/admin/selectId?id="+row.adminId).then(rel => {
+                    this.up=rel.data;
+                    console.log("up:"+this.up)
+                })
+            },
+            update() {
+                axios.post("http://localhost:8080/admin/update",this.up).then(rel=>{
+                    alert("修改成功");
+                    this.getAll(this.up);
+                })
+            },
+        }
+    })
+</script>
+
+
+
+
+</html>

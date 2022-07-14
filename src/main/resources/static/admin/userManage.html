@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>FOODKA会员管理系统</title>
     <link rel="stylesheet" href="../../assets/css/login.css"/>
     <link rel="stylesheet" href="../../assets/css/element-ui/index.css"/>
     <link rel="stylesheet" href="../../assets/css/goods.css" >
@@ -14,10 +13,30 @@
     <script src="../../assets/css/element-ui/index.js"></script>
     <script src="../../assets/js/vue-resource.js"></script>
     <script src="../../assets/js/axios.min.js"></script>
-    <title>用户信息管理</title>
+    <title>菜品信息管理</title>
 </head>
 <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #app {
+        position: absolute;
+        height: 100%;
+        width: 100%;
 
+    }
+    .contentBox{
+        height: 100%;
+        width: 100%;
+        background-color: rgba(155, 155, 155, 0.1);
+        border-radius: 60px 20px;
+        padding-top: 30px;
+        padding-left: 30px;
+        text-align: center;
+
+
+    }
 </style>
 
 <body>
@@ -26,19 +45,19 @@
 <div id="app">
 
 
-<i class="el-icon-user-solid" ></i>
-    <i class="el-icon-user-solid" ></i>
-    <i class="el-icon-user-solid" ></i>
-    <i class="el-icon-user-solid" ></i>
+    <div>
+        <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+    </div>
+
     <template>
-        <div style="width: 30%;text-align:center; margin-top: 100px;">
+        <div style="width: 30%;text-align:center; margin-top: 30px;">
             <el-input  v-model="input" placeholder="请输入用户名" > <el-button
                     size="mini"
                     slot="append"
                     style="color: #0b5ed7;"
                     @click="mohuSearch">模糊查询</el-button></el-input>
         </div>
-        <el-button type="primary" plain style="margin:15px 20px;" @click="dialogFormVisible1 = true" icon="el-icon-plus" round>新增用户</el-button>
+        <el-button type="primary" plain style="margin:20px;float: left;" @click="dialogFormVisible1 = true" icon="el-icon-plus" round>新增用户</el-button>
         <div style="width: 80%;">
         <el-card>
             <el-table :data="listData" stripe style="width: 100%;  border-radius: 20px;" >
@@ -55,10 +74,14 @@
                         <el-button
                                 size="mini"
                                 @click="dialogFormVisible = true,handleEdit(scope.$index, scope.row)">编辑</el-button>
+
                         <el-button
-                                size="mini"
-                                type="danger"
-                                plain @click="deletes(scope.row)" icon="el-icon-delete">删除</el-button>
+                            size="mini"
+                            type="danger"
+                            plain icon="el-icon-delete"
+                            @click="deletes(scope.row)">
+                       删除</el-button>
+
                         <!--                            @click.native.prevent="deleteRow(scope.$index, tableData)">Delete</el-button>-->
 
                     </template>
@@ -80,7 +103,7 @@
                     <el-input v-model="up.usPhone" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="密码" :label-width="formLabelWidth">
-                    <el-input v-model="up.usPassword" autocomplete="off"></el-input>
+                    <el-input v-model="up.usPassword" disabled ="true" autocomplete="off"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -162,6 +185,7 @@
                     FormVisible:true,
                     dialogFormVisible: false,
                     dialogFormVisible1:false,
+
                     formLabelWidth: '120px'
                 }
             },
@@ -189,7 +213,7 @@
                     });
                 },
                 next(){
-                    if(this.tableDatas.page<this.tableDatas.total+1){
+                    if(this.tableDatas.num<this.tableDatas.total-1){
                         this.tableDatas.num++;
                     }else
                         alert("已经是最后一页了")
@@ -233,7 +257,7 @@
                     console.log(row);
                     var id = row.usId;
                     axios.delete("http://localhost:8080/user/"+id).then(rel=>{
-                        alert(rel.data);
+                        alert("删除成功");
                         this.getAll();
                     });
                 },

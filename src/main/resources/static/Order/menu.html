@@ -41,9 +41,14 @@
 		<script src="static/js/tweenmax.min.js"></script>
 		<script src="static/js/main.js"></script>
 	</head>
+	<style>
+       .foodpicture{
+		  width: 298px;height: 320px;
+	   }
+	</style>
 	<body class='sc5'>
 		<!-- preloader area start -->
-
+		<div id="app"><!-- 这是页面传输div -->
 		<div class="preloader" id="preloader">
 			<div class="preloader-inner">
 				<div id="wave1">
@@ -90,25 +95,44 @@
 							<li class="current-menu-item menu-item-has-children">
 								<a href="#">页面</a>
 								<ul class="sub-menu ps-0">
+									<li><a href="about.html">关于</a></li>
+									<li><a href="blog.html">博客</a></li>
+									<li><a href="blog-details.html">详细博客</a></li>
 									<li><a href="">菜单</a></li>
+									<li><a href="menu-list.html">菜单列表</a></li>
+									<li><a href="shop.html">商城</a></li>
+									<li><a href="single-product.html">商城详情</a></li>
+									<li><a href="cart.html">购物车</a></li>
+									<li><a href="checkout.html">查看</a></li>
 								</ul>
 							</li>
+							<li><a href="cart.html">关于我们</a></li>
+							<li><a href="checkout.html">联系我们</a></li>
 						</ul>
 					</div>
 					<div class="logo">
 						<a class="main-logo" href="index.html"><img src="static/picture/logo.png" alt="img"></a>
 					</div>
-
-					<div class="nav-right-part nav-right-part-desktop">
+					<div class="nav-right-part nav-right-part-mobile">
 						<ul>
 							<li><a class="search" href="#"><i class="ri-search-line"></i></a>
 							</li>
-							<li class="phone-contact"><i class="ri-phone-fill float-start"></i>
-								+（023）123456
+							<li class="phone-contact d-md-block d-none"><i class="ri-phone-fill float-start"></i>
+								+997 509 153 849
 							</li>
-							<li class="menu-cart"><a href="menu.html">已选菜品 </a></li>
-							<li class="menu-cart"><a href="../user/user_manger.html">个人中心 </a></li>
-
+							<li class="menu-cart"><a href="cart.html">已选菜品 <span>1</span></a></li>
+							<li>49.50 $</li>
+						</ul>
+					</div>
+					<div class="nav-right-part nav-right-part-desktop">
+						<ul>
+							<li>
+								{{usName}},你好
+							</li>
+							<li class="menu-cart"><a href="index.html">主页</a></li>
+							<li>
+							<a href="../user/userLogin.html">退出</a>
+						    </li>
 						</ul>
 					</div>
 				</div>
@@ -249,20 +273,13 @@
 		<!-- category Area End -->
 
 		<!-- populer Area Start-->
-		
-		
-		
-		<div id="app"><!-- 这是页面传输div -->
-			
-			
-			
 		<section class="populer-area pd-top-50 pd-bottom-120">
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-4 col-md-6">
 						<div class="single-item-wrap">
 							<div class="thumb">
-								<img src="static/picture/15.png" alt="img">
+								<img class="foodpicture" src="static/picture/15.png" alt="img">
 								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
 							</div>
 							
@@ -319,7 +336,7 @@
 					<div class="col-lg-4 col-md-6">
 						<div class="single-item-wrap">
 							<div class="thumb">
-								<img src="static/picture/25.png" alt="img">
+								<img class="foodpicture" src="static/picture/25.png" alt="img">
 								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
 							</div>
 							<div class="wrap-details">
@@ -372,7 +389,7 @@
 					<div class="col-lg-4 col-md-6">
 						<div class="single-item-wrap">
 							<div class="thumb">
-								<img src="static/picture/34.png" alt="img">
+								<img class="foodpicture" src="static/picture/34.png" alt="img">
 								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
 							</div>
 							<div class="wrap-details">
@@ -429,7 +446,7 @@
 					<div class="col-lg-4 col-md-6">
 						<div class="single-item-wrap">
 							<div class="thumb">
-								<img src="static/picture/45.png" alt="img">
+								<img class="foodpicture" src="static/picture/45.png" alt="img">
 								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
 							</div>
 							<div class="wrap-details">
@@ -484,7 +501,7 @@
 					<div class="col-lg-4 col-md-6">
 						<div class="single-item-wrap">
 							<div class="thumb">
-								<img src="static/picture/53.png" alt="img">
+								<img class="foodpicture" src="static/picture/53.png" alt="img">
 								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
 							</div>
 							<div class="wrap-details">
@@ -540,7 +557,7 @@
 					<div class="col-lg-4 col-md-6">
 						<div class="single-item-wrap">
 							<div class="thumb">
-								<img src="static/picture/63.png" alt="img">
+								<img class="foodpicture" src="static/picture/63.png" alt="img">
 								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
 							</div>
 							<div class="wrap-details">
@@ -596,7 +613,7 @@
 					<div class="col-lg-4 col-md-6">
 						<div class="single-item-wrap">
 							<div class="thumb">
-								<img src="static/picture/16.png" alt="img">
+								<img class="foodpicture" src="static/picture/16.png" alt="img">
 								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
 							</div>
 							<div class="wrap-details">
@@ -653,7 +670,7 @@
 					<div class="col-lg-4 col-md-6">
 						<div class="single-item-wrap">
 							<div class="thumb">
-								<img src="static/picture/29.png" alt="img">
+								<img class="foodpicture" src="static/picture/29.png" alt="img">
 								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
 							</div>
 							<div class="wrap-details">
@@ -709,7 +726,7 @@
 					<div class="col-lg-4 col-md-6">
 						<div class="single-item-wrap">
 							<div class="thumb">
-								<img src="static/picture/hanbao4.png" alt="img">
+								<img class="foodpicture" src="static/picture/hanbao4.png" alt="img">
 								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
 							</div>
 							<div class="wrap-details">
@@ -761,26 +778,802 @@
 								
 							</div>
 						</div>
+
 					</div>
-					<div class="col-12">
-						<nav>
-							<ul class="pagination">
-								<li class="page-item">
-									<a class="page-link" href="#">
-										<i class="ri-arrow-left-s-line"></i>
-									</a>
-								</li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item">
-									<a class="page-link" href="#">
-										<i class="ri-arrow-right-s-line"></i>
-									</a>
-								</li>
-							</ul>
-						</nav>
+					<div class="col-lg-4 col-md-6">
+						<div class="single-item-wrap">
+							<div class="thumb">
+								<img class="foodpicture" src="static/picture/hanbao1.png" alt="img">
+								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+							</div>
+							<div class="wrap-details">
+								<h5><a href="single-product.html">格兰芬多汉堡</a></h5>
+								<div class="wrap-footer">
+									<div class="rating">
+										4.9
+										<span class="rating-inner">
+											<i class="ri-star-fill ps-0"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-half-line pe-0"></i>
+										</span>
+										(462)
+									</div>
+									<h6 class="price">58.00</h6>
+								</div>
+							</div>
+							<div class="quantity buttons_added">
+
+
+								<ul v-for="(item,id) in list" v-if="id==10" :key="item.id">
+
+									<!-- <li>{{item.id}}</li>
+									<li>{{item.name}}</li>
+									<li>{{item.price}}</li> -->
+									<button @click="item.count--"  v-if="item.count>0">-</button>
+									<span>{{item.count}}</span>
+									<button @click="item.count++">+</button>
+									<!-- <li class="del"><button @click="del(item)">移除</button></li> -->
+								</ul>
+								<!-- 这是按钮加减 -->
+
+
+
+
+
+
+
+								<div hidden="hidden">  <!-- 隐藏原来的按钮 -->
+									<input type="button" value="-" class="minus">
+									<input type="number" class="input-text qty text" step="1" min="1" max="10000"
+										   name="quantity" value="1">
+									<input type="button" value="+" class="plus">
+								</div>
+
+
+
+
+							</div>
+						</div>
 					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="single-item-wrap">
+							<div class="thumb">
+								<img class="foodpicture" src="static/picture/hanbao2.png" alt="img">
+								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+							</div>
+							<div class="wrap-details">
+								<h5><a href="single-product.html">斯莱特林汉堡</a></h5>
+								<div class="wrap-footer">
+									<div class="rating">
+										4.9
+										<span class="rating-inner">
+											<i class="ri-star-fill ps-0"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-half-line pe-0"></i>
+										</span>
+										(928)
+									</div>
+									<h6 class="price">48.00</h6>
+								</div>
+								<div class="quantity buttons_added">
+
+
+									<ul v-for="(item,id) in list" v-if="id==11" :key="item.id">
+
+										<!-- <li>{{item.id}}</li>
+										<li>{{item.name}}</li>
+										<li>{{item.price}}</li> -->
+										<button @click="item.count--"  v-if="item.count>0">-</button>
+										<span>{{item.count}}</span>
+										<button @click="item.count++">+</button>
+										<!-- <li class="del"><button @click="del(item)">移除</button></li> -->
+									</ul>
+									<!-- 这是按钮加减 -->
+
+
+
+
+
+
+
+									<div hidden="hidden">  <!-- 隐藏原来的按钮 -->
+										<input type="button" value="-" class="minus">
+										<input type="number" class="input-text qty text" step="1" min="1" max="10000"
+											   name="quantity" value="1">
+										<input type="button" value="+" class="plus">
+									</div>
+
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="single-item-wrap">
+							<div class="thumb">
+								<img class="foodpicture" src="static/picture/hanbao3.png" alt="img">
+								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+							</div>
+							<div class="wrap-details">
+								<h5><a href="single-product.html">拉文克劳汉堡</a></h5>
+								<div class="wrap-footer">
+									<div class="rating">
+										4.9
+										<span class="rating-inner">
+											<i class="ri-star-fill ps-0"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-half-line pe-0"></i>
+										</span>
+										(462)
+									</div>
+									<h6 class="price">48.00</h6>
+								</div>
+							</div>
+							<div class="quantity buttons_added">
+
+
+								<ul v-for="(item,id) in list" v-if="id==12" :key="item.id">
+
+									<!-- <li>{{item.id}}</li>
+									<li>{{item.name}}</li>
+									<li>{{item.price}}</li> -->
+									<button @click="item.count--"  v-if="item.count>0">-</button>
+									<span>{{item.count}}</span>
+									<button @click="item.count++">+</button>
+									<!-- <li class="del"><button @click="del(item)">移除</button></li> -->
+								</ul>
+								<!-- 这是按钮加减 -->
+
+
+
+
+
+
+
+								<div hidden="hidden">  <!-- 隐藏原来的按钮 -->
+									<input type="button" value="-" class="minus">
+									<input type="number" class="input-text qty text" step="1" min="1" max="10000"
+										   name="quantity" value="1">
+									<input type="button" value="+" class="plus">
+								</div>
+
+
+
+							</div>
+						</div>
+
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="single-item-wrap">
+							<div class="thumb">
+								<img class="foodpicture" src="static/picture/lamian1.png" alt="img">
+								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+							</div>
+							<div class="wrap-details">
+								<h5><a href="single-product.html">和风拉面</a></h5>
+								<div class="wrap-footer">
+									<div class="rating">
+										4.9
+										<span class="rating-inner">
+											<i class="ri-star-fill ps-0"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-half-line pe-0"></i>
+										</span>
+										(462)
+									</div>
+									<h6 class="price">29.00</h6>
+								</div>
+							</div>
+							<div class="quantity buttons_added">
+
+
+								<ul v-for="(item,id) in list" v-if="id==13" :key="item.id">
+
+									<!-- <li>{{item.id}}</li>
+									<li>{{item.name}}</li>
+									<li>{{item.price}}</li> -->
+									<button @click="item.count--"  v-if="item.count>0">-</button>
+									<span>{{item.count}}</span>
+									<button @click="item.count++">+</button>
+									<!-- <li class="del"><button @click="del(item)">移除</button></li> -->
+								</ul>
+								<!-- 这是按钮加减 -->
+
+
+
+
+
+
+
+								<div hidden="hidden">  <!-- 隐藏原来的按钮 -->
+									<input type="button" value="-" class="minus">
+									<input type="number" class="input-text qty text" step="1" min="1" max="10000"
+										   name="quantity" value="1">
+									<input type="button" value="+" class="plus">
+								</div>
+
+
+
+
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="single-item-wrap">
+							<div class="thumb">
+								<img class="foodpicture" src="static/picture/lamian2.png" alt="img">
+								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+							</div>
+							<div class="wrap-details">
+								<h5><a href="single-product.html">魔鬼拉面</a></h5>
+								<div class="wrap-footer">
+									<div class="rating">
+										4.9
+										<span class="rating-inner">
+											<i class="ri-star-fill ps-0"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-half-line pe-0"></i>
+										</span>
+										(928)
+									</div>
+									<h6 class="price">48.00</h6>
+								</div>
+								<div class="quantity buttons_added">
+
+
+									<ul v-for="(item,id) in list" v-if="id==14" :key="item.id">
+
+										<!-- <li>{{item.id}}</li>
+										<li>{{item.name}}</li>
+										<li>{{item.price}}</li> -->
+										<button @click="item.count--"  v-if="item.count>0">-</button>
+										<span>{{item.count}}</span>
+										<button @click="item.count++">+</button>
+										<!-- <li class="del"><button @click="del(item)">移除</button></li> -->
+									</ul>
+									<!-- 这是按钮加减 -->
+
+
+
+
+
+
+
+									<div hidden="hidden">  <!-- 隐藏原来的按钮 -->
+										<input type="button" value="-" class="minus">
+										<input type="number" class="input-text qty text" step="1" min="1" max="10000"
+											   name="quantity" value="1">
+										<input type="button" value="+" class="plus">
+									</div>
+
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="single-item-wrap">
+							<div class="thumb">
+								<img class="foodpicture" src="static/picture/lamian3.png" alt="img">
+								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+							</div>
+							<div class="wrap-details">
+								<h5><a href="single-product.html">风情拉面</a></h5>
+								<div class="wrap-footer">
+									<div class="rating">
+										4.9
+										<span class="rating-inner">
+											<i class="ri-star-fill ps-0"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-half-line pe-0"></i>
+										</span>
+										(462)
+									</div>
+									<h6 class="price">29.00</h6>
+								</div>
+							</div>
+							<div class="quantity buttons_added">
+
+
+								<ul v-for="(item,id) in list" v-if="id==15" :key="item.id">
+
+									<!-- <li>{{item.id}}</li>
+									<li>{{item.name}}</li>
+									<li>{{item.price}}</li> -->
+									<button @click="item.count--"  v-if="item.count>0">-</button>
+									<span>{{item.count}}</span>
+									<button @click="item.count++">+</button>
+									<!-- <li class="del"><button @click="del(item)">移除</button></li> -->
+								</ul>
+								<!-- 这是按钮加减 -->
+
+
+
+
+
+
+
+								<div hidden="hidden">  <!-- 隐藏原来的按钮 -->
+									<input type="button" value="-" class="minus">
+									<input type="number" class="input-text qty text" step="1" min="1" max="10000"
+										   name="quantity" value="1">
+									<input type="button" value="+" class="plus">
+								</div>
+
+
+
+							</div>
+						</div>
+
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="single-item-wrap">
+							<div class="thumb">
+								<img class="foodpicture" src="static/picture/shutiao3.png" alt="img">
+								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+							</div>
+							<div class="wrap-details">
+								<h5><a href="single-product.html">钢铁侠爱吃的薯条</a></h5>
+								<div class="wrap-footer">
+									<div class="rating">
+										4.9
+										<span class="rating-inner">
+											<i class="ri-star-fill ps-0"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-half-line pe-0"></i>
+										</span>
+										(462)
+									</div>
+									<h6 class="price">25.00</h6>
+								</div>
+							</div>
+							<div class="quantity buttons_added">
+
+
+								<ul v-for="(item,id) in list" v-if="id==16" :key="item.id">
+
+									<!-- <li>{{item.id}}</li>
+									<li>{{item.name}}</li>
+									<li>{{item.price}}</li> -->
+									<button @click="item.count--"  v-if="item.count>0">-</button>
+									<span>{{item.count}}</span>
+									<button @click="item.count++">+</button>
+									<!-- <li class="del"><button @click="del(item)">移除</button></li> -->
+								</ul>
+								<!-- 这是按钮加减 -->
+
+
+
+
+
+
+
+								<div hidden="hidden">  <!-- 隐藏原来的按钮 -->
+									<input type="button" value="-" class="minus">
+									<input type="number" class="input-text qty text" step="1" min="1" max="10000"
+										   name="quantity" value="1">
+									<input type="button" value="+" class="plus">
+								</div>
+
+
+
+
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="single-item-wrap">
+							<div class="thumb">
+								<img class="foodpicture" src="static/picture/shutiao2.png" alt="img">
+								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+							</div>
+							<div class="wrap-details">
+								<h5><a href="single-product.html">美队爱吃的薯条</a></h5>
+								<div class="wrap-footer">
+									<div class="rating">
+										4.9
+										<span class="rating-inner">
+											<i class="ri-star-fill ps-0"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-half-line pe-0"></i>
+										</span>
+										(928)
+									</div>
+									<h6 class="price">25.00</h6>
+								</div>
+								<div class="quantity buttons_added">
+
+
+									<ul v-for="(item,id) in list" v-if="id==17" :key="item.id">
+
+										<!-- <li>{{item.id}}</li>
+										<li>{{item.name}}</li>
+										<li>{{item.price}}</li> -->
+										<button @click="item.count--"  v-if="item.count>0">-</button>
+										<span>{{item.count}}</span>
+										<button @click="item.count++">+</button>
+										<!-- <li class="del"><button @click="del(item)">移除</button></li> -->
+									</ul>
+									<!-- 这是按钮加减 -->
+
+
+
+
+
+
+
+									<div hidden="hidden">  <!-- 隐藏原来的按钮 -->
+										<input type="button" value="-" class="minus">
+										<input type="number" class="input-text qty text" step="1" min="1" max="10000"
+											   name="quantity" value="1">
+										<input type="button" value="+" class="plus">
+									</div>
+
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="single-item-wrap">
+							<div class="thumb">
+								<img class="foodpicture" src="static/picture/shutiao1.png" alt="img">
+								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+							</div>
+							<div class="wrap-details">
+								<h5><a href="single-product.html">雷神爱吃的薯条</a></h5>
+								<div class="wrap-footer">
+									<div class="rating">
+										4.9
+										<span class="rating-inner">
+											<i class="ri-star-fill ps-0"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-half-line pe-0"></i>
+										</span>
+										(462)
+									</div>
+									<h6 class="price">25.00</h6>
+								</div>
+							</div>
+							<div class="quantity buttons_added">
+
+
+								<ul v-for="(item,id) in list" v-if="id==18" :key="item.id">
+
+									<!-- <li>{{item.id}}</li>
+									<li>{{item.name}}</li>
+									<li>{{item.price}}</li> -->
+									<button @click="item.count--"  v-if="item.count>0">-</button>
+									<span>{{item.count}}</span>
+									<button @click="item.count++">+</button>
+									<!-- <li class="del"><button @click="del(item)">移除</button></li> -->
+								</ul>
+								<!-- 这是按钮加减 -->
+
+
+
+
+
+
+
+								<div hidden="hidden">  <!-- 隐藏原来的按钮 -->
+									<input type="button" value="-" class="minus">
+									<input type="number" class="input-text qty text" step="1" min="1" max="10000"
+										   name="quantity" value="1">
+									<input type="button" value="+" class="plus">
+								</div>
+
+
+
+							</div>
+						</div>
+
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="single-item-wrap">
+							<div class="thumb">
+								<img class="foodpicture" src="static/picture/ma.png" alt="img">
+								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+							</div>
+							<div class="wrap-details">
+								<h5><a href="single-product.html">复联套餐</a></h5>
+								<div class="wrap-footer">
+									<div class="rating">
+										4.9
+										<span class="rating-inner">
+											<i class="ri-star-fill ps-0"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-half-line pe-0"></i>
+										</span>
+										(462)
+									</div>
+									<h6 class="price">299.00</h6>
+								</div>
+							</div>
+							<div class="quantity buttons_added">
+
+
+								<ul v-for="(item,id) in list" v-if="id==19" :key="item.id">
+
+									<!-- <li>{{item.id}}</li>
+									<li>{{item.name}}</li>
+									<li>{{item.price}}</li> -->
+									<button @click="item.count--"  v-if="item.count>0">-</button>
+									<span>{{item.count}}</span>
+									<button @click="item.count++">+</button>
+									<!-- <li class="del"><button @click="del(item)">移除</button></li> -->
+								</ul>
+								<!-- 这是按钮加减 -->
+
+
+
+
+
+
+
+								<div hidden="hidden">  <!-- 隐藏原来的按钮 -->
+									<input type="button" value="-" class="minus">
+									<input type="number" class="input-text qty text" step="1" min="1" max="10000"
+										   name="quantity" value="1">
+									<input type="button" value="+" class="plus">
+								</div>
+
+
+
+
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="single-item-wrap">
+							<div class="thumb">
+								<img class="foodpicture" src="static/picture/hp.png" alt="img">
+								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+							</div>
+							<div class="wrap-details">
+								<h5><a href="single-product.html">哈利·波特套餐</a></h5>
+								<div class="wrap-footer">
+									<div class="rating">
+										4.9
+										<span class="rating-inner">
+											<i class="ri-star-fill ps-0"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-half-line pe-0"></i>
+										</span>
+										(928)
+									</div>
+									<h6 class="price">299.00</h6>
+								</div>
+								<div class="quantity buttons_added">
+
+
+									<ul v-for="(item,id) in list" v-if="id==20" :key="item.id">
+
+										<!-- <li>{{item.id}}</li>
+										<li>{{item.name}}</li>
+										<li>{{item.price}}</li> -->
+										<button @click="item.count--"  v-if="item.count>0">-</button>
+										<span>{{item.count}}</span>
+										<button @click="item.count++">+</button>
+										<!-- <li class="del"><button @click="del(item)">移除</button></li> -->
+									</ul>
+									<!-- 这是按钮加减 -->
+
+
+
+
+
+
+
+									<div hidden="hidden">  <!-- 隐藏原来的按钮 -->
+										<input type="button" value="-" class="minus">
+										<input type="number" class="input-text qty text" step="1" min="1" max="10000"
+											   name="quantity" value="1">
+										<input type="button" value="+" class="plus">
+									</div>
+
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="single-item-wrap">
+							<div class="thumb">
+								<img class="foodpicture" src="static/picture/dc.png" alt="img">
+								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+							</div>
+							<div class="wrap-details">
+								<h5><a href="single-product.html">正义联盟套餐</a></h5>
+								<div class="wrap-footer">
+									<div class="rating">
+										4.9
+										<span class="rating-inner">
+											<i class="ri-star-fill ps-0"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-half-line pe-0"></i>
+										</span>
+										(462)
+									</div>
+									<h6 class="price">299.00</h6>
+								</div>
+							</div>
+							<div class="quantity buttons_added">
+
+
+								<ul v-for="(item,id) in list" v-if="id==21" :key="item.id">
+
+									<!-- <li>{{item.id}}</li>
+									<li>{{item.name}}</li>
+									<li>{{item.price}}</li> -->
+									<button @click="item.count--"  v-if="item.count>0">-</button>
+									<span>{{item.count}}</span>
+									<button @click="item.count++">+</button>
+									<!-- <li class="del"><button @click="del(item)">移除</button></li> -->
+								</ul>
+								<!-- 这是按钮加减 -->
+
+
+
+
+
+
+
+								<div hidden="hidden">  <!-- 隐藏原来的按钮 -->
+									<input type="button" value="-" class="minus">
+									<input type="number" class="input-text qty text" step="1" min="1" max="10000"
+										   name="quantity" value="1">
+									<input type="button" value="+" class="plus">
+								</div>
+
+
+
+							</div>
+						</div>
+
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="single-item-wrap">
+							<div class="thumb">
+								<img  class="foodpicture" src="static/picture/sprite.png" alt="img">
+								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+							</div>
+							<div class="wrap-details">
+								<h5><a href="single-product.html">多啦a梦梦幻水</a></h5>
+								<div class="wrap-footer">
+									<div class="rating">
+										4.9
+										<span class="rating-inner">
+											<i class="ri-star-fill ps-0"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-half-line pe-0"></i>
+										</span>
+										(462)
+									</div>
+									<h6 class="price">18.00</h6>
+								</div>
+							</div>
+							<div class="quantity buttons_added">
+
+
+								<ul v-for="(item,id) in list" v-if="id==22" :key="item.id">
+
+									<!-- <li>{{item.id}}</li>
+									<li>{{item.name}}</li>
+									<li>{{item.price}}</li> -->
+									<button @click="item.count--"  v-if="item.count>0">-</button>
+									<span>{{item.count}}</span>
+									<button @click="item.count++">+</button>
+									<!-- <li class="del"><button @click="del(item)">移除</button></li> -->
+								</ul>
+								<!-- 这是按钮加减 -->
+
+
+
+
+
+
+
+								<div hidden="hidden">  <!-- 隐藏原来的按钮 -->
+									<input type="button" value="-" class="minus">
+									<input type="number" class="input-text qty text" step="1" min="1" max="10000"
+										   name="quantity" value="1">
+									<input type="button" value="+" class="plus">
+								</div>
+
+
+
+
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="single-item-wrap">
+							<div class="thumb">
+								<img class="foodpicture" src="static/picture/cola.png" alt="img">
+								<a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+							</div>
+							<div class="wrap-details">
+								<h5><a href="single-product.html">开心超人开心水</a></h5>
+								<div class="wrap-footer">
+									<div class="rating">
+										4.9
+										<span class="rating-inner">
+											<i class="ri-star-fill ps-0"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-fill"></i>
+											<i class="ri-star-half-line pe-0"></i>
+										</span>
+										(928)
+									</div>
+									<h6 class="price">18.00</h6>
+								</div>
+								<div class="quantity buttons_added">
+
+
+									<ul v-for="(item,id) in list" v-if="id==23" :key="item.id">
+
+										<!-- <li>{{item.id}}</li>
+										<li>{{item.name}}</li>
+										<li>{{item.price}}</li> -->
+										<button @click="item.count--"  v-if="item.count>0">-</button>
+										<span>{{item.count}}</span>
+										<button @click="item.count++">+</button>
+										<!-- <li class="del"><button @click="del(item)">移除</button></li> -->
+									</ul>
+									<!-- 这是按钮加减 -->
+
+
+
+
+
+
+
+									<div hidden="hidden">  <!-- 隐藏原来的按钮 -->
+										<input type="button" value="-" class="minus">
+										<input type="number" class="input-text qty text" step="1" min="1" max="10000"
+											   name="quantity" value="1">
+										<input type="button" value="+" class="plus">
+									</div>
+
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</section>
@@ -924,7 +1717,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+
 		</footer>
 		<!-- footer area end -->
 
@@ -932,9 +1725,6 @@
 		<div class="back-to-top">
 			<span class="back-top"><i class="fas fa-angle-double-up"></i></span>
 		</div>
-
-
-
 		<!-- all plugins here -->
 		<script src="static/js/jquery.3.6.min.js"></script>
 		<script src="static/js/jquery-ui.min.js"></script>
@@ -952,15 +1742,14 @@
 		<script src="static/js/tweenmax.min.js"></script>
 		<!-- main js  -->
 		<script src="static/js/main.js"></script>
+		</div>
 	</body>
-
 	<script>
 var num=0;	
  var vm2 = new Vue({
       el:"#app",
       data:{
 		  formData:{},
-		  
           list:[
               {
                   id:1,"name":"玛格丽特披萨","price":"99.00",count:0,
@@ -989,8 +1778,62 @@ var num=0;
               {
                   id:9,"name":"帕蒂汉堡","price":"49.00",count:0,
               },
+			  {
+				  id:10,"name":"格兰芬多汉堡","price":"48.00",count:0,
+			  },
+			  {
+				  id:11,"name":"斯莱特林汉堡","price":"48.00",count:0,
+			  },
+			  {
+				  id:12,"name":"拉文克劳","price":"48.00",count:0,
+			  },
+			  {
+				  id:13,"name":"和风拉面","price":"29.00",count:0,
+			  },
+			  {
+				  id:14,"name":"魔鬼拉面","price":"29.00",count:0,
+			  },
+			  {
+				  id:15,"name":"风情拉面","price":"29.00",count:0,
+			  },
+			  {
+				  id:16,"name":"钢铁侠爱吃的薯条","price":"25.00",count:0,
+			  },
+			  {
+				  id:17,"name":"美队爱吃的薯条","price":"25.00",count:0,
+			  },
+			  {
+				  id:18,"name":"雷神爱吃的薯条","price":"25.00",count:0,
+			  },
+			  {
+				  id:19,"name":"复联套餐","price":"299.00",count:0,
+			  },
+			  {
+				  id:20,"name":"哈利波特套餐","price":"299.00",count:0,
+			  },
+			  {
+				  id:21,"name":"正义联盟套餐","price":"299.00",count:0,
+			  },
+			  {
+				  id:22,"name":"多啦a梦梦幻水","price":"18.00",count:0,
+			  },
+			  {
+				  id:23,"name":"开心超人开心水","price":"19.00",count:0,
+			  },
+			  {
+				  id:24,"name":"魔法小樱可爱水","price":"19.00",count:0,
+			  },
           ],
-      },
+		  usId:0,
+          usName:""
+	  },
+	 created(){
+      	 var usName=sessionStorage.getItem("usName");
+      	 this.usName=usName;
+		 var usId=localStorage.getItem("userId");
+		 this.usId=usId;
+		 console.log(usId);
+	 },
       methods:{
           // 删除
           del(item){
@@ -1004,14 +1847,24 @@ var num=0;
           },
 
 		  submit_form(){
+			  console.log("now.id"+this.usId);
 			  // console.log(this.formData)
-			  axios.post("http://localhost:8080/orders/save", this.formData).then(rel=>{
+			  if(this.totalPrice===0){
+			  	alert("请先选商品！")
+			  }
+			  else {
+				  this.formData.usId = this.usId;
+				  console.log("now.id"+this.usId);
+				  console.log("formdata.id"+this.formData.usId);
+				  axios.post("http://localhost:8080/orders/save", this.formData).then(rel => {
+					  if (rel.data) {
+						  alert("确认成功！");
+					  } else {
+						  alert("传入数据库失败！")
+					  }
 
-				  if(rel.data){
-					  alert("确认成功！");
-				  }else{alert("传入数据库失败！")}
-
-			  })
+				  })
+			  }
 		  }
 		  
       },

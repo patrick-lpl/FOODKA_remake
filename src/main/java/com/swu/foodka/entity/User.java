@@ -39,10 +39,6 @@ public class User {
      */
     private String usPhoto;
     /**
-     * 用户权限
-     */
-    private Integer usQx;
-    /**
      * 用户所在地
      */
     private String usArea;
@@ -103,13 +99,6 @@ public class User {
         this.usPhoto = usPhoto;
     }
 
-    public Integer getUsQx() {
-        return usQx;
-    }
-
-    public void setUsQx(Integer usQx) {
-        this.usQx = usQx;
-    }
 
     public String getUsArea() {
         return usArea;

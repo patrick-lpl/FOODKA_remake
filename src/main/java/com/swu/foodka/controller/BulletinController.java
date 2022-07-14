@@ -98,4 +98,10 @@ public class BulletinController {
         return bulletinPage;
     }
 
+    @GetMapping("/like")
+    public List<Bulletin> getAllList(@RequestParam String info){
+        System.out.println(info);
+        return bulletinDao.selectPagesLike("%"+info+"%");
+    }
+
 }

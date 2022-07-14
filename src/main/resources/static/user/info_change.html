@@ -13,26 +13,34 @@
 </head>
 <body>
 
-<div id="app">
+<div id="app" style="width: 70%;  margin-left: 15%;  margin-top: 10%">
 
-    <div id="myPhoto" v-show="true">
+    <div id="myPhoto" v-show="true" style="margin-left: 45%">
 
         <div class="viewPhoto">
-            <img src="image/" alt="" id="portrait" style=" width: 60px;height: 60px;border-radius: 60px;" />
+            <img src="image/刺猬.jpg" alt="" id="portrait" style=" width: 60px;height: 60px;border-radius: 60px;" />
         </div>
-        你的ID：{{usId}}
+        {{username}}你好<br><br>
+
+        你的ID：{{usId}}<br><br>
 
 
         <div class="listBox">
-            <dl>请上传图片</dl>
+            <dl>请上传图片</dl><br>
             <dd>
-                <input type="file" id="saveImage" name="myphoto">
+
+                <input type="file" id="saveImage"   name="myphoto" style="  ;
+     border-radius: 3px;">
+
             </dd>
         </div>
 
 
-        <div class="save">
-            <input type="button" value="上传头像" @click="imageSubmit">
+        <div class="save" style="margin-top: 10px;">
+
+            <el-button
+                    size="larger"
+                    @click="imageSubmit" style="background-color:lightskyblue" round>上传头像</el-button>
         </div>
 
     </div>
@@ -56,7 +64,7 @@
             </el-table-column>
             <el-table-column prop="usAge" label="年龄">
             </el-table-column>
-            <el-table-column prop="usPhone" label="联系电话">
+            <el-table-column prop="usPhone" label="联系电话" width="220">
             </el-table-column>
             <el-table-column label="操作" width="250" style="display: flex;">
                 <template slot-scope="scope">
@@ -81,9 +89,6 @@
             <el-form-item label="电话" :label-width="formLabelWidth">
                 <el-input v-model="up.usPhone" autocomplete="off"></el-input>
             </el-form-item>
-            <el-form-item label="密码" :label-width="formLabelWidth">
-                <el-input v-model="up.usPassword" autocomplete="off"></el-input>
-            </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
             <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -104,7 +109,7 @@
             dialogFormVisible: false,
             formLabelWidth: '120px',
             listData:[],
-            usId:0,
+            username:"",
             up:{},
             add:{},
             tableData:{},
@@ -115,15 +120,16 @@
             },
         },
         created(){
+            var usName=sessionStorage.getItem("usName");
+            this.username=usName;
             var a=localStorage.getItem("userId");
             this.usId=a;
-            console.log(this.usId);
+            console.log("info_change's id:"+this.usId);
             this.getAll(this.usId);
         },
         methods:{
             imageSubmit(){
                 let x = document.getElementById('saveImage').files[0];
-
 
                 let params = new FormData();
                 params.append('file',x,x.name);
@@ -139,11 +145,13 @@
                         console.log(error);
                     })
             },
-            getAll(id){
-                axios.get("http://localhost:8080/user/get/"+id).then(res=>{
-                    console.log(res.data);
+            getAll(A){
+                console.log("A:"+A);
+                axios.get("http://localhost:8080/user/get/"+A).then(res=>{
+                    console.log("后端返回值："+res.data);
                     // this.tableDatas.listdata=res.data.records;
                     this.listData=res.data;
+                    console.log("listData.usName:"+this.listData.usName);
                 });
             },
 
@@ -156,7 +164,9 @@
             },
             update() {
                 axios.put("http://localhost:8080/user/update",this.up).then(rel=>{
-                    alert(rel.data);
+                    if(rel.data) {alert("修改成功！");}
+                    else{alert("修改失败")}
+                    this.dialogFormVisible=false;
                     this.getAll();
                 })
             },

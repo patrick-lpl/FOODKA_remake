@@ -18,6 +18,9 @@
 
 
 <style>
+    .mainweb{
+        width: 100%;
+        height: 100%;}
 
     /*.el-menu-vertical-demo:not(.el-menu--collapse) {*/
     /*    width: 200px;*/
@@ -35,33 +38,51 @@
         min-height: 400px;
         margin-bottom: 1px;
     }
-
-
-
-    .el-header, .el-footer {
-        background-color: #B3C0D1;
-        color: #333;
+    .el-footer{
+        background-color: rgba(206,40,41,1);
         text-align: center;
-        /*line-height: 5vh;*/
+        color: rgba(255,255,255,1);
+
+    }
+    .el-menu-vertical-demo el-menu{
+        color: #FFC54A;
     }
 
+
+
+    .el-header {
+        background-color: rgba(206,40,41,1);
+        background-image: url("../../assets/img/logo.png");
+        color: white;
+        text-align: center;
+        /*margin: 0 10px 10px 10px ;*/
+    }
+
+
     .el-aside {
-        background-color: #E9EEF3;
+        background-color: #D3DCE6;
         color: #333;
         text-align: left;
+        margin: 0 10px 10px 10px;
         /*line-height: 95vh;*/
     }
 
     .el-main {
-        background-color: #E9EEF3;
+        width: 99%;
+        background-color: rgba(253,201,19,0.1);
         color: #333;
         text-align: center;
         /*line-height: 90vh;*/
+    }
+    .el-menu-vertical-demo{
+        height: 744px;
+
     }
 
 
     body > .el-container {
         margin-bottom: 40px;
+        background-color: #ffffff;
     }
 
     .el-container:nth-child(5) .el-aside,
@@ -72,33 +93,34 @@
     .el-container:nth-child(7) .el-aside {
         /*line-height: 320px;*/
     }
-
-
-
+    .el-radio-button__inner {
+        border:none !important;
+        background: transparent !important;
+    }
 </style>
 <body>
 <div id="app" class="mainweb">
     <el-container>
 
         <el-header height="10vh">
-            <h1 style="text-align: left;font-size: xx-large; margin-top: 20px">FOODKA后台管理系统
-                <el-avatar style="margin-left: 70%">Admin</el-avatar>
-            </h1>
+
         </el-header>
 
         <el-container>
 
-            <el-aside>
-                <el-radio-group v-model="isCollapse" style="margin-bottom: 2px;">
-                    <el-radio-button :label="false">展开</el-radio-button>
-                    <el-radio-button :label="true">收起</el-radio-button>
-                </el-radio-group>
+
+
                 <!-- 侧边栏菜单区域 -->
-                <el-menu
-                        default-active="2"
-                        class="el-menu-vertical-demo"
-                        @open="handleOpen" @close="handleClose":collapse="isCollapse"
-                        style="height: 94vh;">
+
+                    <el-menu class="el-menu-vertical-demo" default-active="1" style="height: 110vh;"
+                             background-color="#FFC54A" text-color="#0D0D0D" active-text-color="#eb9316"
+                             @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+                        <el-radio-group v-model="isCollapse"  color="#FFC54A">
+                            <el-radio-button :label="false" v-if="isCollapse" size="medium" style="float:left;"><i class="el-icon-d-arrow-right"></i>
+                            </el-radio-button>
+                            <el-radio-button :label="true" v-else size="medium"><i class="el-icon-d-arrow-left"></i>
+                            </el-radio-button>
+                        </el-radio-group>
 
 
                     <el-submenu index="1">
@@ -112,11 +134,13 @@
                                <i class="el-icon-document"></i>管理员操作</span>
                                 <el-menu-item index="1-1-1">
                                     <i class="el-icon-menu" ></i>
-                                    <span @click="openUrl('')"  style="font-weight: bold">基本信息</span>
+                                    <span @click="openUrl('manager-info.html')"  style="font-weight: bold">基本信息</span>
+
                                 </el-menu-item>
-                                <el-menu-item index="1-2-1">
-                                    <i class="el-icon-menu"></i>
-                                    <span @click="openUrl('manger-password.html')" style="font-weight: bold">密码修改</span>
+                                <el-menu-item index="1-1-1=2">
+                                    <i class="el-icon-menu" ></i>
+                                    <span @click="openUrl('manager-password.html')"  style="font-weight: bold">密码修改</span>
+
                                 </el-menu-item>
                             </el-submenu>
                         </el-menu-item-group>
@@ -126,10 +150,6 @@
                             <el-menu-item index="1-3-1">
                                 <i class="el-icon-menu"></i>
                                 <span @click="openUrl('userManage.html')" style="font-weight: bold" src="userManage.html">会员信息管理</span>
-                            </el-menu-item>
-                            <el-menu-item index="1-3-2">
-                                <i class="el-icon-menu"></i>
-                                <span @click="openUrl('')" style="font-weight: bold">会员密码修改</span>
                             </el-menu-item>
                         </el-submenu>
 
@@ -184,10 +204,6 @@
                             <i class="el-icon-menu"></i>
                             <span slot="title" @click="openUrl('ordermanagement.html')"  style="font-weight: bold">订单管理</span>
                         </el-menu-item>
-                        <el-menu-item index="3-1-3">
-                            <i class="el-icon-menu"></i>
-                            <span slot="title" @click="openUrl('')"  style="font-weight: bold">还有什么功能？</span>
-                        </el-menu-item>
                     </el-submenu >
 
 
@@ -204,20 +220,22 @@
 
 
                 </el-menu>
+
                 </el-col>
 
-            </el-aside>
+
 
             <el-container>
 
                 <el-main >
-                    <iframe id="mainIframe" class="mainFrame" :src="iframeUrl" width="100%" height="700px"
+                    <iframe id="mainIframe" class="mainFrame" :src="iframeUrl" width="100%" height="86%"
                             frameborder="0" scrolling="no"></iframe>
+<!--                    <el-footer style="height: 40px;">-->
+<!--                        Footer-->
+<!--                    </el-footer>-->
                 </el-main>
 
-                <el-footer>
-                    Footer
-                </el-footer>
+
 
             </el-container>
 

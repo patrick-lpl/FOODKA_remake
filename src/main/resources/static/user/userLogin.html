@@ -105,7 +105,6 @@
     new Vue({
         el: '#app',
         data: {
-            info: [],
             loginForm: {
                 usName:'',
                 usPassword: '',
@@ -140,31 +139,18 @@
                 }
             };
         },
-
-        created() {
-            this.getAll();
-
-        },
-
         methods: {
-            getAll() {
-                axios.get("http://localhost:8080/user/toList").then(res => {
-                    this.info = res.data;
-                });
-            },
             login() {
                  if(this.loginForm.usName!==''){
-                     console.log(this.loginForm.usName)
                      if(this.loginForm.usPassword!==''){
-                         console.log(this.loginForm.usPassword)
                          if(this.loginForm.code!==''){
                              if(code === this.$refs.getValue.value.toLowerCase()) {
                                  axios.post("http://localhost:8080/user/login", this.loginForm).then(rel => {
                                      //rel.data.{msg:返回的文本信息, flag:true=登陆成功/false=失败, datas:登陆的user}
                                      alert(rel.data.msg)
                                      if(rel.data.flag){
+                                         console.log("this.loginForm.username:"+this.loginForm.usName);
                                          sessionStorage.setItem("usName",this.loginForm.usName);
-                                         //  localStorage.setItem()
                                          window.location.href="../Order/index.html";
                                      }
                                  })

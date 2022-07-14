@@ -14,28 +14,35 @@
 		<el-container>
 			<!-- 主体 -->
 			<el-main>
-				<div class="gauge">
+				<div class="gauge" style="height: 100%;">
 
 					<!--<div class="chart">-->
 						<template>
 							<el-carousel :interval="7000" style="width: 800px; height:800px; margin-top: 20px;">
 
-								<el-carousel-item>
+								<el-carousel-item style="height: 500px;">
+									<p style="text-align: center;">菜品价格区间图</p>
 									<div id="dishPrice" style="width: 550px;height:300px; margin:auto;"></div>
+
 								</el-carousel-item>
-								<el-carousel-item>
+								<el-carousel-item style="height: 500px;">
+									<p style="text-align: center;">订单时间折线图</p>
 									<div id="orderCreateTime" style="width: 550px;height:300px; margin:auto;" ></div>
 								</el-carousel-item>
-								<el-carousel-item>
+								<el-carousel-item style="height: 500px;">
+									<p style="text-align: center;">用户年龄区间图</p>
 									<div id="usAge" style="width: 550px;height: 300px; margin:auto;"></div>
 								</el-carousel-item>
-								<el-carousel-item>
+								<el-carousel-item style="height: 500px;">
+									<p style="text-align: center;">会员地区分布直方图</p>
 									<div id="usArea" style="width: 550px;height: 300px; margin:auto;"></div>
 								</el-carousel-item>
-								<el-carousel-item>
+								<el-carousel-item style="height: 500px;">
+									<p style="text-align: center;">会员注册趋势图</p>
 									<div id="usCreateTime" style="width: 550px;height: 300px; margin:auto;"></div>
 								</el-carousel-item>
-								<el-carousel-item>
+								<el-carousel-item style="height: 500px;">
+									<p style="text-align: center;">用户消费区间图</p>
 									<div id="usCost" style="width: 550px;height: 300px; margin:auto;"></div>
 								</el-carousel-item>
 

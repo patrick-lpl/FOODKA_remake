@@ -14,15 +14,38 @@
     <script src="../../assets/css/element-ui/index.js"></script>
     <script src="../../assets/js/vue-resource.js"></script>
     <script src="../../assets/js/axios.min.js"></script>
-    <title>用户信息管理</title>
+    <title>订单信息管理</title>
 </head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #app {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+
+    }
+    .contentBox{
+        height: 100%;
+        width: 100%;
+        background-color: rgba(155, 155, 155, 0.1);
+        border-radius: 60px 20px;
+        padding-top: 30px;
+        padding-left: 30px;
+        text-align: center;
+
+
+    }
+</style>
 <body>
 <div id="app">
 
 <!-----------------------搜索栏输入框------------------------------------------------------>
 <template>
-    <div style="width: 30%;" >
-            <p>会员ID</p>
+    <div style="width:44%;" >
+            <p  style="font-size:16px;margin-bottom: 10px;">会员ID</p>
     <el-input v-model="add.usId" placeholder="请输入ID" style="margin-bottom:20px"></el-input>
             <el-button size="mini" v-on:click="searchs()">search</el-button>
         </div>

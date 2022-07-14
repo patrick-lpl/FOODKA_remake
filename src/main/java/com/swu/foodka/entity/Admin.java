@@ -44,8 +44,8 @@ public class Admin {
      * 修改时间
      */
     private String updateTime;
-    /**
-     * 头像
-     */
-    private String photo;
+
+    public String getUsername() {
+        return username;
+    }
 }
